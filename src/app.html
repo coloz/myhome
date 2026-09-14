@@ -1,0 +1,85 @@
+<div class="app">
+<header class="topbar">
+ <a class="brand" href="./"><span class="brand-symbol">木</span><span>木与光<small>HOME STUDIO / 01</small></span></a>
+ <div class="project-name"><strong>家的装修模拟器</strong><span>两套户型 · 分别自动保存</span></div>
+ <label class="scheme-picker"><span>当前方案</span><select aria-label="切换家装方案" [value]="scheme().id" [disabled]="!ready()&&!error()" (change)="changeScheme($event)">@for(item of schemes;track item.id){<option [value]="item.id">{{item.name}}</option>}</select></label>
+ <div class="header-actions" [attr.inert]="roaming()?'':null">
+  <button class="history" aria-label="撤销" [disabled]="!editor().undo" (click)="viewer?.undo()">↶</button><button class="history" aria-label="重做" [disabled]="!editor().redo" (click)="viewer?.redo()">↷</button>
+  <button class="header-button" (click)="importInput.click()" [disabled]="!ready()">导入</button><button class="header-button filled" (click)="viewer?.exportLayout()" [disabled]="!ready()">导出方案 ↗</button>
+ </div>
+ <input #importInput type="file" accept=".json,application/json" hidden (change)="importFile($event)">
+</header>
+<aside class="sidebar" [class.open]="sidebarOpen()">
+ <div class="sidebar-head"><span class="eyebrow">EXPLORE YOUR HOME</span><h1>从整体，到每个角落。</h1><p>自由布置，找到喜欢的生活方式。</p></div>
+ <div class="list-heading"><span>房间导航</span><span class="column-label">可见 / 装修</span></div>
+ <div class="room-list">@for(room of project()?.rooms;track room.id){
+  <div class="room-row" [class.selected]="selected()===room.id" [class.muted]="!states()[room.id]?.visible">
+   <button class="room-name" (click)="go(room.id)" [attr.aria-label]="'查看'+room.name"><span class="room-dot"></span>{{room.name}}<span class="go-arrow">↗</span></button>
+   <button class="icon-toggle" [class.on]="states()[room.id]?.visible" [attr.aria-label]="(states()[room.id]?.visible?'隐藏':'显示')+room.name" [attr.aria-pressed]="states()[room.id]?.visible" (click)="toggleRoom(room.id,'visible')"><svg viewBox="0 0 24 24"><path d="M2 12s3.8-6 10-6 10 6 10 6-3.8 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="2.5"/>@if(!states()[room.id]?.visible){<path d="m4 3 16 18"/>}</svg></button>
+   <button class="icon-toggle decor-icon" [class.on]="states()[room.id]?.decorated" [attr.aria-label]="(states()[room.id]?.decorated?'隐藏':'显示')+room.name+(room.greeneryOnly?'绿化':'装修')" [attr.aria-pressed]="states()[room.id]?.decorated" (click)="toggleRoom(room.id,'decorated')"><svg viewBox="0 0 24 24"><path d="M4 10V5h16v5M3 10h4v5h10v-5h4v9H3zM5 19v2m14-2v2"/></svg></button>
+  </div>
+ }</div>
+ <button class="text-button restore" (click)="showAll()" [disabled]="!ready()">恢复全部房间可见 ↺</button>
+ <div class="sidebar-note"><span>{{scheme().name}}</span><p>{{scheme().note}}</p></div>
+ <button class="source-link" (click)="showSource.set(true)">查看当前户型原图 <span>↗</span></button>
+</aside>
+<main class="stage" [class.walking]="roaming()">
+ <div class="view-header"><div><span class="eyebrow">{{roaming()?'WALK THROUGH YOUR HOME':selected()==='plan'?'FLOOR PLAN':'LIVE 3D VIEW'}}</span><h2>{{viewName()}}</h2></div>
+  <div class="view-switches">
+   <div class="view-tabs primary-views" role="group" aria-label="查看方式">
+    <button [class.active]="selected()==='all'&&!roaming()" [attr.aria-pressed]="selected()==='all'&&!roaming()" (click)="go('all')" [disabled]="!ready()">自由查看</button>
+    <button [class.active]="selected()==='plan'&&!roaming()" [attr.aria-pressed]="selected()==='plan'&&!roaming()" (click)="go('plan')" [disabled]="!ready()">户型图</button>
+    <button class="walk-toggle" [class.active]="roaming()" [disabled]="!ready()" (click)="toggleRoam()">{{roaming()?'退出漫游 · Esc':'第一人称漫游'}}</button>
+   </div>
+   @if(isRoom()&&!roaming()){<div class="view-tabs room-view-tabs" role="group" aria-label="房间视角"><button [class.active]="!eye()" (click)="go(selected())">空间视角</button><button [class.active]="eye()" (click)="go(selected(),true)">室内视角</button></div>}
+  </div>
+ </div>
+ <div #viewport class="viewport"></div>
+ @for(room of project()?.rooms;track room.id){<button class="room-pin" [attr.data-room]="room.id" (click)="go(room.id)">{{room.name}}</button>}
+ @if(!ready()){<div class="loading"><div class="loader-mark">◈</div><h2>{{error()?'暂时无法加载':'正在展开你的家'}}</h2><p>{{error()||'加载模型、材质与可编辑家具'}}</p>@if(!error()){<div class="progress"><i [style.width.%]="progress()"></i></div><small>{{progress()}}%</small>}</div>}
+ @if(roaming()){
+  <div class="walk-crosshair" aria-hidden="true">+</div>
+  <div class="walk-hud" aria-live="polite"><div><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd><span>前后左右</span><span>·</span><span>{{roam().locked?'鼠标转向':'左键拖动转向'}}</span></div><p>视线 160 cm · Esc 退出</p>@if(!roam().locked){<p>{{roam().message||'正在启用鼠标视角控制…'}}</p><button (click)="viewer?.lockRoamingMouse()">锁定鼠标</button>}</div>
+ }@else{
+ <div class="scene-controls">
+  <div class="finish-switch" role="group" aria-label="全屋装修显示"><button [class.active]="finishMode()==='decorated'" (click)="allDecor(true)" [disabled]="!ready()">装修效果</button><button [class.active]="finishMode()==='raw'" (click)="allDecor(false)" [disabled]="!ready()">清水房</button>@if(finishMode()==='mixed'){<span class="mixed">部分装修</span>}</div>
+  <div class="options">
+   <button class="object-lock" aria-label="锁定物件" [class.active]="objectsLocked()" [attr.aria-pressed]="objectsLocked()" [disabled]="!ready()" (click)="toggleObjectLock()" [title]="objectsLocked()?'点击解除锁定，恢复家具选择与拖动':'锁定所有家具，避免选中或拖动'"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path [attr.d]="objectsLocked()?'M8 10V7a4 4 0 0 1 8 0v3':'M8 10V7a4 4 0 0 1 8 0'"/><path d="M12 14v3"/></svg><span>锁定物件</span></button>
+   <label title="只隐藏当前视线最近的一组墙面，保留后方墙体"><input type="checkbox" aria-label="自动隐藏最近墙面" [checked]="autoWalls()" (change)="toggleWalls()"><span class="switch"></span>隐藏最近墙面</label>
+   <label title="天花板默认关闭；平面图始终隐藏天花板"><input type="checkbox" aria-label="显示天花板" [checked]="showCeiling()" [disabled]="selected()==='plan'" (change)="toggleCeiling()"><span class="switch"></span>显示天花板</label>
+   <button class="minor" (click)="toggleEdit()" [disabled]="objectsLocked()" [class.selected]="editMode()&&!objectsLocked()" [attr.aria-pressed]="editMode()&&!objectsLocked()">{{objectsLocked()?'家具编辑':editMode()?'家具编辑 ✓':'浏览模式'}}</button><button class="minor" (click)="toggleLabels()" [class.selected]="labels()">标签</button><button class="minor" (click)="resetView()">重置视角 ↺</button><button class="minor" (click)="capture()" [disabled]="!ready()">截图 ↓</button>
+  </div>
+ </div>
+ }
+ <div class="status"><span class="status-dot"></span>{{roaming()?'漫游中 · 保留完整墙面':ready()?(autoWalls()?'已隐藏 '+hidden()+' 个近处墙面部件':'显示完整墙体'):'模型准备中'}}@if(!roaming()){<span class="hint">{{objectsLocked()?'物件已锁定 · 左键旋转 · 中键平移 · 滚轮缩放':editMode()?'拖动家具 · 空白处旋转 · 中键平移 · 滚轮缩放':'左键旋转 · 中键平移 · 滚轮缩放'}}</span>}</div>
+ <button class="mobile-menu" (click)="sidebarOpen.set(!sidebarOpen());panelOpen.set(false)">{{sidebarOpen()?'收起导航':'房间 ☰'}}</button><button class="mobile-editor" (click)="panelOpen.set(!panelOpen());sidebarOpen.set(false)">{{panelOpen()?'收起面板':'家具 ＋'}}</button>
+ <div class="compass"><span>N</span><i>↑</i><small>北</small></div>
+</main>
+<aside class="editor-panel" [class.open]="panelOpen()" [class.roam-inactive]="roaming()" [attr.inert]="roaming()?'':null">
+ <div class="editor-title"><span class="eyebrow">MAKE IT YOURS</span><h2>布置你的家</h2></div>
+ <div class="panel-tabs"><button [class.active]="tab()==='catalog'" (click)="tab.set('catalog')">家具样式库</button><button [class.active]="tab()==='selection'" (click)="tab.set('selection')">选中物件</button></div>
+ @if(tab()==='catalog'){
+  <p class="panel-help">{{objectsLocked()?'物件已锁定。关闭底部“锁定物件”后，可添加、选择和拖动家具。':'点击添加，或把样式拖入空间。添加后可直接拖动家具调整位置。'}}</p>
+  <div class="categories">@for(c of categories;track c){<button [class.active]="category()===c" (click)="category.set(c)">{{c}}</button>}</div>
+  <div class="catalog-grid">@for(item of filteredCatalog();track item.id){<button class="catalog-card" [draggable]="!objectsLocked()" (dragstart)="dragStart($event,item.id)" (click)="add(item.id)" [disabled]="!ready()||objectsLocked()" [attr.aria-label]="'添加'+item.name"><div class="furniture-icon" [class]="'furniture-icon '+item.type" [style.--item-color]="item.color"><i></i><b></b><em></em></div><strong>{{item.name}}</strong><small>{{item.style}}</small><span>{{item.size}} <b>＋</b></span></button>}</div>
+ }@else{
+  @if(editor().selection;as s){
+   <div class="selected-card"><span class="eyebrow">SELECTED OBJECT</span><h3>{{s.name}}</h3><p>拖动物件移动 · 5 cm 网格吸附</p></div>
+   <div class="property-grid"><label>横向 X / m<input aria-label="家具横向位置" type="number" step=".05" [value]="s.x.toFixed(2)" (change)="transform('x',$event)"></label><label>纵向 Z / m<input aria-label="家具纵向位置" type="number" step=".05" [value]="s.z.toFixed(2)" (change)="transform('z',$event)"></label><label>旋转 / °<input aria-label="家具旋转角度" type="number" step="15" [value]="s.angle.toFixed(0)" (change)="transform('angle',$event)"></label><label>比例<input aria-label="家具比例" type="number" min=".3" max="3" step=".1" [value]="s.scale.toFixed(2)" (change)="transform('scale',$event)"></label></div>
+   <div class="rotate-actions"><button (click)="viewer?.rotate(-90)">↶ 旋转 90°</button><button (click)="viewer?.rotate(90)">旋转 90° ↷</button></div>
+   <p class="property-heading">主体配色 <small>保留金属和透明部件</small></p><div class="swatches">@for(color of colors;track color){<button [style.background]="color" [class.chosen]="s.color===color" [attr.aria-label]="'家具配色 '+color" (click)="viewer?.setColor(color)"></button>}</div>
+   <div class="object-actions"><button (click)="viewer?.duplicate()">复制物件 ＋</button><button class="danger" (click)="viewer?.removeSelected()">删除物件</button></div>
+  }@else{<div class="empty-selection"><span>⌖</span><h3>{{objectsLocked()?'物件已锁定':'点击一个家具'}}</h3><p>{{objectsLocked()?'关闭底部“锁定物件”后，可重新选择和拖动家具。':'在空间中点击，或从下方清单选择，即可移动、旋转、换色与删除。'}}</p></div>}
+  <details class="object-list" open><summary>当前家具清单 · {{roomItems().length}}</summary>@for(item of roomItems();track item.id){<button (click)="focus(item.id)" [disabled]="objectsLocked()" [class.active]="editor().selection?.id===item.id">{{item.name}}<span>↗</span></button>}</details>
+ }
+ <div class="save-status"><span>●</span> {{editor().message||'本地自动保存已开启'}}</div>
+ @if(editor().legacyBackup){<button class="reset-layout" (click)="viewer?.exportLegacyBackup()">下载家具合并前的原存档 ↓</button>}
+ <button class="reset-layout" (click)="viewer?.reset()" [disabled]="!ready()">恢复初始布置（可撤销）</button>
+</aside>
+<footer><span>ANGULAR · WEBGL2 · {{editor().count}} 个可编辑物件</span><p>按最新图更新；尺寸与材质为方案示意。</p><button (click)="showInfo.set(true)">使用说明 ⓘ</button><button (click)="exportGlb()" [disabled]="!ready()">导出当前 GLB ↗</button></footer>
+</div>
+@if(notice()){<div class="toast" role="status">{{notice()}}<button (click)="notice.set('')" aria-label="关闭提示">×</button></div>}
+@if(showSource()){<div class="modal" (click)="showSource.set(false)" role="dialog" aria-modal="true" aria-label="最新户型图"><div class="modal-card plan-card" (click)="$event.stopPropagation()"><button class="close" (click)="showSource.set(false)" aria-label="关闭户型图">×</button><h2>{{scheme().name}} · 户型原图</h2><img [src]="scheme().plan" alt="用户提供的当前方案户型平面图"><p>{{scheme().note}}</p></div></div>}
+@if(showInfo()){<div class="modal" (click)="showInfo.set(false)" role="dialog" aria-modal="true" aria-label="使用说明"><div class="modal-card" (click)="$event.stopPropagation()"><button class="close" (click)="showInfo.set(false)" aria-label="关闭说明">×</button><span class="eyebrow">ABOUT THIS SIMULATOR</span><h2>一个可以自由布置的家。</h2><p>画面右上角依次提供“自由查看”“户型图”“第一人称漫游”。漫游每次从入户门外开始，面向屋内；WASD 前后左右移动，鼠标转向，Esc 退出并恢复原视角。视线高 160 cm，移动速度固定为 2.8 米/秒。漫游时暂停家具拖动、保留完整墙面。墙体和窗户会阻挡移动，门洞可通行，家具与门扇暂不做碰撞。浏览器若无法锁定鼠标，可按住左键拖动转向。</p><p>点击家具选中，拖动调整位置；右侧可输入位置、旋转角度和比例，选择配色、复制或删除。按 Delete 删除，Ctrl / ⌘ + Z 撤销，Ctrl / ⌘ + Shift + Z 重做。</p><p>从样式库点击添加，或直接拖入空间。通过“家具编辑”切换到浏览模式，可避免移动家具。</p><p>左侧眼睛控制整个房间，座椅图标控制该房间装修。“清水房”去掉家具、柜体、灯具、面层，将墙面恢复水泥基底。光厅的开关仅控制盆栽。</p><p>顶部可切换两套方案，家具和房间状态分别自动保存在当前浏览器，互不覆盖。导出 JSON 可备份、分享或在此模型中重新导入；导入时请先切换到文件所属户型；JSON 保存可继续编辑的布置；“导出当前 GLB”保存可在其他三维软件打开的当前方案。</p><p>自动隐藏仅移除当前视线最近的一组墙，保留后方墙体。天花板默认关闭，可独立开启；平面图始终隐藏天花板并使用低位墙体。按住鼠标中键或右键拖动平移视角，滚轮缩放。模型由 Blender 转换，按最新图更新主卧和主卫。</p><p class="small">这是布置模拟器。墙体暂不支持拖改；尚未进行尺寸测绘、结构与设备净空校核。清水材质为示意；三维家具与图片生成效果图会有细节差异。</p></div></div>}
+
+

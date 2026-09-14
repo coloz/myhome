@@ -1,0 +1,965 @@
+{
+  "format": "home-simulator",
+  "version": 2,
+  "modelVersion": "2026-09-14-plan-b",
+  "rooms": {
+    "living": {
+      "visible": true,
+      "decorated": true
+    },
+    "dining": {
+      "visible": true,
+      "decorated": true
+    },
+    "kitchen": {
+      "visible": true,
+      "decorated": true
+    },
+    "entry": {
+      "visible": true,
+      "decorated": true
+    },
+    "craft": {
+      "visible": true,
+      "decorated": true
+    },
+    "guest": {
+      "visible": true,
+      "decorated": true
+    },
+    "study": {
+      "visible": true,
+      "decorated": true
+    },
+    "master": {
+      "visible": true,
+      "decorated": true
+    },
+    "bath": {
+      "visible": true,
+      "decorated": true
+    },
+    "laundry": {
+      "visible": true,
+      "decorated": true
+    },
+    "guestbath": {
+      "visible": true,
+      "decorated": true
+    }
+  },
+  "entities": [
+    {
+      "id": "b-dining-b7bc9a502c",
+      "room": "dining",
+      "position": [
+        1.5744681358337402,
+        0,
+        -2.617021116592994
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-craft-a3d5bd77d4",
+      "room": "craft",
+      "position": [
+        5.235581294985989,
+        0,
+        -5.521283589869283
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-living-c3ab26b163",
+      "room": "living",
+      "position": [
+        3.638297195460737,
+        0,
+        -3.4042554105850904
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-dining-5f1cd84787",
+      "room": "dining",
+      "position": [
+        1.0305860701021423,
+        0,
+        -3.154867804129852
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-dining-c2c6114327",
+      "room": "dining",
+      "position": [
+        2.0202468567244947,
+        0,
+        -3.0717931159927914
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-master-bf058c5289",
+      "room": "master",
+      "position": [
+        7.72340415632101,
+        0,
+        -0.08510638644502477
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-master-c69b7f9ff8",
+      "room": "master",
+      "position": [
+        9.08510684967041,
+        0,
+        -1.7659574747085571
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-master-3498be78d9",
+      "room": "master",
+      "position": [
+        10.234042167663574,
+        0,
+        -3.0212767124176025
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-master-764f0cd6bc",
+      "room": "master",
+      "position": [
+        10.234042167663574,
+        0,
+        -0.8085106611251831
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-master-bcb8d9f5d6",
+      "room": "master",
+      "position": [
+        10.234042167663574,
+        0,
+        -3.0212767124176025
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-master-4214696227",
+      "room": "master",
+      "position": [
+        10.234042167663574,
+        0,
+        -0.8085106611251831
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-master-5927a89b93",
+      "room": "master",
+      "position": [
+        9.212764737114487,
+        0,
+        -1.8936170349762473
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-master-ab02f8c504",
+      "room": "master",
+      "position": [
+        10.25531954241676,
+        0,
+        -4.319149017333984
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-master-7cbd9c2dea",
+      "room": "master",
+      "position": [
+        10.510639164030398,
+        0,
+        -4.297872286269551
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-master-80ad636da2",
+      "room": "master",
+      "position": [
+        7.36170200650257,
+        0,
+        -1.7021276950836182
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-bath-86aa32ced6",
+      "room": "bath",
+      "position": [
+        10.127661481370055,
+        0,
+        -5.361701460448322
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-bath-c6a59befaf",
+      "room": "bath",
+      "position": [
+        8.91489315032959,
+        0,
+        -6.468084603216093
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-bath-557ac993d0",
+      "room": "bath",
+      "position": [
+        10.106383366583572,
+        0,
+        -6.702127082371808
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-bath-3c5e45958b",
+      "room": "bath",
+      "position": [
+        8.93617057800293,
+        0,
+        -6.776595592498779
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-study-e558b36fbf",
+      "room": "study",
+      "position": [
+        8.829787410795689,
+        0,
+        -7.808510661125183
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-study-e256640ca3",
+      "room": "study",
+      "position": [
+        7.51063820473064,
+        0,
+        -9.148937095170538
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-study-c69b587bba",
+      "room": "study",
+      "position": [
+        8.936171693195831,
+        0,
+        -9.14893627166748
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-master-cede873314",
+      "room": "master",
+      "position": [
+        9.659573434829099,
+        0,
+        -4.319148819376508
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-study-7ad2851255",
+      "room": "study",
+      "position": [
+        8.276596356562777,
+        0,
+        -9.978721431038878
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-study-eec4e9682f",
+      "room": "study",
+      "position": [
+        8.32153309439489,
+        0,
+        -10.130855938576703
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-dining-eb097d5a08",
+      "room": "dining",
+      "position": [
+        0.31914889342454966,
+        0,
+        -0.5319149917083621
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-kitchen-601c8d2d09",
+      "room": "kitchen",
+      "position": [
+        -1.3989361226558685,
+        0,
+        -3.0000001341104507
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-kitchen-55b383638f",
+      "room": "kitchen",
+      "position": [
+        -1.9202128383809773,
+        0,
+        -1.9946808784824839
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-kitchen-5124f90aad",
+      "room": "kitchen",
+      "position": [
+        -1.22872342829789,
+        0,
+        -0.9521276642643031
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-kitchen-86663c5316",
+      "room": "kitchen",
+      "position": [
+        -1.872340440750122,
+        0,
+        -2
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-kitchen-d6306a9408",
+      "room": "kitchen",
+      "position": [
+        -1.9361702525259956,
+        0,
+        -2
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-kitchen-59d1549f2b",
+      "room": "kitchen",
+      "position": [
+        -0.6808510075215115,
+        0,
+        -3.0000001741942457
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-kitchen-e88b02773a",
+      "room": "kitchen",
+      "position": [
+        -1.042553186416626,
+        0,
+        -0.9574468888820249
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-living-b336af1908",
+      "room": "living",
+      "position": [
+        5.765957355499268,
+        0,
+        -3.127659559249878
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-dining-43d214fd8f",
+      "room": "dining",
+      "position": [
+        1.6026385050656407,
+        0,
+        -2.645263289268718
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-living-2dcc1b88f0",
+      "room": "living",
+      "position": [
+        4.553191893508199,
+        0,
+        -1.978723406791687
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-kitchen-bcef0ba224",
+      "room": "kitchen",
+      "position": [
+        -2.0372340455651283,
+        0,
+        -2.9255318641662598
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-laundry-db600f9572",
+      "room": "laundry",
+      "position": [
+        2.446808586875772,
+        0,
+        -5.212765962946776
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-guestbath-bdbccd7fbb",
+      "room": "guestbath",
+      "position": [
+        2.574468334071942,
+        0,
+        -6.659573759200416
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-guestbath-3c842158f3",
+      "room": "guestbath",
+      "position": [
+        3.5531911401712777,
+        0,
+        -9.25531928136121
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-laundry-c26f75aa59",
+      "room": "laundry",
+      "position": [
+        2.127659654269371,
+        0,
+        -5.297872543334961
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-guestbath-cb03505c44",
+      "room": "guestbath",
+      "position": [
+        3.148936302184329,
+        0,
+        -10.234042137325304
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-guestbath-ac5769591a",
+      "room": "guestbath",
+      "position": [
+        3.127659559249878,
+        0,
+        -8.361702060611833
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-living-b721a89136",
+      "room": "living",
+      "position": [
+        6.425531767226262,
+        0,
+        -0.08510627159456564
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-living-f4bf2c48c9",
+      "room": "living",
+      "position": [
+        6.193048156668173,
+        0,
+        -4.124801896037681
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-dining-1fc1ae29df",
+      "room": "dining",
+      "position": [
+        0.23404263372561834,
+        0,
+        -0.08510628078370136
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-laundry-e5037a6dd1",
+      "room": "laundry",
+      "position": [
+        4.063829365295932,
+        0,
+        -5.340425859989213
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-dining-b650a58a13",
+      "room": "dining",
+      "position": [
+        1.4042553808494063,
+        0,
+        -1.4893616286359586
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-study-51ba1113d5",
+      "room": "study",
+      "position": [
+        7.553192615509033,
+        0,
+        -10.042553300993845
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-study-474a15a1c8",
+      "room": "study",
+      "position": [
+        8.893617400717062,
+        0,
+        -10.042553300993845
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-kitchen-03474bd76f",
+      "room": "kitchen",
+      "position": [
+        -0.6808510480525456,
+        0,
+        -3.000000182357484
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-craft-1bf1a05850",
+      "room": "craft",
+      "position": [
+        4.723404571701427,
+        0,
+        -5.872340592952829
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-laundry-3d167edfa4",
+      "room": "laundry",
+      "position": [
+        4.021276438949906,
+        0,
+        -6.361701965332031
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-entry-9d0495aa66",
+      "room": "entry",
+      "position": [
+        0.38297873735427856,
+        0,
+        -5.340425491333008
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-living-add887f9a4",
+      "room": "living",
+      "position": [
+        3.266881675550594,
+        0,
+        -1.8297869993501052
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-guest-7acf1e6df0",
+      "room": "guest",
+      "position": [
+        4.936169982040166,
+        0,
+        -8.851062876078458
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-guest-f5ad543f3b",
+      "room": "guest",
+      "position": [
+        4.680851012468338,
+        0,
+        -7.260638361796737
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-guest-0c83357edb",
+      "room": "guest",
+      "position": [
+        5.638298034667969,
+        0,
+        -8.340425491333008
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-guest-4818488d50",
+      "room": "guest",
+      "position": [
+        4.0638298988342285,
+        0,
+        -7.829787254333496
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-guest-cf35278896",
+      "room": "guest",
+      "position": [
+        4.063829656925954,
+        0,
+        -7.829787254333496
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-guest-6ddef4b5b9",
+      "room": "guest",
+      "position": [
+        3.957447100838494,
+        0,
+        -10.255320840373408
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-living-aa61004fa6",
+      "room": "living",
+      "position": [
+        4.702127331176191,
+        0,
+        -2.106383105816885
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-laundry-9de04c733e",
+      "room": "laundry",
+      "position": [
+        4.021276473999023,
+        0,
+        -5.276595589174796
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-entry-cffcd6f42c",
+      "room": "entry",
+      "position": [
+        0.12766006870462715,
+        0,
+        -5.8723399987469485
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-bath-4b8defc4c7",
+      "room": "bath",
+      "position": [
+        10.06182972090922,
+        0,
+        -6.285234206251626
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-entry-cc5bee2c99",
+      "room": "entry",
+      "position": [
+        1.914893627166748,
+        0,
+        -5.765957355499268
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-entry-33a1a2e17a",
+      "room": "entry",
+      "position": [
+        0.3829786777496338,
+        0,
+        -6.297872543334961
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-living-75e2013f37",
+      "room": "living",
+      "position": [
+        6.63829767288118,
+        0,
+        -2.0638298988342285
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-kitchen-f63cc6593c",
+      "room": "kitchen",
+      "position": [
+        -0.6808510422706604,
+        0,
+        -3.0000000502419626
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-living-607f2294d0",
+      "room": "living",
+      "position": [
+        5.616327338609057,
+        0,
+        -0.9566816180042079
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-guestbath-0f656f2d29",
+      "room": "guestbath",
+      "position": [
+        2.8723404705524445,
+        0,
+        -7.629297903273255
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-study-53063e1377",
+      "room": "study",
+      "position": [
+        7.553191661834717,
+        0,
+        -9.872340202331543
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-study-b4ceb0635c",
+      "room": "study",
+      "position": [
+        8.893616676330566,
+        0,
+        -9.872340202331543
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-dining-116b30ef9e",
+      "room": "dining",
+      "position": [
+        1.7021276950836182,
+        0,
+        -2.702127695083618
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-dining-928d7c58a1",
+      "room": "dining",
+      "position": [
+        1.4042552709579468,
+        0,
+        -2.5957446098327637
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    },
+    {
+      "id": "b-entry-05cdb2fe70",
+      "room": "entry",
+      "position": [
+        1.6595745086669922,
+        0,
+        -5.723404407501221
+      ],
+      "rotation": 0,
+      "scale": 1,
+      "deleted": false
+    }
+  ]
+}
