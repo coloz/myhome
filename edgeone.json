@@ -1,0 +1,6 @@
+{
+  "nodeVersion": "24.15.0",
+  "installCommand": "npm ci --include=dev --no-audit --no-fund",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist/home-viewer/browser"
+}

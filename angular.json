@@ -1,1 +1,63 @@
-{"version":1,"projects":{"home-viewer":{"projectType":"application","root":"","sourceRoot":"src","architect":{"build":{"builder":"@angular/build:application","options":{"browser":"src/main.ts","tsConfig":"tsconfig.app.json","index":"src/index.html","styles":["src/styles.css"],"assets":[{"glob":"**/*","input":"public"}],"outputPath":"dist/home-viewer"},"configurations":{"production":{"optimization":true,"outputHashing":"all","budgets":[{"type":"initial","maximumWarning":"2mb","maximumError":"4mb"}]},"development":{"optimization":false,"sourceMap":true}},"defaultConfiguration":"production"},"serve":{"builder":"@angular/build:dev-server","configurations":{"production":{"buildTarget":"home-viewer:build:production"},"development":{"buildTarget":"home-viewer:build:development"}},"defaultConfiguration":"development"}}}}}
+{
+  "version": 1,
+  "projects": {
+    "home-viewer": {
+      "projectType": "application",
+      "root": "",
+      "sourceRoot": "src",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "src/main.ts",
+            "tsConfig": "tsconfig.app.json",
+            "index": "src/index.html",
+            "styles": [
+              "src/styles.css"
+            ],
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "public"
+              }
+            ],
+            "outputPath": "dist/home-viewer"
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "outputHashing": "all",
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "4mb"
+                }
+              ]
+            },
+            "development": {
+              "optimization": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "home-viewer:build:production"
+            },
+            "development": {
+              "buildTarget": "home-viewer:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": "0de4402a-74aa-4c82-ac3e-a018a4c0145a"
+  }
+}
