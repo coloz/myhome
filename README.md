@@ -33,7 +33,7 @@ Angular 22 + Three.js，显式使用 WebGL2。两套独立 Blender / GLB 户型�
 
 ## 开发和构建
 
-推荐使用 Node.js 24.15.0，与 `.nvmrc` 和部署环境一致；其他支持版本见 `package.json` 的 `engines.node`。
+推荐使用 Node.js 24.18.0，与 `.nvmrc` 和部署环境一致；其他支持版本见 `package.json` 的 `engines.node`。
 
 ~~~powershell
 npm ci
@@ -57,15 +57,15 @@ node serve.mjs dist/home-viewer/browser 8787
 | 安装命令 | `npm ci --include=dev --no-audit --no-fund` |
 | 构建命令 | `npm run build` |
 | 输出目录 | `dist/home-viewer/browser` |
-| 实际构建 Node.js 版本 | `edgeone.json` 和 `.nvmrc` 均指定 `24.15.0` |
+| 实际构建 Node.js 版本 | `edgeone.json` 和 `.nvmrc` 均指定 `24.18.0` |
 
-此次部署失败的日志显示，平台使用 Node.js `22.21.1`，低于 Angular CLI 22.1.8 的最低要求，因此安装阶段出现 `EBADENGINE` 警告，`ng build` 随后以退出码 `3` 终止，平台报构建失败（错误码 `18`）。
+Node.js 版本必须同时满足 Angular 的兼容要求和平台的预装版本要求。平台默认的 `22.21.1` 低于 Angular CLI 22.1.8 的最低要求，会在安装阶段出现 `EBADENGINE` 警告，随后 `ng build` 以退出码 `3` 终止，平台报构建失败（错误码 `18`）。而 `24.15.0` 虽然满足 Angular 要求，但本次 Makers 构建环境无法切换到它，会在安装依赖之前报 `Failed to switch to Node.js 24.15.0`。
 
-Angular 22 支持 Node.js `^22.22.3 || ^24.15.0 || ^26.0.0`。项目通过 `edgeone.json` 固定 Node.js `24.15.0`，并提供相同版本的 `.nvmrc`；EdgeOne 会读取 `.nvmrc`，自动下载并切换到指定版本，因此无需依赖控制台是否提供该版本。`package.json` 的 `engines` 仅声明兼容范围，不能代替平台的版本切换配置。升级 Node.js 时，请同步修改 `edgeone.json` 和 `.nvmrc`。参考 [Angular 版本兼容表](https://angular.dev/reference/versions) 和 [EdgeOne 构建指南](https://edgeone.cloud.tencent.com/pages/document/162936788693114880)。
+Angular 22 支持 Node.js `^22.22.3 || ^24.15.0 || ^26.0.0`。项目选用 Makers 官方预装列表中的 `24.18.0`，在 `edgeone.json` 和 `.nvmrc` 中保持一致。不能依赖 `.nvmrc` 来补救已经失败的 `nodeVersion` 切换；`package.json` 的 `engines` 也仅声明兼容范围，不能替代平台的版本配置。升级时请先核对「项目设置 - Node.js 版本」的可用列表，再同步修改这两个文件。参考 [Angular 版本兼容表](https://angular.dev/reference/versions) 和 [Makers 构建指南](https://pages.edgeone.ai/zh/document/build-guide)。
 
 安装命令显式包含开发依赖，因为 Angular CLI、编译器和 TypeScript 都在 `devDependencies` 中，构建时必须安装。`npm ci` 按已提交的 `package-lock.json` 安装确定的依赖版本。
 
-提交这些配置后重新部署，检查日志中的 Node.js 版本是否为 `v24.15.0`。Angular 构建日志显示的 `dist/home-viewer` 是输出基目录，真正包含 `index.html`、JS、CSS 和 `assets` 的发布目录是 `dist/home-viewer/browser`。部署命令不使用 `npm start` 或 `serve.mjs`，Pages 直接托管构建后的静态文件。配置字段说明见 [EdgeOne edgeone.json 文档](https://edgeone.cloud.tencent.com/pages/document/162936771610066944)。
+提交这些配置后重新部署，检查日志中的 Node.js 版本是否为 `v24.18.0`。Angular 构建日志显示的 `dist/home-viewer` 是输出基目录，真正包含 `index.html`、JS、CSS 和 `assets` 的发布目录是 `dist/home-viewer/browser`。部署命令不使用 `npm start` 或 `serve.mjs`，Pages 直接托管构建后的静态文件。配置字段说明见 [Makers edgeone.json 文档](https://pages.edgeone.ai/zh/document/edgeone-json)。
 
 若使用“直接上传”部署，先在本地执行 `npm ci --include=dev` 和 `npm run build`，再上传 `dist/home-viewer/browser` 文件夹，或将该文件夹内的内容压缩为 ZIP 后上传，确保 ZIP 根目录直接包含 `index.html`。不要上传源码目录、`node_modules` 或外层 `dist` 目录。
 
