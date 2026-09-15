@@ -3,6 +3,7 @@ const fs=require('fs');const assert=require('assert');
 (async()=>{
  const browser=await chromium.launch({channel:'msedge',headless:true,args:['--enable-webgl','--ignore-gpu-blocklist']});
  const context=await browser.newContext({viewport:{width:1536,height:1000},deviceScaleFactor:1,acceptDownloads:true});
+ await require('./supabase-mock.cjs').installSupabaseMock(context);
  const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
  const base=process.env.VIEWER_URL||'http://127.0.0.1:8787/';
  const snap=()=>page.evaluate(()=>window.__homeViewer.snapshot());

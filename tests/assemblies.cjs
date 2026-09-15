@@ -5,7 +5,8 @@ const close=(a,b,label)=>{assert.equal(a.length,b.length,label);for(let i=0;i<a.
 (async()=>{
  const project=JSON.parse(fs.readFileSync('public/assets/project.json'));
  const browser=await chromium.launch({channel:'msedge',headless:true,args:['--enable-webgl','--ignore-gpu-blocklist']});
- const page=await browser.newPage({viewport:{width:1536,height:1000},acceptDownloads:true});const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ let page=await browser.newPage({viewport:{width:1536,height:1000},acceptDownloads:true});const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await require('./supabase-mock.cjs').installSupabaseMock(page.context());
  const snap=()=>page.evaluate(()=>window.__homeViewer.snapshot()),components=id=>page.evaluate(id=>window.__homeViewer.components(id),id);
  const pause=()=>page.waitForTimeout(450);
  await page.goto(process.env.VIEWER_URL||'http://127.0.0.1:8788/');await page.waitForFunction(()=>window.__homeViewer,{timeout:120000});await pause();
@@ -56,8 +57,12 @@ const close=(a,b,label)=>{assert.equal(a.length,b.length,label);for(let i=0;i<a.
  legacy.entities.push({...structuredClone(door),id:'copy-legacy-fridge',sourceId:door.id,position:[door.position[0]+2,0,door.position[2]],rotation:Math.PI/2,scale:1.1});
  legacy.entities.push({id:'add-legacy-chair',catalogId:'chair-egg',room:'living',position:[3,0,-2],rotation:.2,scale:1,deleted:false});
  legacy.rooms.study.decorated=false;
- const originalText=JSON.stringify(legacy);await page.evaluate(([key,value])=>localStorage.setItem(key,value),[KEY,originalText]);
- await page.reload();await page.waitForFunction(()=>window.__homeViewer,{timeout:120000});await pause();
+ const originalText=JSON.stringify(legacy);
+ // A pre-cloud browser has only its legacy layout, with no cloud row or outbox.
+ await page.context().close();page=await browser.newPage({viewport:{width:1536,height:1000},acceptDownloads:true});page.on('pageerror',e=>errors.push(e.message));
+ await require('./supabase-mock.cjs').installSupabaseMock(page.context());
+ await page.addInitScript(([key,value])=>{if(!sessionStorage.getItem('legacy-seeded')){localStorage.setItem(key,value);sessionStorage.setItem('legacy-seeded','1');}},[KEY,originalText]);
+ await page.goto(process.env.VIEWER_URL||'http://127.0.0.1:8788/');await page.waitForFunction(()=>window.__homeViewer,{timeout:120000});await pause();
  let migrated=await snap();assert.equal(migrated.entities.length,project.assemblies.length+2);
  close(entity(migrated,'玄关洞洞板').position,entity(initial,'玄关洞洞板').position.map((v,i)=>v+(i===0?.6:0)),'Legacy board offset lost');
  close(entity(migrated,'冰箱').position,entity(initial,'冰箱').position.map((v,i)=>v-(i===2?.4:0)),'Legacy door did not move complete fridge');

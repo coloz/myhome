@@ -12,9 +12,12 @@ export class HomeEditor extends HomeViewer {
  entities=new Map<string,Entity>();
  selectedEntity:string|null=null;
  editEnabled=true;
+ readOnly=false;
+ setReadOnly(value:boolean){this.readOnly=value;if(value)this.setObjectsLocked(true);}
  private lockedObjects=false;
  get objectsLocked(){return this.lockedObjects;}
  onEdit=(_s:EditorStatus)=>{};
+ onLayoutChange=(_layout:Layout)=>{};
  private undoStack:Layout[]=[];private redoStack:Layout[]=[];
  private key:string;
  private initial!:Layout;
@@ -31,7 +34,7 @@ export class HomeEditor extends HomeViewer {
   const down=(e:PointerEvent)=>this.down(e),move=(e:PointerEvent)=>this.move(e),up=(e:PointerEvent)=>this.up(e);
   canvas.addEventListener('pointerdown',down,true);canvas.addEventListener('pointermove',move,true);canvas.addEventListener('pointerup',up,true);canvas.addEventListener('pointercancel',up,true);
   const keys=(e:KeyboardEvent)=>{
-   if(this.roaming)return;
+   if(this.roaming||this.readOnly)return;
    const el=e.target as HTMLElement;if(el.matches('input,select,textarea')||el.isContentEditable)return;
    if(e.key==='Delete'||e.key==='Backspace'){if(this.selectedEntity){e.preventDefault();this.removeSelected();}}
    if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();e.shiftKey?this.redo():this.undo();}
@@ -77,7 +80,7 @@ export class HomeEditor extends HomeViewer {
   }catch{this.savedAt='已载入初始方案；旧存档未使用';}
   this.notify();
  }
- private entity(){return !this.objectsLocked&&this.selectedEntity?this.entities.get(this.selectedEntity):undefined;}
+ private entity(){return !this.readOnly&&!this.objectsLocked&&this.selectedEntity?this.entities.get(this.selectedEntity):undefined;}
  setObjectsLocked(value:boolean){
   this.lockedObjects=value;
   if(value){
@@ -94,7 +97,7 @@ export class HomeEditor extends HomeViewer {
  }
  private hitFloor(x:number,y:number){this.rayAt(x,y);return this.picker.ray.intersectPlane(this.plane,new T.Vector3());}
  private down(e:PointerEvent){
-  if(this.objectsLocked||this.roaming||!this.editEnabled||e.button!==0||!this.project||e.altKey)return;
+  if(this.readOnly||this.objectsLocked||this.roaming||!this.editEnabled||e.button!==0||!this.project||e.altKey)return;
   this.rayAt(e.clientX,e.clientY);
   const objects=[...this.entities.values()].filter(en=>!en.deleted&&this.states[en.room]?.visible&&this.states[en.room]?.decorated).map(en=>en.group);
   const hit=this.picker.intersectObjects(objects,true).find(h=>h.object.visible);if(!hit){this.select(null);return;}
@@ -126,20 +129,23 @@ export class HomeEditor extends HomeViewer {
   en.group.traverse(o=>{const part=this.parts.find(p=>p.mesh===o);if(part){part.room=en.room;part.rooms=[en.room];part.cutaway='';part.box.setFromObject(o);}});
  }
  select(id:string|null){
-  if(id&&this.objectsLocked)return;
+  if(id&&(this.readOnly||this.objectsLocked))return;
   this.selectedEntity=id;const en=this.entity();this.outline.visible=!!en&&!en.deleted&&this.states[en.room]?.visible&&this.states[en.room]?.decorated;
   if(en)this.outline.setFromObject(en.group);this.notify();
  }
  focusEntity(id:string){
-  if(this.objectsLocked)return;
+  if(this.readOnly||this.objectsLocked)return;
   const en=this.entities.get(id);if(!en||en.deleted)return;
   this.states[en.room]={visible:true,decorated:true};this.applyStates();this.navigate(en.room);this.select(id);
  }
- private before(){this.undoStack.push(this.snapshot());if(this.undoStack.length>60)this.undoStack.shift();this.redoStack=[];}
+ private before(){if(this.readOnly)return;this.undoStack.push(this.snapshot());if(this.undoStack.length>60)this.undoStack.shift();this.redoStack=[];}
  private commit(message:string){
   this.applyStates();this.renderer.shadowMap.needsUpdate=true;
   if(this.entity())this.outline.setFromObject(this.entity()!.group);
-  try{localStorage.setItem(this.key,JSON.stringify(this.snapshot()));this.savedAt=message+' · 自动保存';}catch{this.savedAt='浏览器存储不可用，请导出方案文件';}
+  if(this.readOnly){this.notify();return;}
+  const layout=this.snapshot();
+  try{localStorage.setItem(this.key,JSON.stringify(layout));this.savedAt=message+' · 本地已保存';}catch{this.savedAt='浏览器存储不可用，请导出方案文件';}
+  this.onLayoutChange(layout);
   this.notify();
  }
  private notify(){
@@ -149,7 +155,7 @@ export class HomeEditor extends HomeViewer {
    items:[...this.entities.values()].filter(x=>!x.deleted).map(x=>({id:x.id,name:x.name,room:x.room}))});
  }
  addCatalog(id:string,x?:number,y?:number){
-  if(this.objectsLocked)return;
+  if(this.readOnly||this.objectsLocked)return;
   const spec=CATALOG.find(x=>x.id===id);if(!spec)return;
   this.before();const room=this.project.rooms.find(r=>r.id===this.selected)??this.project.rooms[0];
   const pos=x!==undefined&&y!==undefined?this.hitFloor(x,y):new T.Vector3(room.center[0],0,room.center[2]);if(!pos)return;
@@ -213,9 +219,9 @@ export class HomeEditor extends HomeViewer {
   }
   this.states=structuredClone(data.rooms);this.applyStates();
  }
- undo(){const old=this.undoStack.pop();if(!old)return;this.redoStack.push(this.snapshot());this.applyLayout(old);this.commit('已撤销');}
- redo(){const next=this.redoStack.pop();if(!next)return;this.undoStack.push(this.snapshot());this.applyLayout(next);this.commit('已重做');}
- reset(){this.before();this.applyLayout(this.initial);this.commit('已恢复初始布置，可撤销');}
+ undo(){if(this.readOnly)return;const old=this.undoStack.pop();if(!old)return;this.redoStack.push(this.snapshot());this.applyLayout(old);this.commit('已撤销');}
+ redo(){if(this.readOnly)return;const next=this.redoStack.pop();if(!next)return;this.undoStack.push(this.snapshot());this.applyLayout(next);this.commit('已重做');}
+ reset(){if(this.readOnly)return;this.before();this.applyLayout(this.initial);this.commit('已恢复初始布置，可撤销');}
  validate(data:unknown):Layout{
   const d=data as Layout;
   if(!d||d.format!=='home-simulator'||![1,2].includes(d.version)||!Array.isArray(d.entities)||d.entities.length>600||!d.rooms)throw new Error('方案文件格式不匹配。');
@@ -240,7 +246,18 @@ export class HomeEditor extends HomeViewer {
   }
   return d;
  }
- importLayout(data:unknown){const valid=this.validate(data);this.before();this.applyLayout(valid);this.commit('方案已导入');}
+ importLayout(data:unknown){if(this.readOnly)throw new Error('请先登录再导入方案。');const valid=this.validate(data);this.before();this.applyLayout(valid);this.commit('方案已导入');}
+ restoreLayout(data:unknown){
+  const valid=this.validate(data);this.applyLayout(valid);this.undoStack=[];this.redoStack=[];
+  this.renderer.shadowMap.needsUpdate=true;
+  try{
+   const old=localStorage.getItem(this.key);
+   if(old&&!localStorage.getItem(this.key+':before-cloud'))localStorage.setItem(this.key+':before-cloud',old);
+   localStorage.setItem(this.key,JSON.stringify(this.snapshot()));
+  }catch{}
+  this.savedAt='已恢复方案布置';this.notify();
+ }
+ initialLayout(){return structuredClone(this.initial);}
  exportLayout(){const blob=new Blob([JSON.stringify(this.snapshot(),null,2)],{type:'application/json'});const u=URL.createObjectURL(blob);const a=document.createElement('a');a.href=u;a.download=this.scheme.name+'-我的布置.json';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);}
  exportLegacyBackup(){if(!this.legacyBackup)return;const u=URL.createObjectURL(new Blob([this.legacyBackup],{type:'application/json'}));const a=document.createElement('a');a.href=u;a.download='家具合并前的原始方案.json';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);}
  async exportGlb(){

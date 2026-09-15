@@ -3,6 +3,7 @@ const fs=require('fs');
 (async()=>{
  const browser=await chromium.launch({channel:'msedge',headless:true,args:['--enable-webgl','--ignore-gpu-blocklist']});
  const page=await browser.newPage({viewport:{width:1536,height:1000},deviceScaleFactor:1});
+ await require('./supabase-mock.cjs').installSupabaseMock(page.context());
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto('http://127.0.0.1:8787/');
  await page.waitForFunction(()=>window.__homeViewer,{timeout:120000});

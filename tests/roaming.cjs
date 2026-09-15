@@ -2,7 +2,9 @@ const {chromium}=require('playwright');
 const fs=require('node:fs'),assert=require('node:assert/strict');
 (async()=>{
  const browser=await chromium.launch({channel:'msedge',headless:true,args:['--enable-webgl','--ignore-gpu-blocklist']});
- const context=await browser.newContext({viewport:{width:1536,height:1000}}),page=await context.newPage();
+ const context=await browser.newContext({viewport:{width:1536,height:1000}});
+ await require('./supabase-mock.cjs').installSupabaseMock(context);
+ const page=await context.newPage();
  const errors=[],checks=[];page.on('pageerror',e=>errors.push(e.message));
  const snap=()=>page.evaluate(()=>window.__homeViewer.snapshot());
  const ready=async()=>{await page.waitForFunction(()=>window.__homeViewer&&document.querySelector('.loading')===null,{timeout:120000});await page.waitForTimeout(800);};
@@ -75,6 +77,7 @@ const fs=require('node:fs'),assert=require('node:assert/strict');
  // Embedded/restricted browsers can deny pointer lock; drag-to-look must remain usable.
  await context.close();const fallback=await browser.newContext({viewport:{width:1536,height:1000}});
  await fallback.addInitScript(()=>{HTMLCanvasElement.prototype.requestPointerLock=function(){return Promise.reject(new DOMException('Unavailable in this frame','NotSupportedError'));};});
+ await require('./supabase-mock.cjs').installSupabaseMock(fallback);
  const p=await fallback.newPage();p.on('pageerror',e=>errors.push(e.message));await p.goto(url);await p.waitForFunction(()=>window.__homeViewer&&document.querySelector('.loading')===null);await p.waitForTimeout(300);
  await p.getByRole('button',{name:'第一人称漫游',exact:true}).click();await p.getByText('鼠标未锁定：按住左键拖动转向，WASD 移动。').waitFor();
  const base=await p.evaluate(()=>window.__homeViewer.snapshot());const rect=await p.locator('canvas').boundingBox();

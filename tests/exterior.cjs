@@ -3,6 +3,7 @@ const fs=require('node:fs'),assert=require('node:assert/strict');
 (async()=>{
  const b=await chromium.launch({channel:'msedge',headless:true,args:['--enable-webgl','--ignore-gpu-blocklist']});
  const p=await b.newPage({viewport:{width:1536,height:1000},acceptDownloads:true});const errors=[],checks=[];
+ await require('./supabase-mock.cjs').installSupabaseMock(p.context());
  p.on('pageerror',e=>errors.push(e.message));p.on('response',r=>{if(r.status()>=400)errors.push(r.status()+' '+r.url());});
  const ready=id=>p.waitForFunction(id=>window.__homeViewer?.snapshot().schemeId===id&&!document.querySelector('.loading'),id,{timeout:120000});
  const snap=()=>p.evaluate(()=>window.__homeViewer.snapshot());

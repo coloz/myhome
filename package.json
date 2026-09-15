@@ -11,13 +11,16 @@
     "test:viewer": "node tests/viewer.cjs",
     "test:walls": "node --experimental-strip-types tests/wall-visibility.mjs",
     "test:walk": "node --experimental-strip-types tests/walk-motion.mjs",
-    "test:roaming": "node tests/roaming.cjs"
+    "test:roaming": "node tests/roaming.cjs",
+    "test:cloud:sql": "node tests/supabase-sql.mjs",
+    "test:cloud": "node tests/cloud-schemes.cjs"
   },
   "dependencies": {
     "@angular/common": "22.1.6",
     "@angular/compiler": "22.1.6",
     "@angular/core": "22.1.6",
     "@angular/platform-browser": "22.1.6",
+    "@supabase/supabase-js": "^2.116.0",
     "rxjs": "7.8.2",
     "three": "0.186.0",
     "tslib": "2.8.1"
@@ -26,8 +29,9 @@
     "@angular/build": "22.1.8",
     "@angular/cli": "22.1.8",
     "@angular/compiler-cli": "22.1.6",
+    "@electric-sql/pglite": "^0.5.8",
     "@types/three": "0.186.0",
-    "typescript": "6.0.3",
-    "playwright": "1.58.2"
+    "playwright": "1.58.2",
+    "typescript": "6.0.3"
   }
 }

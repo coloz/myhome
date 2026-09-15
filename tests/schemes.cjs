@@ -4,6 +4,7 @@ const KEY_A='home-simulator:2026-09-14:v1',KEY_B='home-simulator:scheme-b:2026-0
 (async()=>{
  const browser=await chromium.launch({channel:'msedge',headless:true,args:['--enable-webgl','--ignore-gpu-blocklist']});
  const context=await browser.newContext({viewport:{width:1536,height:1000},acceptDownloads:true});
+ await require('./supabase-mock.cjs').installSupabaseMock(context);
  const page=await context.newPage(),errors=[],checks=[];
  page.on('pageerror',e=>errors.push(e.message));
  page.on('response',r=>{if(r.status()>=400)errors.push(r.status()+' '+r.url());});
