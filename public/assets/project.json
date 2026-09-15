@@ -595,7 +595,8 @@
   "notes": [
     "已按最新平面调整墙体、主卧东侧床头/西侧衣柜、主卫分隔和短浴缸。",
     "光厅仅放置可移动盆栽；清水模式为水泥材质示意。",
-    "家具由Blender模型转换并做简化更新，非图片生成的实景复刻。"
+    "家具由Blender模型转换并做简化更新，非图片生成的实景复刻。",
+    "客厅南落地窗两端补通高短实墙，每端暂按原始图比例估算0.5米；家具布置保留。"
   ],
   "assemblyVersion": 2,
   "assemblies": [
@@ -4639,16 +4640,17 @@
       ]
     }
   ],
+  "visualRevision": "2026-09-15-living-window-end-walls",
   "stats": {
-    "sourceObjects": 1519,
-    "exportGroups": 281,
+    "sourceObjects": 1523,
+    "exportGroups": 285,
     "bakedMaterials": 11,
-    "bytes": 10924340,
+    "bytes": 10970188,
     "assemblies": 121,
     "layers": {
       "decor": 118,
-      "wall": 79,
-      "finish": 38,
+      "wall": 81,
+      "finish": 40,
       "window": 16,
       "greenery": 3,
       "door": 3,

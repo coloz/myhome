@@ -10,7 +10,7 @@ const KEY_A='home-simulator:2026-09-14:v1',KEY_B='home-simulator:scheme-b:2026-0
  page.on('response',r=>{if(r.status()>=400)errors.push(r.status()+' '+r.url());});
  const snap=()=>page.evaluate(()=>window.__homeViewer.snapshot());
  const ready=async(id)=>{await page.waitForFunction(id=>window.__homeViewer?.snapshot().schemeId===id&&window.__homeViewer?.snapshot().modelVersion&&document.querySelector('.loading')===null,id,{timeout:120000});await page.waitForTimeout(500);};
- const change=async(id)=>{await page.getByLabel('切换家装方案').selectOption(id);await ready(id);assert.equal(await page.locator('canvas').count(),1,'Switch leaked a canvas');};
+ const change=async(id)=>{await require('./scheme-ui.cjs').selectScheme(page,id);await ready(id);assert.equal(await page.locator('canvas').count(),1,'Switch leaked a canvas');};
  const exportJson=async()=>{const pending=page.waitForEvent('download');await page.getByRole('button',{name:'导出方案',exact:false}).click();const d=await pending;return {data:JSON.parse(fs.readFileSync(await d.path(),'utf8')),name:d.suggestedFilename()};};
  const setX=async(name,room,x)=>{await page.getByRole('button',{name:'查看'+room,exact:true}).click();await page.getByRole('button',{name:'选中物件',exact:true}).click();await page.locator('.object-list button').filter({hasText:name}).first().click();await page.getByLabel('家具横向位置').fill(String(x));await page.getByLabel('家具横向位置').press('Tab');await page.waitForTimeout(200);};
  await page.goto(process.env.VIEWER_URL||'http://127.0.0.1:8788/');await ready('original');
@@ -84,7 +84,7 @@ const KEY_A='home-simulator:2026-09-14:v1',KEY_B='home-simulator:scheme-b:2026-0
  checks.push('Current scheme B exports a valid editable GLB');
  await page.getByRole('button',{name:'查看当前户型原图',exact:false}).click();assert((await page.locator('.plan-card img').getAttribute('src')).includes('scheme-b'));await page.getByLabel('关闭户型图').click();
  await page.setViewportSize({width:390,height:844});await page.waitForTimeout(700);
- const picker=await page.getByLabel('切换家装方案').boundingBox();assert(picker.x>=0&&picker.x+picker.width<=390);assert(await page.getByLabel('切换家装方案').isVisible());
+ await require('./scheme-ui.cjs').openSchemes(page);await page.waitForTimeout(250);const picker=await page.getByLabel('切换家装方案').boundingBox();assert(picker.x>=0&&picker.x+picker.width<=390);assert(await page.getByLabel('切换家装方案').isVisible());
  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
  await page.screenshot({path:'test-results/scheme-b-mobile.png'});
  await change('original');await change('alternative');

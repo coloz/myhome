@@ -16,6 +16,8 @@ try {
  `);
  const sql=await readFile(new URL('../supabase/migrations/202609150001_home_design_schemes.sql',import.meta.url),'utf8');
  await db.exec(sql);await db.exec(sql); // Re-running setup must preserve existing rows.
+ const unified=await readFile(new URL('../supabase/migrations/202609150002_unified_floor_plans.sql',import.meta.url),'utf8');
+ await db.exec(unified);await db.exec(unified);
  await db.exec('set role anon');
  assert.equal((await db.query('select * from public.home_design_schemes')).rows.length,2);
  await assert.rejects(db.exec("update public.home_design_schemes set name='guest'"),/permission denied/);
@@ -30,6 +32,11 @@ try {
  assert.equal((await save('original',0,b)).rows.length,0,'Stale revision overwrote newer work');
  assert.equal((await save('original',1,b)).rows[0].revision,2);
  assert.equal((await save('new-design',0,a)).rows[0].revision,1);
+ const raw=JSON.parse(await readFile(new URL('../test-results/raw-shell-layout.json',import.meta.url),'utf8'));
+ const rawSave=layout=>db.query('select * from public.save_home_design_scheme($1,$2,$3,$4::jsonb,$5,$6::uuid)',
+  ['raw-design','清水房装修','raw-shell',JSON.stringify(layout),0,a]);
+ await assert.rejects(rawSave({...raw,modelVersion:'2026-09-14'}),/check constraint/);
+ const rawRow=(await rawSave(raw)).rows[0];assert.deepEqual(rawRow.layout,raw);assert.equal(rawRow.template_id,'raw-shell');
  await assert.rejects(db.exec("delete from public.home_design_schemes where id='new-design'"),/permission denied/);
  await assert.rejects(db.exec("update public.home_design_schemes set template_id='alternative' where id='new-design'"),/cannot be changed/);
  await assert.rejects(db.exec("update public.home_design_schemes set layout='{}'::jsonb where id='new-design'"),/check constraint/);

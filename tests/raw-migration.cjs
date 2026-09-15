@@ -3,20 +3,22 @@ const assert=require('node:assert/strict'),fs=require('node:fs');
 const project=JSON.parse(fs.readFileSync('public/assets/raw-shell/project.json','utf8'));
 const saved=JSON.parse(fs.readFileSync('test-results/raw-shell-layout.json','utf8'));
 const revision4=JSON.parse(fs.readFileSync('tests/fixtures/raw-shell-revision4.json','utf8'));
+const revision5=JSON.parse(fs.readFileSync('tests/fixtures/raw-shell-revision5.json','utf8'));
 const key='home-simulator:raw-shell:2026-09-15:v1';
 const withIds=w=>({...structuredClone(w),openings:w.openings.map((o,i)=>({...o,id:o.id??`${w.id}:opening:${i}`}))});
 (async()=>{
  const browser=await chromium.launch({channel:'msedge',headless:true,args:['--enable-webgl','--ignore-gpu-blocklist']});
  const checks=[],errors=[];
  try{
-  for(const revision of [1,2,3,4]){
+  for(const revision of [1,2,3,4,5]){
    const old=structuredClone(saved);old.modelRevision=revision;
-   old.walls=old.walls.map(w=>structuredClone(project.layoutUpdate.wallUpdates.find(c=>c.before.id===w.id&&(revision<3||(revision<4&&c.restoreFixed)||c.preserveEdited))?.before??w));
+   old.walls=old.walls.map(w=>structuredClone(project.layoutUpdate.wallUpdates.find(c=>c.before.id===w.id&&(revision<3||(revision<4&&c.restoreFixed)||(revision<5&&c.preserveEdited)))?.before??w));
    // The old master bathroom had a west door and a complete south partition.
-   for(const id of ['bath-main-west','bath-main-south']){
+   if(revision<5)for(const id of ['bath-main-west','bath-main-south']){
     old.walls=old.walls.filter(w=>w.id!==id);
     old.walls.push(structuredClone(revision4.walls.find(w=>w.id===id)));
    }
+   old.walls=old.walls.map(w=>w.id==='living-south'?structuredClone(revision5.walls.find(old=>old.id===w.id)):w);
    if(revision<3)for(const retired of project.layoutUpdate.retiredWalls)if(!old.walls.some(w=>w.id===retired.id))old.walls.push(structuredClone(retired));
    // Preserve a deliberate user edit to a retired partition as a custom wall.
    if(revision<3)old.walls.find(w=>w.id==='entry-east').thickness=.18;
@@ -52,10 +54,11 @@ const withIds=w=>({...structuredClone(w),openings:w.openings.map((o,i)=>({...o,i
    assert.equal(snapshot.entities.length,old.entities.length);
    assert(!snapshot.architecture.walls.some(w=>w.id==='bath-main-south'));
    assert.deepEqual(snapshot.architecture.walls.find(w=>w.id==='bath-main-west').openings,[]);
+   assert.deepEqual(snapshot.architecture.walls.find(w=>w.id==='living-south'),withIds(project.walls.find(w=>w.id==='living-south')));
    if(revision<3)assert(snapshot.architecture.walls.some(w=>w.id==='wall-migrated-entry-east'));
    for(const id of ['entry-door','guest-bath-west-top'])assert.deepEqual(snapshot.architecture.walls.find(w=>w.id===id),withIds(project.walls.find(w=>w.id===id)));
    assert.equal(db.writes.length,0);
-   checks.push('Revision '+revision+': furniture, finishes, other edited partitions and backup preserved; protected walls remain locked; master bath west solid and south open; reload persists');
+   checks.push('Revision '+revision+': furniture, finishes, other edited partitions and backup preserved; protected walls remain locked; living south 0.5m solid end walls; master bath west solid and south open; reload persists');
    await context.close();
   }
   assert.deepEqual(errors,[]);

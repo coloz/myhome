@@ -11,7 +11,7 @@ import { inPolygon } from './walk-motion';
 import { DEFAULT_FINISH, WALL_COLORS, FLOOR_STYLES, type WallRecord, type RoomFinish } from './architecture';
 
 export type Room = {id:string;name:string;center:number[];bounds:number[];polygon:number[][];greeneryOnly:boolean;eye:number[];look:number[]};
-export type Project = {rooms:Room[];height:number;version:string;revision?:number;defaultDecorated?:boolean;walls?:WallRecord[];layoutUpdate?:ModelLayoutUpdate;stats:{bytes:number;exportGroups:number};scaleNote:string;view?:{center:number[];span:number};assemblyVersion?:number;assemblies?:AssemblyDefinition[];legacyEntities?:LegacyEntity[]};
+export type Project = {rooms:Room[];height:number;version:string;revision?:number;visualRevision?:string;defaultDecorated?:boolean;walls?:WallRecord[];layoutUpdate?:ModelLayoutUpdate;stats:{bytes:number;exportGroups:number};scaleNote:string;view?:{center:number[];span:number};assemblyVersion?:number;assemblies?:AssemblyDefinition[];legacyEntities?:LegacyEntity[]};
 export type RoomState = {visible:boolean;decorated:boolean};
 export type Part = {mesh:THREE.Mesh;room:string;rooms:string[];layer:string;cutaway:string;box:THREE.Box3;original:THREE.Material|THREE.Material[];wallId?:string;disabled?:boolean;dynamicWall?:boolean};
 export class HomeViewer {
@@ -96,11 +96,15 @@ export class HomeViewer {
     this.animate();
   }
   async load(progress:(n:number)=>void) {
-    const response=await fetch(new URL(this.scheme.assets+'project.json',document.baseURI));if(!response.ok)throw new Error('模型说明文件加载失败。');
+    // Re-read the template manifest on refresh/create. Layouts are user data;
+    // model assets must follow the current template revision, not that snapshot.
+    const response=await fetch(new URL(this.scheme.assets+'project.json',document.baseURI),{cache:'no-store'});if(!response.ok)throw new Error('模型说明文件加载失败。');
     this.project=await response.json();
+    const modelUrl=new URL(this.scheme.assets+'home.glb',document.baseURI);
+    modelUrl.searchParams.set('v',[this.project.version,this.project.revision??1,this.project.visualRevision??'',this.project.stats.bytes].join(':'));
     for(const r of this.project.rooms)this.states[r.id]={visible:true,decorated:this.project.defaultDecorated??true};
     const [gltf,scenery]=await Promise.all([
-      new GLTFLoader().loadAsync(new URL(this.scheme.assets+'home.glb',document.baseURI).href,e=>progress(e.total?Math.min(99,Math.round(e.loaded/e.total*100)):30)),
+      new GLTFLoader().loadAsync(modelUrl.href,e=>progress(e.total?Math.min(99,Math.round(e.loaded/e.total*100)):30)),
       new GLTFLoader().loadAsync(new URL('assets/exterior.glb',document.baseURI).href)
     ]);
     this.model=gltf.scene;this.scene.add(this.model);this.model.updateMatrixWorld(true);

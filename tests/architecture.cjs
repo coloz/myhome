@@ -68,6 +68,19 @@ const windowWall={...add,openings:[{start:.2,end:1.4,bottom:1.1,top:2.3,kind:'wi
 assert.throws(()=>validateFinishes({living:{wall:'invalid',floor:'oak'}},rooms.map(r=>r.id)));
 const bytes=fs.readFileSync('public/assets/raw-shell/home.glb'),gltf=JSON.parse(bytes.subarray(20,20+bytes.readUInt32LE(12)).toString().trim());
 const bounds=n=>{const b=new T.Box3();for(const p of gltf.meshes[n.mesh].primitives){const a=gltf.accessors[p.attributes.POSITION];b.union(new T.Box3(new T.Vector3(...a.min),new T.Vector3(...a.max)));}return b.applyMatrix4(n.matrix?new T.Matrix4().fromArray(n.matrix):new T.Matrix4().compose(new T.Vector3(...(n.translation??[0,0,0])),new T.Quaternion(...(n.rotation??[0,0,0,1])),new T.Vector3(...(n.scale??[1,1,1]))));};
+const south=base.find(w=>w.id==='living-south');assert.equal(south.lock,'exterior');
+assert.deepEqual(south.openings,[{start:.5,end:6.5,bottom:0,top:2.8,kind:'window'}]);
+const southParts=gltf.nodes.filter(n=>n.extras?.wallId==='living-south');
+const southSolids=southParts.filter(n=>n.extras.layer==='wall').map(bounds);
+for(const [left,right] of [[0,.5],[6.5,7]])assert(southSolids.some(b=>Math.abs(b.min.x-left)<1e-5&&Math.abs(b.max.x-right)<1e-5&&Math.abs(b.min.y)<1e-5&&Math.abs(b.max.y-3)<1e-5),'Missing full-height solid window return');
+assert(southParts.filter(n=>n.name.includes('玻璃')).map(bounds).every(b=>b.min.x>=.5-1e-5&&b.max.x<=6.5+1e-5),'Glass overlaps a solid return');
+// Jamb frames straddle the opening boundary by 24mm.
+assert(southParts.filter(n=>n.extras.layer==='window').map(bounds).every(b=>b.min.x>=.476-1e-5&&b.max.x<=6.524+1e-5),'Window frame exceeds its jamb');
+const rev5=JSON.parse(fs.readFileSync('tests/fixtures/raw-shell-revision5.json','utf8'));
+const old5={...structuredClone(initial),modelRevision:5,walls:structuredClone(rev5.walls)};
+const corrected5=layoutModule.exports.upgradeModelLayout(old5,initial,project.layoutUpdate);validateWalls(corrected5.walls,base,rooms);
+assert.deepEqual(corrected5.walls.find(w=>w.id==='living-south'),south);
+assert.deepEqual(corrected5.walls.filter(w=>w.id!=='living-south'),old5.walls.filter(w=>w.id!=='living-south'),'South facade correction changed unrelated walls');
 assert(!base.some(w=>w.id==='bath-main-south'));
 assert(!gltf.nodes.some(n=>n.extras?.wallId==='bath-main-south'),'Master bathroom south edge must remain fully open');
 assert.deepEqual(base.find(w=>w.id==='bath-main-west').openings,[]);

@@ -18,6 +18,7 @@ async function installSupabaseMock(context,{signedIn=true,db=database()}={}){
   if(url.pathname.endsWith('/rpc/save_home_design_scheme')){
    if(!req.headers().authorization)return respond({message:'Sign in'},403);
    const p=req.postDataJSON();db.writes.push(structuredClone(p));
+   if(db.rejectRaw&&p.p_template_id==='raw-shell')return respond({message:'home_design_schemes_template_id_check'},400);
    if(db.delay)await new Promise(r=>setTimeout(r,db.delay));
    const row=db.rows.get(p.p_id);
    if(row?.last_mutation_id===p.p_mutation_id)return respond([row]);

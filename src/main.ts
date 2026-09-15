@@ -4,7 +4,6 @@ import { HomeEditor, EditorStatus, type ArchitectureStatus } from './editor';
 import { Project, RoomState } from './viewer';
 import { CATALOG } from './catalog';
 import { SCHEMES, RAW_SCHEME } from './schemes';
-import { LocalWorkspace } from './local-workspace';
 import { WALL_COLORS, FLOOR_STYLES, DEFAULT_FINISH, type WallOpening, type WallRecord } from './architecture';
 import { SchemeStore, type SaveStatus } from './scheme-store';
 import { supabase } from './auth';
@@ -20,13 +19,15 @@ export class App implements OnDestroy {
  private zone=inject(NgZone);
  viewer?:HomeEditor;
  schemes=signal(SCHEMES);scheme=signal(SCHEMES[0]);private loading=false;
- readonly localMode=new URLSearchParams(location.search).get('workspace')==='raw';
- private store?:SchemeStore|LocalWorkspace;
- saveStatus=signal<SaveStatus>({state:'loading',message:'正在连接云端方案库…'});
+ schemesOpen=signal(true);
+ private store?:SchemeStore;
+ localDraft=signal(false);
+ saveStatus=signal<SaveStatus>({state:'loading',message:'正在加载方案…'});
  pendingCount=signal(0);cacheWarning=signal('');
  newName=signal('');newSource=signal('copy');createError=signal('');creating=signal(false);
- templates=this.localMode?[RAW_SCHEME]:SCHEMES;
- user=signal<User|null>(null);canEdit=computed(()=>this.localMode||!!this.user()&&!this.user()?.is_anonymous);
+ templates=SCHEMES;
+ user=signal<User|null>(null);signedIn=computed(()=>!!this.user()&&!this.user()?.is_anonymous);
+ canEdit=computed(()=>this.localDraft()||this.signedIn());
  authBusy=signal(false);authError=signal('');private authSubscription?:Subscription;
  project=signal<Project|null>(null);ready=signal(false);error=signal('');progress=signal(0);
  selected=signal('all');eye=signal(false);states=signal<Record<string,RoomState>>({});
@@ -47,27 +48,29 @@ export class App implements OnDestroy {
  viewName=computed(()=>this.roaming()?'第一人称漫游':this.selected()==='all'?'自由查看':this.selected()==='plan'?'户型图':this.project()?.rooms.find(r=>r.id===this.selected())?.name??'');
  finishMode=computed(()=>{const v=Object.values(this.states()).map(s=>s.decorated);return v.every(Boolean)?'decorated':v.every(x=>!x)?'raw':'mixed';});
  constructor(){afterNextRender(()=>this.zone.runOutsideAngular(async()=>{
-  if(this.localMode){
-   this.store=new LocalWorkspace();this.store.onChange=()=>this.syncStore();
-   let active='';try{active=localStorage.getItem('home-simulator:active-raw-design')??'';}catch{}
-   this.scheme.set(this.store.schemes.find(s=>s.id===active)??this.store.schemes[0]);this.syncStore();await this.init(false);return;
-  }
   const {data}=await supabase.auth.getSession();this.user.set(data.session?.user??null);
-  this.store=new SchemeStore(async()=>(await supabase.auth.getSession()).data.session?.access_token??null);this.store.writable=this.canEdit();this.store.onChange=()=>this.syncStore();
+  this.store=new SchemeStore(async()=>(await supabase.auth.getSession()).data.session?.access_token??null);this.store.writable=this.signedIn();this.store.onChange=()=>this.syncStore();
   this.authSubscription=supabase.auth.onAuthStateChange((_event,session)=>{
    const previous=this.user()?.id;this.user.set(session?.user??null);
-   if(this.store)this.store.writable=this.canEdit();
+   if(this.store)this.store.writable=this.signedIn();
    if(this.viewer){this.viewer.setReadOnly(!this.canEdit());this.viewer.setObjectsLocked(!this.canEdit()||this.objectsLocked());}
    this.syncStore();
    if(previous!==session?.user?.id)setTimeout(()=>{if(!this.loading)void this.refreshSchemes();},0);
   }).data.subscription;
   await this.store.refresh();
-  try{this.scheme.set(this.store.schemes.find(s=>s.id===localStorage.getItem('home-simulator:active-scheme'))??SCHEMES[0]);}catch{}
+  const params=new URLSearchParams(location.search);let active=params.get('scheme');
+  try{
+   // Old URLs select a design in the same app; they no longer create a workspace.
+   active??=params.get('workspace')==='raw'?(localStorage.getItem('home-simulator:active-raw-design')??RAW_SCHEME.id):
+    localStorage.getItem('home-simulator:active-scheme')??localStorage.getItem('home-simulator:active-raw-design');
+  }catch{}
+  this.scheme.set(this.store.schemes.find(s=>s.id===active)??(params.get('workspace')==='raw'?RAW_SCHEME:SCHEMES[0]));this.syncStore();
   await this.init(false);this.store.flush();
  }));}
- syncStore(){if(!this.store)return;this.schemes.set(this.store.schemes);this.saveStatus.set(this.store.status(this.scheme().id));this.pendingCount.set(this.store.pendingCount);this.cacheWarning.set(this.store.warning);}
+ syncStore(){if(!this.store)return;this.schemes.set(this.store.schemes);this.localDraft.set(this.store.isLocal(this.scheme().id));this.saveStatus.set(this.store.status(this.scheme().id));this.pendingCount.set(this.store.pendingCount);this.cacheWarning.set(this.store.warning);}
  async init(fetchCloud=true){
   if(this.loading)return;this.loading=true;
+  this.syncStore();
   this.ready.set(false);this.error.set('');this.progress.set(0);this.project.set(null);this.states.set({});
   this.selected.set('all');this.eye.set(false);this.hidden.set(0);this.notice.set('');this.tab.set('catalog');
   this.editor.set({selection:null,undo:0,redo:0,count:0,message:'',items:[]});
@@ -87,12 +90,20 @@ export class App implements OnDestroy {
    if(this.canEdit()&&(!layout||current.version!==layout.version||current.modelRevision!==(layout.modelRevision??1)))this.store?.save(id,current);
    this.viewer.setAuto(this.autoWalls());this.viewer.setCeiling(this.showCeiling());this.viewer.labels=this.labels();this.viewer.editEnabled=this.editMode();this.viewer.setObjectsLocked(!this.canEdit()||this.objectsLocked());
    this.sync();this.syncStore();this.ready.set(true);
-   try{localStorage.setItem(this.localMode?'home-simulator:active-raw-design':'home-simulator:active-scheme',this.scheme().id);}catch{}
-   Object.defineProperty(window,'__homeViewer',{value:{snapshot:()=>({...this.viewer?.debug(),schemeId:this.scheme().id,modelVersion:this.project()?.version}),components:(id:string)=>this.viewer?.componentDebug(id)},configurable:true});
+   try{localStorage.setItem('home-simulator:active-scheme',this.scheme().id);}catch{}
+   const url=new URL(location.href);url.searchParams.delete('workspace');url.searchParams.set('scheme',this.scheme().id);history.replaceState(null,'',url);
+   Object.defineProperty(window,'__homeViewer',{value:{snapshot:()=>({...this.viewer?.debug(),schemeId:this.scheme().id,modelVersion:this.project()?.version,modelRevision:this.project()?.revision??1,visualRevision:this.project()?.visualRevision}),components:(id:string)=>this.viewer?.componentDebug(id)},configurable:true});
   }catch(e){this.error.set(e instanceof Error?e.message:'模型加载失败，请刷新页面重试。');this.viewer?.destroy();this.viewer=undefined;console.error(e);}
   finally{this.loading=false;}
  }
- changeScheme(e:Event){const next=this.schemes().find(s=>s.id===(e.target as HTMLSelectElement).value);if(!next||this.loading||next.id===this.scheme().id)return;this.store?.flush();this.scheme.set(next);this.showSource.set(false);this.zone.runOutsideAngular(()=>this.init());}
+ changeScheme(id:string){const next=this.schemes().find(s=>s.id===id);if(!next||this.loading||next.id===this.scheme().id)return;this.store?.flush();this.scheme.set(next);this.showSource.set(false);this.zone.runOutsideAngular(()=>this.init());}
+ schemeKeydown(e:KeyboardEvent){
+  if(!['ArrowDown','ArrowUp','Home','End'].includes(e.key))return;
+  const list=e.currentTarget as HTMLElement,items=Array.from(list.querySelectorAll<HTMLButtonElement>('[role=option]'));
+  if(!items.length)return;e.preventDefault();const index=items.indexOf(e.target as HTMLButtonElement);
+  const next=e.key==='Home'?0:e.key==='End'?items.length-1:Math.max(0,Math.min(items.length-1,index+(e.key==='ArrowDown'?1:-1)));
+  items[next].focus();items[next].scrollIntoView({block:'nearest'});
+ }
  setTab(tab:'catalog'|'selection'|'architecture'){this.tab.set(tab);if(tab!=='architecture')this.viewer?.setWallTool('off');}
  wallTool(tool:'off'|'select'|'draw'){if(!this.canEdit())return;this.viewer?.setWallTool(tool);if(tool!=='off'){this.selected.set('plan');this.eye.set(false);this.labels.set(false);if(this.viewer)this.viewer.labels=false;this.panelOpen.set(false);this.sidebarOpen.set(false);}this.tab.set('architecture');}
  selectWall(id:string){this.wallTool('select');this.viewer?.selectWall(id);}
@@ -110,13 +121,21 @@ export class App implements OnDestroy {
   this.creating.set(true);this.createError.set('');
   try{
    const source=this.newSource(),templateId=source==='copy'?(this.scheme().templateId??this.scheme().id):source;
-   const layout=source==='copy'?this.viewer.snapshot():templateId===(this.scheme().templateId??this.scheme().id)?this.viewer.initialLayout():null;
-   const next=this.store.create(this.newName(),templateId,layout);
+   // Only an explicit copy carries a snapshot. Every template selection starts
+   // empty and loads its latest manifest/model in init, even for the same template.
+   const layout=source==='copy'?this.viewer.snapshot():null;
+   const next=this.store.create(this.newName(),templateId,layout,this.store.isLocal(this.scheme().id));
    this.store.flush();this.schemeDialog.nativeElement.close();this.scheme.set(next);this.showSource.set(false);await this.init(false);
   }catch(e){this.createError.set((e as Error).message);}finally{this.creating.set(false);}
  }
  async refreshSchemes(){if(this.loading||!this.store)return;this.loading=true;this.ready.set(false);try{await this.store.refresh();}finally{this.loading=false;}await this.init(false);this.store.flush();}
  retrySave(){this.store?.retry();}
+ async publishScheme(){
+  if(!this.store||!this.viewer||!this.ready())return;
+  if(!this.signedIn()){this.openLogin();return;}
+  try{const next=this.store.publish(this.scheme().id);this.scheme.set(next);await this.init(false);this.store.flush();}
+  catch(e){this.notice.set((e as Error).message);}
+ }
  openLogin(){this.viewer?.stopRoaming();this.authError.set('');this.loginDialog.nativeElement.showModal();}
  async login(e:Event){
   e.preventDefault();if(this.authBusy())return;const form=e.target as HTMLFormElement,data=new FormData(form);

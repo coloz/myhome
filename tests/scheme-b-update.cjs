@@ -15,7 +15,7 @@ const near=(a,b)=>a.every((v,i)=>Math.abs(v-b[i])<1e-4);
  const exp=async()=>{const d=page.waitForEvent('download');await page.getByRole('button',{name:'导出方案',exact:false}).click();return JSON.parse(fs.readFileSync(await(await d).path()));};
  const imp=async d=>{await page.locator('input[type=file]').setInputFiles({name:'layout.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(d))});await page.waitForTimeout(250);};
  await page.goto(process.env.VIEWER_URL||'http://127.0.0.1:8788/');await page.waitForFunction(()=>window.__homeViewer&&!document.querySelector('.loading'));
- await page.getByLabel('切换家装方案').selectOption('alternative');await ready();
+ await require('./scheme-ui.cjs').selectScheme(page,'alternative');await ready();
  const baseline=await exp(),defaults=new Map(baseline.entities.map(e=>[e.id,e]));
  assert.equal(baseline.modelRevision,2);assert.equal(baseline.entities.length,78);
  assert.deepEqual(new Set(meta.layoutUpdate.previousOriginalIds),new Set(previous.entities.map(e=>e.id)));

@@ -5,7 +5,7 @@ const URL=process.env.VIEWER_URL||'http://127.0.0.1:8788/';
 const wait=async(fn,message)=>{const end=Date.now()+20000;while(!fn()){if(Date.now()>end)throw new Error(message);await new Promise(r=>setTimeout(r,60));}};
 const ready=async(page,id)=>page.waitForFunction(id=>window.__homeViewer?.snapshot().schemeId===id&&!document.querySelector('.loading'),id,{timeout:120000});
 const snapshot=page=>page.evaluate(()=>window.__homeViewer.snapshot());
-const change=async(page,id)=>{await page.getByLabel('切换家装方案').selectOption(id);await ready(page,id);};
+const change=async(page,id)=>{await require('./scheme-ui.cjs').selectScheme(page,id);await ready(page,id);};
 const setX=async(page,value)=>{
  await page.getByRole('button',{name:'自由查看',exact:true}).click();
  await page.getByRole('button',{name:'选中物件',exact:true}).click();
@@ -82,7 +82,7 @@ const create=async(page,name,source='copy')=>{
   await page.screenshot({path:'test-results/cloud-desktop.png'});
   await page.setViewportSize({width:390,height:844});await page.screenshot({path:'test-results/cloud-mobile.png'});
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
-  await page.getByRole('button',{name:'新建方案',exact:true}).click();await page.screenshot({path:'test-results/cloud-new-design-mobile.png'});
+  await require('./scheme-ui.cjs').openSchemes(page);await page.getByRole('button',{name:'新建方案',exact:true}).click();await page.screenshot({path:'test-results/cloud-new-design-mobile.png'});
   await page.keyboard.press('Escape');assert.equal(await page.locator('dialog[open]').count(),0);
   await page.getByRole('button',{name:'退出',exact:true}).click();
   await page.waitForFunction(()=>document.querySelector('.new-scheme')?.hasAttribute('disabled'));

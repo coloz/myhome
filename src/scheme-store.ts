@@ -1,14 +1,16 @@
 import { environment } from './environments/environment';
-import { SCHEMES, designScheme } from './schemes';
+import { SCHEMES, RAW_SCHEME, designScheme } from './schemes';
 import type { Layout } from './layout';
 
 export type DesignRow = {
  id:string; name:string; template_id:string; layout:Layout|null;
  revision:number; updated_at:string; last_mutation_id:string|null;
 };
-type Entry = {row:DesignRow; dirty:boolean; mutationId:string; conflict?:boolean};
+type Entry = {row:DesignRow; dirty:boolean; mutationId:string; conflict?:boolean; local?:boolean};
 export type SaveStatus = {state:'loading'|'pending'|'saving'|'saved'|'error'|'conflict'; message:string};
 const CACHE='home-simulator:supabase:nbdodqezyijrztikvkcd:v1:';
+const LEGACY_RAW='home-simulator:raw-workspace:v1';
+const RAW_MIGRATED='home-simulator:unified-raw-migration:v1';
 const COLUMNS='id,name,template_id,layout,revision,updated_at,last_mutation_id';
 
 /** Durable outbox. Each design has one writer and its own revision, queue and retry timer. */
@@ -31,7 +33,7 @@ export class SchemeStore {
 
  constructor(getAccessToken:()=>Promise<string|null>=async()=>null){
   this.getAccessToken=getAccessToken;
-  for(const s of SCHEMES)this.entries.set(s.id,{row:{id:s.id,name:s.name,template_id:s.id,layout:null,revision:0,updated_at:'',last_mutation_id:null},dirty:false,mutationId:''});
+  for(const s of SCHEMES)this.entries.set(s.id,{row:{id:s.id,name:s.name,template_id:s.id,layout:null,revision:0,updated_at:'',last_mutation_id:null},dirty:false,mutationId:'',local:s.id===RAW_SCHEME.id});
   try{
    for(let i=0;i<localStorage.length;i++){
     const key=localStorage.key(i);if(!key?.startsWith(CACHE))continue;
@@ -39,15 +41,37 @@ export class SchemeStore {
     if(this.validRow(entry?.row)&&typeof entry.dirty==='boolean'&&typeof entry.mutationId==='string')this.entries.set(entry.row.id,entry);
    }
   }catch{this.cacheError='本地缓存不可用，请及时导出 JSON 备份。';}
+  this.migrateRawDesigns();
   window.addEventListener('online',this.online);
   window.addEventListener('pagehide',this.pagehide);
   document.addEventListener('visibilitychange',this.visibility);
  }
  get schemes(){return [...this.entries.values()].map(e=>designScheme(e.row.id,e.row.name,e.row.template_id));}
- get pendingCount(){return [...this.entries.values()].filter(e=>e.dirty).length;}
+ get pendingCount(){return [...this.entries.values()].filter(e=>e.dirty&&!e.local).length;}
  get warning(){return this.cacheError;}
+ isLocal(id:string){return !!this.entries.get(id)?.local;}
+ canEdit(id:string){return this.writable||this.isLocal(id);}
+ private migrateRawDesigns(){
+  try{
+   if(localStorage.getItem(RAW_MIGRATED))return;
+   const raw=localStorage.getItem(LEGACY_RAW);if(!raw)return;
+   const designs:unknown=JSON.parse(raw);if(!Array.isArray(designs))throw new Error('Invalid legacy archive');
+   for(const d of designs){
+    const row:DesignRow={id:d.id,name:d.name,template_id:RAW_SCHEME.id,layout:d.layout??null,revision:0,updated_at:'',last_mutation_id:null};
+    if(!this.validRow(row))throw new Error('Invalid legacy design');
+   }
+   // Leave the original archive untouched; mark migration only after all copies persist.
+   for(const d of designs){
+    if(localStorage.getItem(CACHE+d.id))continue;
+    const entry:Entry={row:{id:d.id,name:d.name,template_id:RAW_SCHEME.id,layout:d.layout??null,revision:0,updated_at:'',last_mutation_id:null},dirty:false,mutationId:'',local:true};
+    localStorage.setItem(CACHE+d.id,JSON.stringify(entry));this.entries.set(d.id,entry);
+   }
+   localStorage.setItem(RAW_MIGRATED,'1');
+  }catch{this.cacheError='旧方案尚未全部合并，原存档已保留；请导出 JSON 备份后重试。';}
+ }
  layout(id:string){return structuredClone(this.entries.get(id)?.row.layout??null);}
  status(id:string):SaveStatus {
+  if(this.isLocal(id))return {state:this.cacheError?'error':'saved',message:this.cacheError||'已保存在本机'};
   if(!this.writable)return {state:this.connectionError?'error':'saved',message:this.connectionError||'公开浏览 · 登录后可编辑和新建方案'};
   const e=this.entries.get(id);
   if(e?.conflict)return {state:'conflict',message:'云端已有其他修改，本地布置已保留，请另存为新方案。'};
@@ -74,6 +98,7 @@ export class SchemeStore {
    if(!response.ok){
     if(response.status===404)throw new Error('云端方案库尚未初始化，请完成数据库配置后重试。');
     if(response.status===401||response.status===403)throw new Error('云端访问权限未就绪，请检查数据库配置。');
+    if(response.status===400&&body&&typeof body==='object'&&'p_template_id' in body&&body.p_template_id===RAW_SCHEME.id)throw new Error('已保留本机修改；云端需更新户型支持后才能同步。');
     throw new Error('云端暂时不可用（'+response.status+'），修改保留在本地，稍后重试。');
    }
    const rows:unknown=await response.json();
@@ -86,6 +111,8 @@ export class SchemeStore {
  }
  private merge(row:DesignRow){
   const entry=this.entries.get(row.id);
+  // A downloaded shared record must never overwrite an unpublished local design.
+  if(entry?.local)return;
   if(entry?.dirty){
    // A response may have been lost after the database committed the request.
    if(entry.mutationId===row.last_mutation_id){entry.row=row;entry.dirty=false;entry.conflict=false;this.statuses.delete(row.id);}
@@ -110,7 +137,7 @@ export class SchemeStore {
   this.onChange();
  }
  async prepare(id:string){
-  if(this.entries.get(id)?.dirty)return;
+  if(this.entries.get(id)?.dirty||this.isLocal(id))return;
   try{
    const rows=await this.request('home_design_schemes?select='+COLUMNS+'&id=eq.'+encodeURIComponent(id));
    if(rows[0])this.merge(rows[0]);this.connectionError='';
@@ -118,18 +145,19 @@ export class SchemeStore {
   this.onChange();
  }
  save(id:string,layout:Layout){
-  if(!this.writable)return;
+  if(!this.canEdit(id))return;
   const entry=this.entries.get(id);if(!entry)throw new Error('当前方案不存在。');
+  if(entry.local){entry.row.layout=structuredClone(layout);this.persist(id);this.onChange();return;}
   entry.row.layout=structuredClone(layout);entry.dirty=true;entry.mutationId=crypto.randomUUID();
   this.persist(id);
   if(!entry.conflict){this.setStatus(id,{state:'pending',message:'修改已保存在本地，等待上传…'});this.schedule(id);}
   else this.onChange();
  }
- create(name:string,templateId:string,layout:Layout|null){
-  if(!this.writable)throw new Error('请先登录再新建方案。');
+ create(name:string,templateId:string,layout:Layout|null,local=false){
+  if(!this.writable&&!local)throw new Error('请先登录再新建方案。');
   name=name.trim();if(!name||name.length>60)throw new Error('请输入 1–60 个字符的方案名称。');
-  const id=crypto.randomUUID();designScheme(id,name,templateId);
-  this.entries.set(id,{row:{id,name,template_id:templateId,layout:null,revision:0,updated_at:'',last_mutation_id:null},dirty:false,mutationId:''});
+  const id=(local?'local-':'')+crypto.randomUUID();designScheme(id,name,templateId);
+  this.entries.set(id,{row:{id,name,template_id:templateId,layout:null,revision:0,updated_at:'',last_mutation_id:null},dirty:false,mutationId:'',local});
   this.persist(id);if(layout)this.save(id,layout);this.onChange();
   return this.schemes.find(s=>s.id===id)!;
  }
@@ -141,7 +169,7 @@ export class SchemeStore {
  }
  private flushOne(id:string):Promise<void>{
   const running=this.inFlight.get(id);if(running)return running;
-  const entry=this.entries.get(id);if(!this.writable||this.disposed||!entry?.dirty||entry.conflict||!entry.row.layout)return Promise.resolve();
+  const entry=this.entries.get(id);if(!this.writable||this.disposed||entry?.local||!entry?.dirty||entry.conflict||!entry.row.layout)return Promise.resolve();
   clearTimeout(this.timers.get(id));this.timers.delete(id);this.firstQueued.delete(id);
   const sent=structuredClone(entry);
   this.setStatus(id,{state:'saving',message:'正在保存到云端…'});
@@ -171,6 +199,12 @@ export class SchemeStore {
  }
  flush(){for(const id of this.entries.keys())void this.flushOne(id);}
  retry(){this.flush();this.onChange();}
+ /** Explicitly share a local snapshot; keep the original durable copy as a backup. */
+ publish(id:string){
+  if(!this.writable)throw new Error('请先登录后保存到云端。');
+  const e=this.entries.get(id);if(!e?.local||!e.row.layout)throw new Error('当前方案尚未准备好。');
+  return this.create(e.row.name.slice(0,50)+' · 共享副本',e.row.template_id,e.row.layout);
+ }
  /** A conflict is resolved by preserving local work as a separate design. */
  async preserveConflict(id:string,layout:Layout){
   const entry=this.entries.get(id)!;

@@ -1,6 +1,6 @@
 {
   "version": "2026-09-15-raw-shell",
-  "revision": 6,
+  "revision": 5,
   "height": 3,
   "defaultDecorated": false,
   "rooms": [
@@ -601,8 +601,8 @@
       "lock": "exterior",
       "openings": [
         {
-          "start": 0.5,
-          "end": 6.5,
+          "start": 0.18,
+          "end": 6.82,
           "bottom": 0,
           "top": 2.8,
           "kind": "window"
@@ -2100,8 +2100,8 @@
     "span": 15
   },
   "stats": {
-    "bytes": 538916,
-    "exportGroups": 274
+    "bytes": 540800,
+    "exportGroups": 275
   },
   "scaleNote": "外围按标注尺寸建模；内墙定位、门洞宽度和弧角半径按图估算。护栏暂按1.2m；窗顶暂按2.8m。",
   "assumptions": [
@@ -2111,8 +2111,7 @@
     "门洞及细部尺寸依图估算，模型并非施工图",
     "客卫北窗宽1米，窗台1.4米，窗顶2.6米，按用户补充补建，尺寸暂估",
     "用户确认入户门两侧及光厅与客卫相邻墙体不可拆改，设为固定墙体并保留原门洞",
-    "原户型主卫左侧为完整隔墙，下侧整段敞开；旧方案中主动改造过的隔墙保留",
-    "客厅南侧两端为通高实墙，每端暂按原图比例估算0.5米；中央落地窗洞口宽6米，整体外墙仍锁定"
+    "原户型主卫左侧为完整隔墙，下侧整段敞开；旧方案中主动改造过的隔墙保留"
   ],
   "visualRevision": "2026-09-15-curved-glass",
   "layoutUpdate": {
@@ -2121,8 +2120,7 @@
       1,
       2,
       3,
-      4,
-      5
+      4
     ],
     "previousOriginalIds": [],
     "additions": [],
@@ -2513,64 +2511,6 @@
           "deleted": false
         },
         "preserveEdited": true
-      },
-      {
-        "before": {
-          "id": "living-south",
-          "name": "客厅落地窗",
-          "a": [
-            0,
-            0
-          ],
-          "b": [
-            7,
-            0
-          ],
-          "thickness": 0.2,
-          "height": 3,
-          "rooms": [
-            "living"
-          ],
-          "lock": "exterior",
-          "openings": [
-            {
-              "start": 0.18,
-              "end": 6.82,
-              "bottom": 0,
-              "top": 2.8,
-              "kind": "window"
-            }
-          ],
-          "deleted": false
-        },
-        "after": {
-          "id": "living-south",
-          "name": "客厅落地窗",
-          "a": [
-            0,
-            0
-          ],
-          "b": [
-            7,
-            0
-          ],
-          "thickness": 0.2,
-          "height": 3,
-          "rooms": [
-            "living"
-          ],
-          "lock": "exterior",
-          "openings": [
-            {
-              "start": 0.5,
-              "end": 6.5,
-              "bottom": 0,
-              "top": 2.8,
-              "kind": "window"
-            }
-          ],
-          "deleted": false
-        }
       }
     ]
   }

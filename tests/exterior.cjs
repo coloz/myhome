@@ -9,7 +9,7 @@ const fs=require('node:fs'),assert=require('node:assert/strict');
  const snap=()=>p.evaluate(()=>window.__homeViewer.snapshot());
  await p.goto(process.env.VIEWER_URL||'http://127.0.0.1:8788/');await ready('original');
  for(const [scheme,count] of [['original',121],['alternative',78]]){
-  if(scheme==='alternative'){await p.getByLabel('切换家装方案').selectOption(scheme);await ready(scheme);}
+  if(scheme==='alternative'){await require('./scheme-ui.cjs').selectScheme(p,scheme);await ready(scheme);}
   const start=await snap();assert.equal(start.exterior.trees,7);assert.equal(start.entities.length,count);assert(!start.exterior.visible);
   const saved=await p.evaluate(()=>({...localStorage}));
   for(const [name,slug] of [['客厅','living'],['次卧','guest'],['主卧','master']]){

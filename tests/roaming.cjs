@@ -51,7 +51,7 @@ const fs=require('node:fs'),assert=require('node:assert/strict');
  atEntrance(s,'original');await hold('w',700);assert((await snap()).camera[2]>entrances.original[1]+.3,'Cannot walk through entrance into scheme A');
  await page.keyboard.press('Escape');
  checks.push('Plan view is restored on exit; entering from a bedroom still starts at the front door and can cross its threshold');
- await page.getByLabel('切换家装方案').selectOption('alternative');await ready();await start();atEntrance(await snap(),'alternative');
+ await require('./scheme-ui.cjs').selectScheme(page,'alternative');await ready();await start();atEntrance(await snap(),'alternative');
  await page.screenshot({path:'test-results/roaming-alternative.png'});
  await hold('w',700);assert((await snap()).camera[2]>entrances.alternative[1]+.3,'Cannot walk through entrance into scheme B');await page.keyboard.press('Escape');
  const distances=[];
@@ -65,7 +65,7 @@ const fs=require('node:fs'),assert=require('node:assert/strict');
  checks.push('Both entrance thresholds are passable; default speed is 2.8m/s and Shift does not accelerate');
  await page.getByRole('button',{name:'查看主卧',exact:true}).click();await start();atEntrance(await snap(),'alternative');
  // A scheme change must dispose input handlers and release any captured pointer.
- await page.getByLabel('切换家装方案').selectOption('original');await ready();s=await snap();assert.equal(s.mode,'overview');assert(!s.walk.active);assert.equal(await page.locator('canvas').count(),1);assert(await page.evaluate(()=>document.pointerLockElement===null));
+ await require('./scheme-ui.cjs').selectScheme(page,'original');await ready();s=await snap();assert.equal(s.mode,'overview');assert(!s.walk.active);assert.equal(await page.locator('canvas').count(),1);assert(await page.evaluate(()=>document.pointerLockElement===null));
  const afterSwitch=s.camera;await hold('w');near((await snap()).camera,afterSwitch);
  checks.push('Both schemes roam; switching models releases controls without leaking key handlers');
  await page.setViewportSize({width:390,height:844});await page.waitForTimeout(400);await nav();
