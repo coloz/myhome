@@ -25,7 +25,7 @@ export class HomeEditor extends HomeViewer {
  private legacyBackup='';
  private picker=new T.Raycaster();
  private plane=new T.Plane(new T.Vector3(0,1,0),0);
- private outline=new T.BoxHelper(new T.Object3D(),0xb5a365);
+ private outline=new T.BoxHelper(new T.Object3D(),0x007aff);
  private drag?:{id:string;pointerId:number;offset:T.Vector3;start:{x:number;y:number};before:Layout;moved:boolean};
  private cleanups:(()=>void)[]=[];
  constructor(host:HTMLElement,scheme:Scheme=SCHEMES[0]){

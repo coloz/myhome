@@ -65,7 +65,7 @@ export class HomeViewer {
     this.renderer.shadowMap.autoUpdate=false;this.renderer.localClippingEnabled=true;
     canvas.setAttribute('aria-label','住宅三维模型；左键拖动旋转，中键或右键拖动平移，滚轮缩放');
     canvas.tabIndex=0;host.appendChild(canvas);
-    this.scene.background=new THREE.Color('#e8ebe7');
+    this.scene.background=new THREE.Color('#eef0f3');
     this.pmrem=new THREE.PMREMGenerator(this.renderer);
     const roomEnv=new RoomEnvironment();this.env=this.pmrem.fromScene(roomEnv,.04);roomEnv.dispose();
     this.scene.environment=this.env.texture;this.scene.environmentIntensity=.45;
@@ -205,7 +205,7 @@ export class HomeViewer {
     if(this.entranceFloor)this.entranceFloor.visible=this.roaming;
     const indoors=this.mode==='eye'||this.mode==='walk';
     if(this.ground)this.ground.position.y=indoors?-9.2:-.15;
-    (this.scene.background as THREE.Color).set(indoors?'#e6edf0':'#e8ebe7');
+    (this.scene.background as THREE.Color).set(indoors?'#e9edf3':'#eef0f3');
     for(const p of this.parts){
       const enabled=p.rooms.some(id=>this.states[id]?.visible);
       const decorated=this.states[p.room]?.decorated??true;

@@ -13,7 +13,7 @@ const setX=async(page,value)=>{
  await page.getByLabel('家具横向位置').fill(String(value));await page.getByLabel('家具横向位置').press('Tab');
 };
 const create=async(page,name,source='copy')=>{
- await page.getByRole('button',{name:'＋ 新建方案',exact:true}).click();
+ await page.getByRole('button',{name:'新建方案',exact:true}).click();
  await page.getByLabel('方案名称', {exact:true}).fill(name);await page.getByLabel('起始布置').selectOption(source);
  await page.getByRole('button',{name:'创建方案',exact:true}).click();
  await page.waitForFunction(()=>!document.querySelector('.loading')&&!document.querySelector('.scheme-dialog[open]'),{},{timeout:120000});
@@ -27,7 +27,7 @@ const create=async(page,name,source='copy')=>{
   await installSupabaseMock(context,{signedIn:false,db});
   const page=await context.newPage(),errors=[],checks=[];const check=message=>{checks.push(message);console.log('PASS: '+message);};page.on('pageerror',e=>errors.push(e.message));
   console.log('Starting cloud browser checks');await page.goto(URL);await ready(page,'original');
-  assert(await page.getByRole('button',{name:'＋ 新建方案',exact:true}).isDisabled());
+  assert(await page.getByRole('button',{name:'新建方案',exact:true}).isDisabled());
   assert(await page.locator('.catalog-card').first().isDisabled());
   await page.getByRole('button',{name:'清水房',exact:true}).click();assert.equal(db.writes.length,0);
   check('Guest browsing never uploads changes and disables editing/creation');
@@ -82,10 +82,10 @@ const create=async(page,name,source='copy')=>{
   await page.screenshot({path:'test-results/cloud-desktop.png'});
   await page.setViewportSize({width:390,height:844});await page.screenshot({path:'test-results/cloud-mobile.png'});
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
-  await page.getByRole('button',{name:'＋ 新建方案',exact:true}).click();await page.screenshot({path:'test-results/cloud-new-design-mobile.png'});
+  await page.getByRole('button',{name:'新建方案',exact:true}).click();await page.screenshot({path:'test-results/cloud-new-design-mobile.png'});
   await page.keyboard.press('Escape');assert.equal(await page.locator('dialog[open]').count(),0);
   await page.getByRole('button',{name:'退出',exact:true}).click();await ready(page,'original');
-  assert(await page.getByRole('button',{name:'＋ 新建方案',exact:true}).isDisabled());
+  assert(await page.getByRole('button',{name:'新建方案',exact:true}).isDisabled());
   check('Mobile controls fit the viewport; dialogs close with Escape; logout restores read-only');
   const guestContext=await browser.newContext({viewport:{width:1280,height:900}});await installSupabaseMock(guestContext,{signedIn:false,db});
   const guest=await guestContext.newPage();await guest.goto(URL);await ready(guest,'original');await change(guest,copyId);

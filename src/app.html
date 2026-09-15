@@ -1,22 +1,22 @@
 <div class="app">
 <header class="topbar">
- <a class="brand" href="./"><span class="brand-symbol">木</span><span>木与光<small>HOME STUDIO / 01</small></span></a>
+ <a class="brand" href="./"><span class="brand-symbol">木</span><span>木与光<small>HOME STUDIO</small></span></a>
  <div class="project-name"><strong>家的装修模拟器</strong><span>多种方案 · 云端自动保存</span></div>
  <div class="scheme-tools">
   <label class="scheme-picker"><span>当前方案</span><select aria-label="切换家装方案" [value]="scheme().id" [disabled]="!ready()&&!error()" (change)="changeScheme($event)">@for(item of schemes();track item.id){<option [value]="item.id">{{item.name}}</option>}</select></label>
-  <button class="header-button new-scheme" (click)="openNewScheme()" [disabled]="!ready()||!canEdit()">＋ 新建方案</button>
-  <button class="refresh-schemes" aria-label="刷新云端方案" title="刷新云端方案" (click)="refreshSchemes()" [disabled]="!ready()&&!error()">↻</button>
+  <button class="header-button new-scheme" (click)="openNewScheme()" [disabled]="!ready()||!canEdit()"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>新建方案</button>
+  <button class="refresh-schemes" aria-label="刷新云端方案" title="刷新云端方案" (click)="refreshSchemes()" [disabled]="!ready()&&!error()"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M19.5 12a7.5 7.5 0 1 0-2 5"/></svg></button>
   <div class="cloud-status" [attr.data-state]="saveStatus().state" role="status" aria-live="polite"><span>● {{saveStatus().message}}</span>@if(pendingCount()){<small>{{pendingCount()}} 个方案待同步</small>}@if(canEdit()&&saveStatus().state==='error'){<button (click)="retrySave()">重试保存</button>}@if(saveStatus().state==='conflict'){<button (click)="preserveConflict()" [disabled]="!ready()">另存本地副本</button>}</div>
  </div>
  <div class="header-actions" [attr.inert]="roaming()?'':null">
-  <button class="history" aria-label="撤销" [disabled]="!canEdit()||!editor().undo" (click)="viewer?.undo()">↶</button><button class="history" aria-label="重做" [disabled]="!canEdit()||!editor().redo" (click)="viewer?.redo()">↷</button>
-  <button class="header-button" (click)="importInput.click()" [disabled]="!ready()||!canEdit()">导入</button><button class="header-button filled" (click)="viewer?.exportLayout()" [disabled]="!ready()">导出方案 ↗</button>
+  <button class="history" aria-label="撤销" title="撤销" [disabled]="!canEdit()||!editor().undo" (click)="viewer?.undo()"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 4-5 5 5 5M4 9h9a6 6 0 0 1 0 12"/></svg></button><button class="history" aria-label="重做" title="重做" [disabled]="!canEdit()||!editor().redo" (click)="viewer?.redo()"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 4 5 5-5 5M20 9h-9a6 6 0 0 0 0 12"/></svg></button>
+  <button class="header-button" (click)="importInput.click()" [disabled]="!ready()||!canEdit()"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M4 15v5h16v-5"/></svg>导入</button><button class="header-button" (click)="viewer?.exportLayout()" [disabled]="!ready()"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3m-4 4 4-4 4 4M4 13v7h16v-7"/></svg>导出方案</button>
  </div>
  <div class="auth-actions">@if(user()){<span class="account-name" [title]="user()?.email">{{user()?.email}}</span><button class="header-button" (click)="logout()" [disabled]="authBusy()">退出</button>}@else{<button class="header-button filled" (click)="openLogin()">登录编辑</button>}</div>
  <input #importInput type="file" accept=".json,application/json" hidden (change)="importFile($event)">
 </header>
-<aside class="sidebar" [class.open]="sidebarOpen()">
- <div class="sidebar-head"><span class="eyebrow">EXPLORE YOUR HOME</span><h1>从整体，到每个角落。</h1><p>自由布置，找到喜欢的生活方式。</p></div>
+<aside id="room-sidebar" class="sidebar" [class.open]="sidebarOpen()" aria-label="房间导航">
+ <div class="sidebar-head"><span class="eyebrow">WORKSPACE</span><h1>空间导航</h1><p>查看房间，探索每一处细节。</p></div>
  <div class="list-heading"><span>房间导航</span><span class="column-label">可见 / 装修</span></div>
  <div class="room-list">@for(room of project()?.rooms;track room.id){
   <div class="room-row" [class.selected]="selected()===room.id" [class.muted]="!states()[room.id]?.visible">
@@ -35,7 +35,7 @@
    <div class="view-tabs primary-views" role="group" aria-label="查看方式">
     <button [class.active]="selected()==='all'&&!roaming()" [attr.aria-pressed]="selected()==='all'&&!roaming()" (click)="go('all')" [disabled]="!ready()">自由查看</button>
     <button [class.active]="selected()==='plan'&&!roaming()" [attr.aria-pressed]="selected()==='plan'&&!roaming()" (click)="go('plan')" [disabled]="!ready()">户型图</button>
-    <button class="walk-toggle" [class.active]="roaming()" [disabled]="!ready()" (click)="toggleRoam()">{{roaming()?'退出漫游 · Esc':'第一人称漫游'}}</button>
+    <button class="walk-toggle" [class.active]="roaming()" [attr.aria-pressed]="roaming()" [disabled]="!ready()" (click)="toggleRoam()">{{roaming()?'退出漫游 · Esc':'第一人称漫游'}}</button>
    </div>
    @if(isRoom()&&!roaming()){<div class="view-tabs room-view-tabs" role="group" aria-label="房间视角"><button [class.active]="!eye()" (click)="go(selected())">空间视角</button><button [class.active]="eye()" (click)="go(selected(),true)">室内视角</button></div>}
   </div>
@@ -58,13 +58,13 @@
  </div>
  }
  <div class="status"><span class="status-dot"></span>{{roaming()?'漫游中 · 保留完整墙面':ready()?(autoWalls()?'已隐藏 '+hidden()+' 个近处墙面部件':'显示完整墙体'):'模型准备中'}}@if(!roaming()){<span class="hint">{{objectsLocked()?'物件已锁定 · 左键旋转 · 中键平移 · 滚轮缩放':editMode()?'拖动家具 · 空白处旋转 · 中键平移 · 滚轮缩放':'左键旋转 · 中键平移 · 滚轮缩放'}}</span>}</div>
- <button class="mobile-menu" (click)="sidebarOpen.set(!sidebarOpen());panelOpen.set(false)">{{sidebarOpen()?'收起导航':'房间 ☰'}}</button><button class="mobile-editor" (click)="panelOpen.set(!panelOpen());sidebarOpen.set(false)">{{panelOpen()?'收起面板':'家具 ＋'}}</button>
+ <button class="mobile-menu" aria-controls="room-sidebar" [attr.aria-expanded]="sidebarOpen()" (click)="sidebarOpen.set(!sidebarOpen());panelOpen.set(false)">{{sidebarOpen()?'收起导航':'房间 ☰'}}</button><button class="mobile-editor" aria-controls="furniture-inspector" [attr.aria-expanded]="panelOpen()" (click)="panelOpen.set(!panelOpen());sidebarOpen.set(false)">{{panelOpen()?'收起面板':'家具 ＋'}}</button>
  <div class="compass"><span>N</span><i>↑</i><small>北</small></div>
 </main>
-<aside class="editor-panel" [class.open]="panelOpen()" [class.roam-inactive]="roaming()" [attr.inert]="roaming()?'':null">
+<aside id="furniture-inspector" class="editor-panel" aria-label="家具与属性" [class.open]="panelOpen()" [class.roam-inactive]="roaming()" [attr.inert]="roaming()?'':null">
  @if(!canEdit()){<div class="read-only-note"><strong>当前为浏览模式</strong><p>登录后可以修改布置和新建方案。</p><button class="header-button filled" (click)="openLogin()">登录编辑</button></div>}
- <div class="editor-title"><span class="eyebrow">MAKE IT YOURS</span><h2>布置你的家</h2></div>
- <div class="panel-tabs"><button [class.active]="tab()==='catalog'" (click)="tab.set('catalog')">家具样式库</button><button [class.active]="tab()==='selection'" (click)="tab.set('selection')">选中物件</button></div>
+ <div class="editor-title"><span class="eyebrow">INSPECTOR</span><h2>家具与属性</h2></div>
+ <div class="panel-tabs" role="group" aria-label="家具面板"><button [class.active]="tab()==='catalog'" [attr.aria-pressed]="tab()==='catalog'" (click)="tab.set('catalog')">家具样式库</button><button [class.active]="tab()==='selection'" [attr.aria-pressed]="tab()==='selection'" (click)="tab.set('selection')">选中物件</button></div>
  @if(tab()==='catalog'){
   <p class="panel-help">{{objectsLocked()?'物件已锁定。关闭底部“锁定物件”后，可添加、选择和拖动家具。':'点击添加，或把样式拖入空间。添加后可直接拖动家具调整位置。'}}</p>
   <div class="categories">@for(c of categories;track c){<button [class.active]="category()===c" (click)="category.set(c)">{{c}}</button>}</div>
@@ -83,7 +83,7 @@
  @if(editor().legacyBackup){<button class="reset-layout" (click)="viewer?.exportLegacyBackup()">下载家具合并前的原存档 ↓</button>}
  <button class="reset-layout" (click)="viewer?.reset()" [disabled]="!ready()||!canEdit()">恢复初始布置（可撤销）</button>
 </aside>
-<footer><span>ANGULAR · WEBGL2 · {{editor().count}} 个可编辑物件</span><p>按最新图更新；尺寸与材质为方案示意。</p><button (click)="showInfo.set(true)">使用说明 ⓘ</button><button (click)="exportGlb()" [disabled]="!ready()">导出当前 GLB ↗</button></footer>
+<footer><span>{{editor().count}} 个可编辑物件</span><p>尺寸与材质为方案示意</p><button (click)="showInfo.set(true)">使用说明 ⓘ</button><button (click)="exportGlb()" [disabled]="!ready()">导出当前 GLB ↗</button></footer>
 </div>
 <dialog #loginDialog class="scheme-dialog" aria-labelledby="login-title">
  <form (submit)="login($event)">
