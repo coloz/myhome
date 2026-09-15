@@ -3,7 +3,7 @@ import { createReadStream, statSync } from 'node:fs';
 import { resolve, extname, sep } from 'node:path';
 const root=resolve(process.argv[2]||'dist/home-viewer/browser');
 const port=Number(process.argv[3]||8787);
-const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8','.png':'image/png','.glb':'model/gltf-binary','.ico':'image/x-icon'};
+const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8','.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg','.glb':'model/gltf-binary','.ico':'image/x-icon'};
 http.createServer((req,res)=>{
  try{
   const url=new URL(req.url,'http://127.0.0.1');
@@ -14,4 +14,3 @@ http.createServer((req,res)=>{
   createReadStream(file).pipe(res);
  }catch{res.writeHead(404,{'Content-Type':'text/plain; charset=utf-8'});res.end('File not found');}
 }).listen(port,'127.0.0.1',()=>console.log('Home simulator: http://127.0.0.1:'+port+'/'));
-

@@ -1,0 +1,16 @@
+const {chromium}=require('playwright'),assert=require('node:assert/strict'),fs=require('node:fs');
+(async()=>{const b=await chromium.launch({channel:'msedge',headless:true,args:['--enable-webgl','--ignore-gpu-blocklist']});try{
+ const c=await b.newContext({viewport:{width:390,height:844},hasTouch:true});await require('./supabase-mock.cjs').installSupabaseMock(c,{signedIn:false});const p=await c.newPage(),errors=[];p.on('pageerror',e=>errors.push(e.message));
+ await p.goto((process.env.VIEWER_URL||'http://127.0.0.1:8788/')+'?workspace=raw');await p.waitForFunction(()=>window.__homeViewer&&!document.querySelector('.loading'),{},{timeout:120000});
+ await p.getByRole('button',{name:'家具 ＋',exact:true}).click();await p.getByRole('button',{name:'墙体 / 装修',exact:true}).click();await p.getByRole('button',{name:'绘制新墙',exact:true}).click();
+ await p.waitForFunction(()=>!document.querySelector('.editor-panel.open'));
+ const r=await p.locator('canvas').boundingBox(),k=r.width/16.5;const pt=(x,z)=>[r.x+r.width/2+(x-4.15)*k,r.y+r.height/2+(z+5.4)*k];
+ for(const [x,z] of [[4.4,-4.1],[6,-4.1]]){const [px,py]=pt(x,z);await p.locator('canvas').click({position:{x:px-r.x,y:py-r.y}});}await p.waitForFunction(()=>!!document.querySelector('.editor-panel.open .wall-card'));
+ const s=await p.evaluate(()=>window.__homeViewer.snapshot());assert(s.architecture.walls.some(w=>w.id.startsWith('wall-')));assert(await p.getByLabel('墙体厚度',{exact:true}).isEnabled());assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));assert.deepEqual(errors,[]);
+ await p.getByRole('button',{name:'选择墙体',exact:true}).click();await p.waitForFunction(()=>!document.querySelector('.editor-panel.open'));await p.waitForTimeout(250);
+ const handles=await p.evaluate(()=>window.__homeViewer.snapshot().architecture.handles),handle=handles.find(h=>h.kind==='resize'&&h.end===1&&h.side===0);assert(handle);
+ const cdp=await c.newCDPSession(p);await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:handle.screen[0],y:handle.screen[1]}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:handle.screen[0]+10,y:handle.screen[1]}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+ await p.waitForFunction(()=>!!document.querySelector('.editor-panel.open .wall-card'));
+ const resized=await p.evaluate(()=>window.__homeViewer.snapshot()),original=s.architecture.walls.find(w=>w.id.startsWith('wall-')),wall=resized.architecture.walls.find(w=>w.id===original.id);assert(wall.b[0]>original.b[0]+.3,'Touch drag did not resize the wall');assert.equal(wall.thickness,original.thickness);assert.deepEqual(errors,[]);
+ await p.screenshot({path:'test-results/raw-shell-mobile.png'});fs.writeFileSync('test-results/raw-shell-mobile-report.json',JSON.stringify({passed:true,consoleErrors:errors,checks:['mobile wall drawing closes inspector','new wall opens editable properties','touch drag resizes wall using edge handle','no horizontal overflow']},null,2));console.log('Raw mobile drawing and touch resize passed');
+}catch(e){for(const p of b.contexts().flatMap(c=>c.pages())){await p.screenshot({path:'test-results/raw-shell-mobile-error.png'});console.error(await p.locator('body').innerText());}throw e;}finally{await b.close();}})().catch(e=>{console.error(e);process.exit(1);});

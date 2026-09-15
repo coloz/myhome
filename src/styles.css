@@ -65,12 +65,9 @@ a { color: inherit; text-decoration: none; }
 .account-name { display: block; max-width: 100px; overflow: hidden; text-overflow: ellipsis; font-size: 11px; color: var(--secondary); }
 
 /* Source sidebar */
-.sidebar { background: #f4f5f8ed; border-right: 1px solid var(--line); overflow-y: auto; z-index: 3; padding: 22px 12px 16px; backdrop-filter: blur(24px); }
+.sidebar { background: #f4f5f8ed; border-right: 1px solid var(--line); overflow-y: auto; z-index: 3; padding: 12px 12px 16px; backdrop-filter: blur(24px); }
 .sidebar, .editor-panel, .modal-card, .scheme-dialog { scrollbar-width: thin; scrollbar-color: #bec3cc transparent; }
-.sidebar-head { padding: 0 8px; }
 .eyebrow { font-size: 9px; line-height: 1.5; letter-spacing: 1.2px; color: var(--muted); font-weight: 600; }
-.sidebar h1 { font-size: 15px; font-weight: 600; margin: 7px 0; letter-spacing: -.2px; }
-.sidebar-head p { font-size: 11px; color: var(--muted); margin: 0 0 26px; line-height: 1.65; }
 .list-heading { display: flex; justify-content: space-between; align-items: center; padding: 0 8px 8px; font-size: 11px; font-weight: 600; color: var(--secondary); }
 .column-label { font-size: 9px; font-weight: 400; color: var(--muted); }
 .room-list { display: grid; gap: 2px; }
@@ -150,8 +147,10 @@ a { color: inherit; text-decoration: none; }
 .loading small { font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; }
 
 /* Inspector */
-.editor-panel { background: #f8f9fbf5; border-left: 1px solid var(--line); overflow-y: auto; padding: 22px 16px 18px; backdrop-filter: blur(24px); }
-.editor-title h2 { font-size: 17px; font-weight: 600; margin: 7px 0 20px; letter-spacing: -.3px; }
+.editor-panel { background: #f8f9fbf5; border-left: 1px solid var(--line); overflow-y: auto; padding: 12px 16px 18px; backdrop-filter: blur(24px); }
+.inspector-toolbar {display:flex;align-items:center;gap:6px;}
+.inspector-toolbar .panel-tabs {flex:1;min-width:0;}
+.panel-close {display:none;}
 .panel-tabs { display: flex; gap: 2px; padding: 3px; background: #e8ebf0; border: 1px solid #dce0e6; border-radius: var(--radius-md); }
 .panel-tabs button { flex: 1; background: transparent; color: var(--secondary); font-size: 11px; padding: 7px 4px; border: 1px solid transparent; border-radius: var(--radius-sm); }
 .panel-tabs button.active { color: var(--text); background: #fff; border-color: #d3d7df; box-shadow: 0 1px 2px #1a2e4712; font-weight: 500; }
@@ -286,6 +285,8 @@ footer a { font-size: 10px; }
   .scheme-picker > span { display: none; }
   .editor-panel { position: absolute; top: var(--toolbar-height); bottom: var(--footer-height); right: 0; width: 278px; transform: translateX(105%); visibility: hidden; transition: transform .2s, visibility .2s; z-index: 6; box-shadow: -8px 0 28px #18243a1a; }
   .editor-panel.open { transform: translateX(0); visibility: visible; }
+  .panel-close {display:inline-flex;align-items:center;justify-content:center;flex:0 0 28px;height:32px;background:transparent;border-radius:4px;font-size:20px;color:var(--secondary);}
+  .stage.inspector-open .mobile-menu, .stage.inspector-open .mobile-editor {display:none;}
   .mobile-editor, .mobile-menu { align-items: center; justify-content: center; position: absolute; top: 22px; background: #fafcfef0; color: #52627a; font-size: 11px; padding: 7px 10px; min-height: 30px; border: 1px solid #cdd5e0; border-radius: var(--radius-sm); box-shadow: var(--control-shadow); z-index: 7; }
   .mobile-editor { display: inline-flex; right: 18px; }
   .view-header > div:first-child { max-width: calc(100% - 92px); }
@@ -351,10 +352,6 @@ footer a { font-size: 10px; }
   .options { column-gap: 7px; }
   footer { gap: 10px; }
 }
-@media (max-height: 700px) and (min-width: 701px) {
-  .sidebar, .editor-panel { padding-top: 16px; }
-  .sidebar-head p { margin-bottom: 18px; }
-}
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; }
 }
@@ -362,3 +359,47 @@ footer a { font-size: 10px; }
   .sidebar, .editor-panel, .view-tabs, .finish-switch, .options, .room-pin, .walk-hud, .toast, .modal-card, .scheme-dialog { backdrop-filter: none; background-color: #f7f8fb; }
   .modal, .scheme-dialog::backdrop { backdrop-filter: none; background: #18233780; }
 }
+
+/* Dimensioned shell and architecture inspector. */
+.architecture-panel h3 {display:flex;justify-content:space-between;align-items:center;font-size:14px;margin:20px 0 12px;}
+.architecture-panel h3 small {font-size:11px;color:var(--secondary);font-weight:400;}
+.wall-tools {display:flex;gap:5px;}
+.wall-tools button {background:#fff;border:1px solid var(--line);padding:8px 10px;border-radius:5px;font-size:12px;}
+.wall-tools button.active {color:var(--accent);background:var(--accent-soft);border-color:#007aff55;}
+.wall-message {min-height:46px;line-height:1.7;}
+.wall-legend {display:flex;gap:12px;font-size:10px;color:var(--secondary);margin:12px 0;}
+.wall-legend span {display:flex;align-items:center;gap:4px;}
+.wall-legend i {display:inline-block;width:12px;height:3px;background:#606970;}
+.wall-legend i.editable {background:#007aff;}
+.wall-card {padding:12px;background:#e2edfc;border-left:3px solid #007aff;border-radius:4px;font-size:12px;}
+.wall-card p {font-size:11px;color:var(--secondary);margin:6px 0 0;}
+.wall-card.protected {background:#eceef0;border-color:#606970;}
+.wall-opening-editor {width:100%;margin:12px 0;padding:10px;border:1px solid #acd0f8;border-radius:6px;background:#edf6ff;color:#0869c3;font-size:13px;}
+.wall-properties {border:0;margin:0;padding:0;min-width:0;}
+.wall-properties:disabled {opacity:.6;}
+.door-option {display:flex;gap:7px;align-items:center;font-size:11px;margin:14px 0;}
+.delete-wall {width:100%;padding:9px;border:1px solid #dbafa7;background:#fff5f2;border-radius:5px;color:#a43322;}
+.wall-list {max-height:260px;overflow:auto;}
+.finish-materials {border-top:1px solid var(--line);margin-top:20px;padding-top:4px;}
+.finish-materials>label {font-size:11px;color:var(--secondary);display:block;}
+.finish-materials select {display:block;width:100%;margin:7px 0 16px;padding:9px;border:1px solid var(--line);border-radius:5px;background:white;color:var(--text);}
+.material-grid {display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.material-grid button {display:flex;gap:7px;align-items:center;padding:8px;background:white;border:1px solid var(--line);border-radius:5px;font-size:11px;text-align:left;}
+.material-grid button.active {border-color:var(--accent);background:#f4f8ff;}
+.material-grid i {display:block;width:23px;height:23px;border-radius:4px;border:1px solid #0001;flex-shrink:0;}
+.panel-tabs button {white-space:nowrap;}
+.wall-draw-hud {position:absolute;bottom:160px;left:50%;transform:translateX(-50%);max-width:90%;padding:10px 16px;background:#e2edfcef;border:1px solid #b7d0f2;border-radius:6px;font-size:12px;color:#16509c;pointer-events:none;z-index:5;white-space:nowrap;}
+.wardrobe i,.appliances i,.fridge i {left:21px;top:1px;width:44px;height:63px;border:1px solid #74808066;background:var(--item-color);border-radius:3px;}
+.wardrobe b {left:43px;top:4px;width:1px;height:56px;background:#979890;}
+.fridge b {left:23px;top:43px;width:40px;height:2px;background:#747b7d;}
+.appliances b {left:26px;top:23px;width:33px;height:15px;background:#343c3f;border:2px solid #aeb4b6;}
+.appliances em {left:33px;top:41px;width:21px;height:14px;background:#424a4e;border-radius:3px;}
+.kitchen i,.sink i,.hob i,.vanity i {left:15px;top:24px;width:56px;height:37px;background:var(--item-color);border:1px solid #84683e44;}
+.kitchen b,.sink b,.hob b,.vanity b {left:12px;top:20px;width:62px;height:7px;background:#afb8bc;border-radius:2px;}
+.sink em {left:28px;top:17px;width:28px;height:10px;background:#626e72;border:2px solid #d2d9db;border-radius:3px;}
+.hob em {left:24px;top:16px;width:13px;height:9px;background:#303535;border-radius:50%;box-shadow:26px 0 #303535;}
+.vanity b {height:10px;background:#e8ece8;}
+.toilet i {left:28px;top:3px;width:30px;height:34px;background:#e7ebe8;border:1px solid #bac5c3;border-radius:3px;}
+.toilet b {left:21px;top:29px;width:45px;height:21px;background:#e7ebe8;border:3px solid #bdc8c7;border-radius:50%;}
+.toilet em {left:33px;top:47px;width:24px;height:16px;background:#e4e8e4;border-radius:0 0 5px 5px;}
+@media(max-width:700px){.wall-draw-hud{font-size:10px;white-space:normal;width:85%;text-align:center;bottom:155px;}}

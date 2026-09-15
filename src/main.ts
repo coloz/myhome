@@ -1,14 +1,17 @@
 import { Component, ElementRef, ViewChild, afterNextRender, signal, computed, NgZone, inject, OnDestroy } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
-import { HomeEditor, EditorStatus } from './editor';
+import { HomeEditor, EditorStatus, type ArchitectureStatus } from './editor';
 import { Project, RoomState } from './viewer';
 import { CATALOG } from './catalog';
-import { SCHEMES } from './schemes';
+import { SCHEMES, RAW_SCHEME } from './schemes';
+import { LocalWorkspace } from './local-workspace';
+import { WALL_COLORS, FLOOR_STYLES, DEFAULT_FINISH, type WallOpening, type WallRecord } from './architecture';
 import { SchemeStore, type SaveStatus } from './scheme-store';
 import { supabase } from './auth';
 import type { User, Subscription } from '@supabase/supabase-js';
 import type { WalkStatus } from './walk-controls';
-@Component({selector:'app-root',standalone:true,templateUrl:'./app.html'})
+import { OpeningEditor } from './opening-editor';
+@Component({selector:'app-root',standalone:true,imports:[OpeningEditor],templateUrl:'./app.html'})
 export class App implements OnDestroy {
  @ViewChild('viewport',{static:true}) viewport!:ElementRef<HTMLElement>;
  @ViewChild('importInput',{static:true}) importInput!:ElementRef<HTMLInputElement>;
@@ -17,12 +20,13 @@ export class App implements OnDestroy {
  private zone=inject(NgZone);
  viewer?:HomeEditor;
  schemes=signal(SCHEMES);scheme=signal(SCHEMES[0]);private loading=false;
- private store?:SchemeStore;
+ readonly localMode=new URLSearchParams(location.search).get('workspace')==='raw';
+ private store?:SchemeStore|LocalWorkspace;
  saveStatus=signal<SaveStatus>({state:'loading',message:'正在连接云端方案库…'});
  pendingCount=signal(0);cacheWarning=signal('');
  newName=signal('');newSource=signal('copy');createError=signal('');creating=signal(false);
- templates=SCHEMES;
- user=signal<User|null>(null);canEdit=computed(()=>!!this.user()&&!this.user()?.is_anonymous);
+ templates=this.localMode?[RAW_SCHEME]:SCHEMES;
+ user=signal<User|null>(null);canEdit=computed(()=>this.localMode||!!this.user()&&!this.user()?.is_anonymous);
  authBusy=signal(false);authError=signal('');private authSubscription?:Subscription;
  project=signal<Project|null>(null);ready=signal(false);error=signal('');progress=signal(0);
  selected=signal('all');eye=signal(false);states=signal<Record<string,RoomState>>({});
@@ -30,9 +34,12 @@ export class App implements OnDestroy {
  objectsLocked=signal(false);
  roam=signal<WalkStatus>({active:false,locked:false,message:''});roaming=computed(()=>this.roam().active);
  sidebarOpen=signal(false);panelOpen=signal(false);showSource=signal(false);showInfo=signal(false);
- tab=signal<'catalog'|'selection'>('catalog');category=signal('全部');notice=signal('');
+ tab=signal<'catalog'|'selection'|'architecture'>('catalog');category=signal('全部');notice=signal('');
+ architecture=signal<ArchitectureStatus>({tool:'off',selection:null,walls:[],message:'',pending:false,dragging:false,openingWall:null,openingId:null});
+ wallColors=WALL_COLORS;floorStyles=FLOOR_STYLES;finishRoom=signal('all');
+ wallCount=computed(()=>this.architecture().walls.filter(w=>!w.deleted&&!w.lock).length);
  editor=signal<EditorStatus>({selection:null,undo:0,redo:0,count:0,message:'',items:[]});
- catalog=CATALOG;categories=['全部','沙发','椅子','桌子','床柜','绿植'];
+ catalog=CATALOG;categories=['全部','沙发','椅子','桌子','床柜','厨卫','绿植'];
  colors=['#ede9df','#e5c56d','#91b0c1','#6b8d70','#b28a5f','#2a302c'];
  filteredCatalog=computed(()=>this.category()==='全部'?this.catalog:this.catalog.filter(c=>c.category===this.category()));
  roomItems=computed(()=>this.editor().items.filter(e=>['all','plan'].includes(this.selected())||e.room===this.selected()));
@@ -40,6 +47,11 @@ export class App implements OnDestroy {
  viewName=computed(()=>this.roaming()?'第一人称漫游':this.selected()==='all'?'自由查看':this.selected()==='plan'?'户型图':this.project()?.rooms.find(r=>r.id===this.selected())?.name??'');
  finishMode=computed(()=>{const v=Object.values(this.states()).map(s=>s.decorated);return v.every(Boolean)?'decorated':v.every(x=>!x)?'raw':'mixed';});
  constructor(){afterNextRender(()=>this.zone.runOutsideAngular(async()=>{
+  if(this.localMode){
+   this.store=new LocalWorkspace();this.store.onChange=()=>this.syncStore();
+   let active='';try{active=localStorage.getItem('home-simulator:active-raw-design')??'';}catch{}
+   this.scheme.set(this.store.schemes.find(s=>s.id===active)??this.store.schemes[0]);this.syncStore();await this.init(false);return;
+  }
   const {data}=await supabase.auth.getSession();this.user.set(data.session?.user??null);
   this.store=new SchemeStore(async()=>(await supabase.auth.getSession()).data.session?.access_token??null);this.store.writable=this.canEdit();this.store.onChange=()=>this.syncStore();
   this.authSubscription=supabase.auth.onAuthStateChange((_event,session)=>{
@@ -66,6 +78,7 @@ export class App implements OnDestroy {
    this.viewer.onRoam=s=>this.roam.set(s);
    this.viewer.onStats=s=>{if(this.hidden()!==s.hidden)this.hidden.set(s.hidden);};
    this.viewer.onEdit=s=>{this.editor.set(s);this.sync();if(s.selection)this.tab.set('selection');};
+   this.viewer.onArchitecture=s=>{const previous=this.architecture();this.architecture.set(s);if(s.selection&&!s.dragging&&(s.selection.id!==previous.selection?.id||previous.dragging))this.panelOpen.set(true);};
    await Promise.all([this.viewer.load(n=>this.progress.set(n)),fetchCloud?this.store?.prepare(this.scheme().id):Promise.resolve()]);this.project.set(this.viewer.project);
    const id=this.scheme().id,layout=this.store?.layout(id);
    if(layout)this.viewer.restoreLayout(layout);
@@ -74,12 +87,23 @@ export class App implements OnDestroy {
    if(this.canEdit()&&(!layout||current.version!==layout.version||current.modelRevision!==(layout.modelRevision??1)))this.store?.save(id,current);
    this.viewer.setAuto(this.autoWalls());this.viewer.setCeiling(this.showCeiling());this.viewer.labels=this.labels();this.viewer.editEnabled=this.editMode();this.viewer.setObjectsLocked(!this.canEdit()||this.objectsLocked());
    this.sync();this.syncStore();this.ready.set(true);
-   try{localStorage.setItem('home-simulator:active-scheme',this.scheme().id);}catch{}
+   try{localStorage.setItem(this.localMode?'home-simulator:active-raw-design':'home-simulator:active-scheme',this.scheme().id);}catch{}
    Object.defineProperty(window,'__homeViewer',{value:{snapshot:()=>({...this.viewer?.debug(),schemeId:this.scheme().id,modelVersion:this.project()?.version}),components:(id:string)=>this.viewer?.componentDebug(id)},configurable:true});
   }catch(e){this.error.set(e instanceof Error?e.message:'模型加载失败，请刷新页面重试。');this.viewer?.destroy();this.viewer=undefined;console.error(e);}
   finally{this.loading=false;}
  }
  changeScheme(e:Event){const next=this.schemes().find(s=>s.id===(e.target as HTMLSelectElement).value);if(!next||this.loading||next.id===this.scheme().id)return;this.store?.flush();this.scheme.set(next);this.showSource.set(false);this.zone.runOutsideAngular(()=>this.init());}
+ setTab(tab:'catalog'|'selection'|'architecture'){this.tab.set(tab);if(tab!=='architecture')this.viewer?.setWallTool('off');}
+ wallTool(tool:'off'|'select'|'draw'){if(!this.canEdit())return;this.viewer?.setWallTool(tool);if(tool!=='off'){this.selected.set('plan');this.eye.set(false);this.labels.set(false);if(this.viewer)this.viewer.labels=false;this.panelOpen.set(false);this.sidebarOpen.set(false);}this.tab.set('architecture');}
+ selectWall(id:string){this.wallTool('select');this.viewer?.selectWall(id);}
+ wallChange(key:'ax'|'az'|'bx'|'bz'|'height'|'thickness',e:Event){this.viewer?.updateWall(key,Number((e.target as HTMLInputElement).value));}
+ wallAngle(w:WallRecord){return Math.atan2(w.b[1]-w.a[1],w.b[0]-w.a[0])*180/Math.PI;}
+ wallPoseChange(key:'x'|'z'|'angle',e:Event){const input=e.target as HTMLInputElement;this.viewer?.setWallPose(key,Number(input.value));const w=this.architecture().selection;if(w)input.value=String(key==='angle'?this.wallAngle(w):key==='x'?(w.a[0]+w.b[0])/2:(w.a[1]+w.b[1])/2);}
+ openingChange(index:number,key:'start'|'width'|'sill'|'height',e:Event){const input=e.target as HTMLInputElement;this.viewer?.setWallOpening(index,key,Number(input.value));const o=this.architecture().selection?.openings[index];if(o)input.value=String(key==='start'?o.start:key==='width'?o.end-o.start:key==='sill'?o.bottom:o.top-o.bottom);}
+ hasOpening(openings:WallOpening[],kind:'door'|'window'){return openings.some(o=>o.kind===kind);}
+ toggleWallOpening(kind:'door'|'window',e:Event){const input=e.target as HTMLInputElement;kind==='window'?this.viewer?.setWallWindow(input.checked):this.viewer?.setWallDoor(input.checked);input.checked=this.hasOpening(this.architecture().selection?.openings??[],kind);}
+ changeFinish(key:'wall'|'floor',value:string){this.viewer?.setRoomFinish(this.finishRoom(),key,value);this.sync();}
+ finishValue(key:'wall'|'floor'){if(this.finishRoom()!=='all')return (this.viewer?.finishes[this.finishRoom()]??DEFAULT_FINISH)[key];const values=new Set(this.project()?.rooms.filter(r=>!r.greeneryOnly).map(r=>(this.viewer?.finishes[r.id]??DEFAULT_FINISH)[key]));return values.size===1?[...values][0]:'';}
  openNewScheme(){if(!this.ready()||!this.canEdit())return;this.viewer?.stopRoaming();this.newName.set('');this.newSource.set('copy');this.createError.set('');this.schemeDialog.nativeElement.showModal();}
  async createScheme(e:Event){
   e.preventDefault();if(!this.store||!this.viewer||this.creating())return;

@@ -99,7 +99,7 @@ const fs=require('fs');const assert=require('assert');
  await page.screenshot({path:'test-results/final-plan.png'});
  await page.getByRole('button',{name:'查看客厅',exact:true}).click();await page.waitForTimeout(800);await page.screenshot({path:'test-results/final-living.png'});
  await page.getByRole('button',{name:'清水房',exact:true}).click();await pause();await page.screenshot({path:'test-results/final-raw.png'});
- await page.setViewportSize({width:390,height:844});await page.getByRole('button',{name:'房间 ☰',exact:true}).click();await page.getByRole('button',{name:'户型图',exact:false}).first().click();await page.waitForTimeout(800);
+ await page.setViewportSize({width:390,height:844});await page.getByRole('button',{name:'房间 ☰',exact:true}).click();await page.getByRole('button',{name:'查看客厅',exact:true}).click();await page.getByRole('button',{name:'户型图',exact:false}).first().click();await page.waitForTimeout(800);
  assert(!(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1)),'Mobile overflow');
  await page.screenshot({path:'test-results/mobile.png'});
  await page.getByRole('button',{name:'家具 ＋',exact:true}).click();await pause();assert(await page.locator('.editor-panel.open').count());await page.screenshot({path:'test-results/mobile-editor.png'});

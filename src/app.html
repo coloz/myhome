@@ -1,7 +1,7 @@
 <div class="app">
 <header class="topbar">
  <a class="brand" href="./"><span class="brand-symbol">木</span><span>木与光<small>HOME STUDIO</small></span></a>
- <div class="project-name"><strong>家的装修模拟器</strong><span>多种方案 · 云端自动保存</span></div>
+ <div class="project-name"><strong>{{localMode?'清水房装修工作台':'家的装修模拟器'}}</strong><span>{{localMode?'原始户型 · 墙体与装修编辑':'多种方案 · 云端自动保存'}}</span></div>
  <div class="scheme-tools">
   <label class="scheme-picker"><span>当前方案</span><select aria-label="切换家装方案" [value]="scheme().id" [disabled]="!ready()&&!error()" (change)="changeScheme($event)">@for(item of schemes();track item.id){<option [value]="item.id">{{item.name}}</option>}</select></label>
   <button class="header-button new-scheme" (click)="openNewScheme()" [disabled]="!ready()||!canEdit()"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>新建方案</button>
@@ -12,11 +12,10 @@
   <button class="history" aria-label="撤销" title="撤销" [disabled]="!canEdit()||!editor().undo" (click)="viewer?.undo()"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 4-5 5 5 5M4 9h9a6 6 0 0 1 0 12"/></svg></button><button class="history" aria-label="重做" title="重做" [disabled]="!canEdit()||!editor().redo" (click)="viewer?.redo()"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 4 5 5-5 5M20 9h-9a6 6 0 0 0 0 12"/></svg></button>
   <button class="header-button" (click)="importInput.click()" [disabled]="!ready()||!canEdit()"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M4 15v5h16v-5"/></svg>导入</button><button class="header-button" (click)="viewer?.exportLayout()" [disabled]="!ready()"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3m-4 4 4-4 4 4M4 13v7h16v-7"/></svg>导出方案</button>
  </div>
- <div class="auth-actions">@if(user()){<span class="account-name" [title]="user()?.email">{{user()?.email}}</span><button class="header-button" (click)="logout()" [disabled]="authBusy()">退出</button>}@else{<button class="header-button filled" (click)="openLogin()">登录编辑</button>}</div>
+ <div class="auth-actions">@if(localMode){<a class="header-button" href="./">云端方案 ↗</a>}@else{<a class="header-button" href="./?workspace=raw">清水房工作台 ↗</a>@if(user()){<span class="account-name" [title]="user()?.email">{{user()?.email}}</span><button class="header-button" (click)="logout()" [disabled]="authBusy()">退出</button>}@else{<button class="header-button filled" (click)="openLogin()">登录编辑</button>}}</div>
  <input #importInput type="file" accept=".json,application/json" hidden (change)="importFile($event)">
 </header>
 <aside id="room-sidebar" class="sidebar" [class.open]="sidebarOpen()" aria-label="房间导航">
- <div class="sidebar-head"><span class="eyebrow">WORKSPACE</span><h1>空间导航</h1><p>查看房间，探索每一处细节。</p></div>
  <div class="list-heading"><span>房间导航</span><span class="column-label">可见 / 装修</span></div>
  <div class="room-list">@for(room of project()?.rooms;track room.id){
   <div class="room-row" [class.selected]="selected()===room.id" [class.muted]="!states()[room.id]?.visible">
@@ -29,7 +28,7 @@
  <div class="sidebar-note"><span>{{scheme().name}}</span><p>{{scheme().note}}</p></div>
  <button class="source-link" (click)="showSource.set(true)">查看当前户型原图 <span>↗</span></button>
 </aside>
-<main class="stage" [class.walking]="roaming()">
+<main class="stage" [class.walking]="roaming()" [class.inspector-open]="panelOpen()">
  <div class="view-header"><div><span class="eyebrow">{{roaming()?'WALK THROUGH YOUR HOME':selected()==='plan'?'FLOOR PLAN':'LIVE 3D VIEW'}}</span><h2>{{viewName()}}</h2></div>
   <div class="view-switches">
    <div class="view-tabs primary-views" role="group" aria-label="查看方式">
@@ -41,6 +40,7 @@
   </div>
  </div>
  <div #viewport class="viewport"></div>
+ @if(architecture().tool==='draw'){<div class="wall-draw-hud">{{architecture().pending?'点击终点完成隔墙':'点击起点开始绘制'}} · Shift 约束方向 · Esc 取消</div>}
  @for(room of project()?.rooms;track room.id){<button class="room-pin" [attr.data-room]="room.id" (click)="go(room.id)">{{room.name}}</button>}
  @if(!ready()){<div class="loading"><div class="loader-mark">◈</div><h2>{{error()?'暂时无法加载':'正在展开你的家'}}</h2><p>{{error()||'加载模型、材质与可编辑家具'}}</p>@if(!error()){<div class="progress"><i [style.width.%]="progress()"></i></div><small>{{progress()}}%</small>}</div>}
  @if(roaming()){
@@ -62,13 +62,52 @@
  <div class="compass"><span>N</span><i>↑</i><small>北</small></div>
 </main>
 <aside id="furniture-inspector" class="editor-panel" aria-label="家具与属性" [class.open]="panelOpen()" [class.roam-inactive]="roaming()" [attr.inert]="roaming()?'':null">
+ <div class="inspector-toolbar"><div class="panel-tabs" role="group" aria-label="家具面板"><button [class.active]="tab()==='catalog'" [attr.aria-pressed]="tab()==='catalog'" (click)="setTab('catalog')">{{project()?.walls?'家具库':'家具样式库'}}</button><button [class.active]="tab()==='selection'" [attr.aria-pressed]="tab()==='selection'" (click)="setTab('selection')">选中物件</button>@if(project()?.walls){<button [class.active]="tab()==='architecture'" (click)="setTab('architecture')">墙体 / 装修</button>}</div><button class="panel-close" aria-label="收起面板" (click)="panelOpen.set(false)">×</button></div>
  @if(!canEdit()){<div class="read-only-note"><strong>当前为浏览模式</strong><p>登录后可以修改布置和新建方案。</p><button class="header-button filled" (click)="openLogin()">登录编辑</button></div>}
- <div class="editor-title"><span class="eyebrow">INSPECTOR</span><h2>家具与属性</h2></div>
- <div class="panel-tabs" role="group" aria-label="家具面板"><button [class.active]="tab()==='catalog'" [attr.aria-pressed]="tab()==='catalog'" (click)="tab.set('catalog')">家具样式库</button><button [class.active]="tab()==='selection'" [attr.aria-pressed]="tab()==='selection'" (click)="tab.set('selection')">选中物件</button></div>
  @if(tab()==='catalog'){
   <p class="panel-help">{{objectsLocked()?'物件已锁定。关闭底部“锁定物件”后，可添加、选择和拖动家具。':'点击添加，或把样式拖入空间。添加后可直接拖动家具调整位置。'}}</p>
   <div class="categories">@for(c of categories;track c){<button [class.active]="category()===c" (click)="category.set(c)">{{c}}</button>}</div>
   <div class="catalog-grid">@for(item of filteredCatalog();track item.id){<button class="catalog-card" [draggable]="canEdit()&&!objectsLocked()" (dragstart)="dragStart($event,item.id)" (click)="add(item.id)" [disabled]="!ready()||!canEdit()||objectsLocked()" [attr.aria-label]="'添加'+item.name"><div class="furniture-icon" [class]="'furniture-icon '+item.type" [style.--item-color]="item.color"><i></i><b></b><em></em></div><strong>{{item.name}}</strong><small>{{item.style}}</small><span>{{item.size}} <b>＋</b></span></button>}</div>
+ }@else if(tab()==='architecture'){
+  <div class="architecture-panel">
+   <h3>墙体编辑 <small>{{wallCount()}} 堵可编辑</small></h3>
+   <div class="wall-tools" role="group" aria-label="墙体工具"><button [class.active]="architecture().tool==='select'" (click)="wallTool('select')" [disabled]="!canEdit()">选择墙体</button><button [class.active]="architecture().tool==='draw'" (click)="wallTool('draw')" [disabled]="!canEdit()">绘制新墙</button><button (click)="wallTool('off')">退出</button></div>
+   <p class="panel-help wall-message" role="status">{{architecture().message||'切换到户型图，选择或绘制墙体。门窗会随所属墙体整体修改。'}}</p>
+   <div class="wall-legend"><span><i class="editable"></i>可编辑隔墙</span><span><i></i>锁定墙体 / 护栏</span></div>
+   @if(architecture().selection;as w){
+    <div class="wall-card" [class.protected]="!!w.lock"><strong>{{w.name}}</strong><p>{{w.lock==='fixed'?'🔒 已确认不可拆改':w.lock==='structural'?'🔒 原图黑色实心墙':w.lock==='exterior'?'🔒 外围结构，禁止编辑':'可拆改的室内隔墙'}}</p></div>
+    <button class="wall-opening-editor" (click)="viewer?.openWallOpenings()">{{w.lock?'查看门窗正视图':'可视化编辑门窗'}}</button>
+    <fieldset class="wall-properties" [disabled]="!!w.lock||!canEdit()">
+     <p class="panel-help">拖墙身移动；拖蓝色边点调整长度或厚度，拖角点同时调整。橙色圆点旋转，Shift以15°吸附。门窗尺寸保持不变，墙高在下方输入。</p>
+     <div class="property-grid">
+      <label>中心 X / m<input aria-label="墙体中心X" type="number" step=".05" [value]="((w.a[0]+w.b[0])/2).toFixed(2)" (change)="wallPoseChange('x',$event)"></label><label>中心 Z / m<input aria-label="墙体中心Z" type="number" step=".05" [value]="((w.a[1]+w.b[1])/2).toFixed(2)" (change)="wallPoseChange('z',$event)"></label>
+      <label>角度 / °<input aria-label="墙体旋转角度" type="number" step="15" [value]="wallAngle(w).toFixed(1)" (change)="wallPoseChange('angle',$event)"></label>
+     </div><div class="rotate-actions"><button (click)="viewer?.rotateWall(-15)">↶ 旋转15°</button><button (click)="viewer?.rotateWall(15)">旋转15° ↷</button></div>
+     <div class="property-grid">
+      <label>起点 X / m<input aria-label="墙体起点X" type="number" step=".05" [value]="w.a[0]" (change)="wallChange('ax',$event)"></label><label>起点 Z / m<input aria-label="墙体起点Z" type="number" step=".05" [value]="w.a[1]" (change)="wallChange('az',$event)"></label>
+      <label>终点 X / m<input aria-label="墙体终点X" type="number" step=".05" [value]="w.b[0]" (change)="wallChange('bx',$event)"></label><label>终点 Z / m<input aria-label="墙体终点Z" type="number" step=".05" [value]="w.b[1]" (change)="wallChange('bz',$event)"></label>
+      <label>墙厚 / m<input aria-label="墙体厚度" type="number" min=".06" max=".4" step=".01" [value]="w.thickness" (change)="wallChange('thickness',$event)"></label><label>墙高 / m<input aria-label="墙体高度" type="number" min=".3" max="3" step=".1" [value]="w.height" (change)="wallChange('height',$event)"></label>
+     </div>
+     <label class="door-option"><input type="checkbox" aria-label="墙体开门洞" [checked]="hasOpening(w.openings,'door')" (change)="toggleWallOpening('door',$event)"> 开门洞（默认 90 × 220 cm）</label>
+     <label class="door-option"><input type="checkbox" aria-label="墙体开窗" [checked]="hasOpening(w.openings,'window')" (change)="toggleWallOpening('window',$event)"> 开窗（含窗框与玻璃）</label>
+     <div class="wall-tools"><button (click)="viewer?.addWallOpening('window')">再加一扇窗</button><button (click)="viewer?.addWallOpening('door')">再加一个门洞</button></div>
+     @for(o of w.openings;track o.id){<div class="opening-card" [attr.data-kind]="o.kind"><p class="property-heading">{{o.kind==='window'?'窗户':'门洞'}} {{$index+1}} <button class="minor" (click)="viewer?.openWallOpenings(w.id,o.id)">拖拽编辑</button><button class="minor" (click)="viewer?.removeWallOpening($index)">封闭此洞口</button></p><div class="property-grid opening-properties">
+      <label>距墙起点 / m<input aria-label="洞口距墙起点" type="number" min="0" step=".05" [value]="o.start.toFixed(2)" (change)="openingChange($index,'start',$event)"></label>
+      <label>{{o.kind==='window'?'窗宽':'门洞宽'}} / m<input aria-label="洞口宽度" type="number" min=".1" step=".05" [value]="(o.end-o.start).toFixed(2)" (change)="openingChange($index,'width',$event)"></label>
+      <label>{{o.kind==='window'?'窗台高':'底部贴地'}} / m<input aria-label="洞口底部高度" type="number" min="0" step=".05" [disabled]="o.kind==='door'" [value]="o.bottom.toFixed(2)" (change)="openingChange($index,'sill',$event)"></label>
+      <label>{{o.kind==='window'?'窗高':'门洞高'}} / m<input aria-label="洞口高度" type="number" min=".1" step=".05" [value]="(o.top-o.bottom).toFixed(2)" (change)="openingChange($index,'height',$event)"></label>
+     </div></div>}
+     @if(w.openings.length){<p class="panel-help">门洞与窗户可共存。洞口不能重叠或超出墙体。</p>}
+     <button class="delete-wall danger" (click)="viewer?.deleteWall()" [disabled]="!!w.lock||!canEdit()">删除这堵墙</button>
+    </fieldset>
+   }
+   <details class="object-list wall-list"><summary>全部墙体 · {{architecture().walls.length}}</summary>@for(w of architecture().walls;track w.id){@if(!w.deleted){<button (click)="selectWall(w.id)" [class.active]="architecture().selection?.id===w.id">{{w.name}}<span>{{w.lock?'🔒':'↗'}}</span></button>}}</details>
+   <div class="finish-materials"><h3>墙地面装修</h3><label>应用范围<select aria-label="装修材质应用范围" [value]="finishRoom()" (change)="finishRoom.set($any($event.target).value)"><option value="all">全屋（光厅除外）</option>@for(room of project()?.rooms;track room.id){@if(!room.greeneryOnly){<option [value]="room.id">{{room.name}}</option>}}</select></label>
+    <p class="property-heading">墙面</p><div class="material-grid">@for(c of wallColors;track c.id){<button [class.active]="finishValue('wall')===c.id" (click)="changeFinish('wall',c.id)"><i [style.background]="c.color"></i>{{c.name}}</button>}</div>
+    <p class="property-heading">地面</p><div class="material-grid">@for(c of floorStyles;track c.id){<button [class.active]="finishValue('floor')===c.id" (click)="changeFinish('floor',c.id)"><i [style.background]="c.color"></i>{{c.name}}</button>}</div>
+    <p class="panel-help">选择材质即显示对应空间装修；底部“清水房”可随时隐藏面层与家具。光厅保留清水状态。</p>
+   </div>
+  </div>
  }@else{
   @if(editor().selection;as s){
    <div class="selected-card"><span class="eyebrow">SELECTED OBJECT</span><h3>{{s.name}}</h3><p>拖动物件移动 · 5 cm 网格吸附</p></div>
@@ -85,6 +124,7 @@
 </aside>
 <footer><span>{{editor().count}} 个可编辑物件</span><p>尺寸与材质为方案示意</p><button (click)="showInfo.set(true)">使用说明 ⓘ</button><button (click)="exportGlb()" [disabled]="!ready()">导出当前 GLB ↗</button></footer>
 </div>
+@if(architecture().openingWall;as wall){@if(viewer;as ed){<home-opening-editor [editor]="ed" [wall]="wall" [selectedId]="architecture().openingId" [undoCount]="editor().undo" [redoCount]="editor().redo"/>}}
 <dialog #loginDialog class="scheme-dialog" aria-labelledby="login-title">
  <form (submit)="login($event)">
   <button type="button" class="close" aria-label="关闭登录" (click)="loginDialog.close()">×</button>
@@ -110,6 +150,6 @@
 </dialog>
 @if(notice()){<div class="toast" role="status">{{notice()}}<button (click)="notice.set('')" aria-label="关闭提示">×</button></div>}
 @if(showSource()){<div class="modal" (click)="showSource.set(false)" role="dialog" aria-modal="true" aria-label="最新户型图"><div class="modal-card plan-card" (click)="$event.stopPropagation()"><button class="close" (click)="showSource.set(false)" aria-label="关闭户型图">×</button><h2>{{scheme().name}} · 户型原图</h2><img [src]="scheme().plan" alt="用户提供的当前方案户型平面图"><p>{{scheme().note}}</p></div></div>}
-@if(showInfo()){<div class="modal" (click)="showInfo.set(false)" role="dialog" aria-modal="true" aria-label="使用说明"><div class="modal-card" (click)="$event.stopPropagation()"><button class="close" (click)="showInfo.set(false)" aria-label="关闭说明">×</button><span class="eyebrow">ABOUT THIS SIMULATOR</span><h2>一个可以自由布置的家。</h2><p>画面右上角依次提供“自由查看”“户型图”“第一人称漫游”。漫游每次从入户门外开始，面向屋内；WASD 前后左右移动，鼠标转向，Esc 退出并恢复原视角。视线高 160 cm，移动速度固定为 2.8 米/秒。漫游时暂停家具拖动、保留完整墙面。墙体和窗户会阻挡移动，门洞可通行，家具与门扇暂不做碰撞。浏览器若无法锁定鼠标，可按住左键拖动转向。</p><p>点击家具选中，拖动调整位置；右侧可输入位置、旋转角度和比例，选择配色、复制或删除。按 Delete 删除，Ctrl / ⌘ + Z 撤销，Ctrl / ⌘ + Shift + Z 重做。</p><p>从样式库点击添加，或直接拖入空间。通过“家具编辑”切换到浏览模式，可避免移动家具。</p><p>左侧眼睛控制整个房间，座椅图标控制该房间装修。“清水房”去掉家具、柜体、灯具、面层，将墙面恢复水泥基底。光厅的开关仅控制盆栽。</p><p>所有人都可浏览云端方案，登录后可以编辑和新建。顶部可复制当前布置，或选择任一户型的初始布置创建独立方案。家具和房间状态在编辑后自动上传，并保留本地缓存；断网后自动重试。切换方案或点击刷新按钮可读取最新云端布置。多人同时编辑时会保留本地修改并提示另存副本。导出 JSON 可备份、分享或在此模型中重新导入；导入时请先切换到文件所属户型；JSON 保存可继续编辑的布置；“导出当前 GLB”保存可在其他三维软件打开的当前方案。</p><p>自动隐藏仅移除当前视线最近的一组墙，保留后方墙体。天花板默认关闭，可独立开启；平面图始终隐藏天花板并使用低位墙体。按住鼠标中键或右键拖动平移视角，滚轮缩放。模型由 Blender 转换，按最新图更新主卧和主卫。</p><p class="small">这是布置模拟器。墙体暂不支持拖改；尚未进行尺寸测绘、结构与设备净空校核。清水材质为示意；三维家具与图片生成效果图会有细节差异。</p></div></div>}
+@if(showInfo()){<div class="modal" (click)="showInfo.set(false)" role="dialog" aria-modal="true" aria-label="使用说明"><div class="modal-card" (click)="$event.stopPropagation()"><button class="close" (click)="showInfo.set(false)" aria-label="关闭说明">×</button><span class="eyebrow">ABOUT THIS SIMULATOR</span><h2>一个可以自由布置的家。</h2><p>新清水房工作台：右侧“墙体 / 装修”中选择或绘制墙体。绘制时依次点击起点和终点，按住Shift约束水平或竖直，Esc取消；灰色锁定墙无法编辑，蓝色隔墙可以拖动墙身移动、拖动橙色圆点旋转，按住Shift以15°吸附，也可输入位置与角度或删除。门窗随所属墙体整体处理，删除后支持撤销。装修材质按房间设置，光厅保留清水基底。工作台独立在本机保存，不向云端写入；可新建多个本地方案，并导出JSON长期保存。</p><p>画面右上角依次提供“自由查看”“户型图”“第一人称漫游”。漫游每次从入户门外开始，面向屋内；WASD 前后左右移动，鼠标转向，Esc 退出并恢复原视角。视线高 160 cm，移动速度固定为 2.8 米/秒。漫游时暂停家具拖动、保留完整墙面。墙体和窗户会阻挡移动，门洞可通行，家具与门扇暂不做碰撞。浏览器若无法锁定鼠标，可按住左键拖动转向。</p><p>点击家具选中，拖动调整位置；右侧可输入位置、旋转角度和比例，选择配色、复制或删除。按 Delete 删除，Ctrl / ⌘ + Z 撤销，Ctrl / ⌘ + Shift + Z 重做。</p><p>从样式库点击添加，或直接拖入空间。通过“家具编辑”切换到浏览模式，可避免移动家具。</p><p>左侧眼睛控制整个房间，座椅图标控制该房间装修。“清水房”去掉家具、柜体、灯具、面层，将墙面恢复水泥基底。光厅的开关仅控制盆栽。</p><p>所有人都可浏览云端方案，登录后可以编辑和新建。顶部可复制当前布置，或选择任一户型的初始布置创建独立方案。家具和房间状态在编辑后自动上传，并保留本地缓存；断网后自动重试。切换方案或点击刷新按钮可读取最新云端布置。多人同时编辑时会保留本地修改并提示另存副本。导出 JSON 可备份、分享或在此模型中重新导入；导入时请先切换到文件所属户型；JSON 保存可继续编辑的布置；“导出当前 GLB”保存可在其他三维软件打开的当前方案。</p><p>自动隐藏仅移除当前视线最近的一组墙，保留后方墙体。天花板默认关闭，可独立开启；平面图始终隐藏天花板并使用低位墙体。按住鼠标中键或右键拖动平移视角，滚轮缩放。模型由 Blender 转换，按最新图更新主卧和主卫。</p><p class="small">这是布置模拟器。清水房工作台支持绘制、修改和删除室内灰色隔墙，黑色实墙及外围墙锁定；原有两套装修方案沿用原模型。可编辑墙体允许开窗及开门洞，门窗可共存。新门洞默认90 × 220 cm，每个洞口的位置与尺寸均可调整。墙体位置、角度、厚度、端点和高度可在属性栏修改。尚未进行现场尺寸测绘。清水材质为示意；三维家具与图片生成效果图会有细节差异。</p></div></div>}
 
 

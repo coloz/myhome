@@ -84,7 +84,9 @@ const create=async(page,name,source='copy')=>{
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
   await page.getByRole('button',{name:'新建方案',exact:true}).click();await page.screenshot({path:'test-results/cloud-new-design-mobile.png'});
   await page.keyboard.press('Escape');assert.equal(await page.locator('dialog[open]').count(),0);
-  await page.getByRole('button',{name:'退出',exact:true}).click();await ready(page,'original');
+  await page.getByRole('button',{name:'退出',exact:true}).click();
+  await page.waitForFunction(()=>document.querySelector('.new-scheme')?.hasAttribute('disabled'));
+  await ready(page,'original');
   assert(await page.getByRole('button',{name:'新建方案',exact:true}).isDisabled());
   check('Mobile controls fit the viewport; dialogs close with Escape; logout restores read-only');
   const guestContext=await browser.newContext({viewport:{width:1280,height:900}});await installSupabaseMock(guestContext,{signedIn:false,db});

@@ -1,0 +1,46 @@
+<dialog #dialog class="opening-dialog" aria-labelledby="opening-title" (cancel)="cancel($event)" (keydown)="key($event)">
+ <header class="opening-header"><div><h2 id="opening-title">墙面正视编辑</h2><p>{{wall.name}} · {{reverse?'背面 B → A':'正面 A → B'}}{{locked?' · 仅查看':''}}</p></div><button class="opening-done" (click)="close()">完成 · 返回</button></header>
+ <div class="opening-tools" role="group" aria-label="门窗编辑工具">
+  <button #selectTool [class.active]="mode==='select'" [attr.aria-pressed]="mode==='select'" (click)="setMode('select')">选择 / 移动</button>
+  <button [disabled]="locked" [class.active]="mode==='window'" [attr.aria-pressed]="mode==='window'" (click)="setMode('window')">画窗</button>
+  <button [disabled]="locked" [class.active]="mode==='door'" [attr.aria-pressed]="mode==='door'" (click)="setMode('door')">画门洞</button>
+  <button (click)="flip()">换一面查看</button>
+  <label><input type="checkbox" aria-label="门窗5厘米吸附" [checked]="snapEnabled" (change)="snapEnabled=!snapEnabled">5 cm 吸附</label>
+  <div class="opening-history"><button aria-label="撤销门窗编辑" [disabled]="locked||!undoCount" (click)="history()">撤销</button><button aria-label="重做门窗编辑" [disabled]="locked||!redoCount" (click)="history(true)">重做</button></div>
+ </div>
+ <div class="opening-layout"><div #wrap class="opening-canvas-wrap">
+  <svg #canvas class="opening-canvas" role="img" aria-label="门窗正视编辑图，可拖动洞口及边角，尺寸单位为厘米" [attr.viewBox]="'0 0 '+width+' '+height" [style.height.px]="height" [style.cursor]="mode==='select'?'default':'crosshair'" (pointerdown)="down($event)" (pointermove)="move($event)" (pointerup)="up($event)" (pointercancel)="up($event)">
+   <text [attr.x]="width/2" y="22" text-anchor="middle">墙宽 {{cm(length)}} cm · 墙高 {{cm(wall.height)}} cm</text>
+   <rect data-wall-face [attr.x]="left" [attr.y]="top" [attr.width]="length*scale" [attr.height]="wall.height*scale" class="opening-wall"/>
+   <g class="opening-grid" pointer-events="none">@for(x of gridX;track x){<line [attr.x1]="px(x)" [attr.x2]="px(x)" [attr.y1]="top" [attr.y2]="py(0)"/>}@for(y of gridY;track y){<line [attr.x1]="left" [attr.x2]="px(length)" [attr.y1]="py(y)" [attr.y2]="py(y)"/>}</g>
+   @for(o of rects;track o.id){<g [attr.data-opening-id]="o.id" [attr.data-kind]="o.kind" class="opening-object" [class.chosen]="o.id===selectedId" [class.door]="o.kind==='door'">
+    <rect [attr.x]="px(o.x)" [attr.y]="py(o.y+o.h)" [attr.width]="o.w*scale" [attr.height]="o.h*scale"/>
+    @if(o.w*scale>40){<text [attr.x]="px(o.x+o.w/2)" [attr.y]="py(o.y+o.h/2)+4" text-anchor="middle">{{label(o)}}</text>}
+   </g>}
+   @if(selected;as o){
+    <g class="opening-dim"><line [attr.x1]="px(o.x)" [attr.x2]="px(o.x+o.w)" [attr.y1]="py(o.y+o.h)-15" [attr.y2]="py(o.y+o.h)-15"/>
+     <text class="editable-dim" [attr.x]="px(o.x+o.w/2)" [attr.y]="py(o.y+o.h)-21" text-anchor="middle" (pointerdown)="$event.stopPropagation()" (click)="focusField('w')">{{cm(o.w)}} cm</text>
+     <line [attr.x1]="px(o.x+o.w)+17" [attr.x2]="px(o.x+o.w)+17" [attr.y1]="py(o.y)" [attr.y2]="py(o.y+o.h)"/>
+     <text class="editable-dim" [attr.transform]="'translate('+(px(o.x+o.w)+23)+' '+py(o.y+o.h/2)+') rotate(-90)'" text-anchor="middle" (pointerdown)="$event.stopPropagation()" (click)="focusField('h')">{{cm(o.h)}} cm</text>
+     <line [attr.x1]="left" [attr.x2]="px(o.x)" [attr.y1]="py(0)+18" [attr.y2]="py(0)+18"/>
+     <text class="editable-dim" [attr.x]="left" [attr.y]="py(0)+40" (pointerdown)="$event.stopPropagation()" (click)="focusField('x')">距左 {{cm(o.x)}} cm</text>
+     @if(o.kind==='door'&&o.w*scale>70){<text [attr.x]="px(o.x+o.w/2)" [attr.y]="py(0)-12" text-anchor="middle">贴地 0 cm</text>}
+     @if(o.kind==='window'&&o.y*scale>40){<text class="editable-dim" [attr.x]="px(o.x+o.w/2)" [attr.y]="py(o.y/2)" text-anchor="middle" (pointerdown)="$event.stopPropagation()" (click)="focusField('y')">离地 {{cm(o.y)}}</text>}
+    </g>
+    @for(h of handles;track h.hx+','+h.hy){<rect class="opening-handle" [attr.data-handle]="h.hx+','+h.hy" [attr.x]="px(h.x)-4.5" [attr.y]="py(h.y)-4.5" width="9" height="9"/>}
+   }
+   @if(ghost;as g){<rect class="opening-ghost" [attr.x]="px(g.x)" [attr.y]="py(g.y+g.h)" [attr.width]="g.w>0?g.w*scale:1" [attr.height]="g.h>0?g.h*scale:1"/>}
+  </svg>
+ </div><aside class="opening-properties">
+  <label class="opening-picker">当前洞口<select aria-label="选择门窗洞口" [value]="selectedId??''" (change)="choose($any($event.target).value||null)"><option value="" [selected]="!selected">选择洞口</option>@for(o of rects;track o.id){<option [value]="o.id" [selected]="o.id===selectedId">{{label(o)}} {{$index+1}} · {{cm(o.w)}} × {{cm(o.h)}} cm</option>}</select></label>
+  @if(selected;as o){<h3>{{label(o)}} <small>单位 cm</small></h3><fieldset [disabled]="locked"><div class="opening-fields">
+   <label>{{o.kind==='door'?'门洞宽':'窗宽'}}<input data-field="w" aria-label="正视洞口宽度厘米" type="number" min="30" [step]="snapEnabled?5:1" [value]="cm(o.w)" (change)="field('w',$event)"></label>
+   <label>{{o.kind==='door'?'门洞高':'窗高'}}<input data-field="h" aria-label="正视洞口高度厘米" type="number" min="30" [step]="snapEnabled?5:1" [value]="cm(o.h)" (change)="field('h',$event)"></label>
+   <label>{{o.kind==='door'?'底部贴地（固定）':'窗台离地'}}<input data-field="y" aria-label="正视洞口离地厘米" type="number" min="0" [disabled]="o.kind==='door'" [step]="snapEnabled?5:1" [value]="cm(o.y)" (change)="field('y',$event)"></label>
+   <label>距左侧<input data-field="x" aria-label="正视洞口距左厘米" type="number" min="0" [step]="snapEnabled?5:1" [value]="cm(o.x)" (change)="field('x',$event)"></label>
+  </div><div class="opening-actions"><button (click)="duplicate()">复制洞口</button><button class="opening-delete" (click)="remove()">删除洞口 · 恢复墙面</button></div></fieldset>}
+  @else{<p class="opening-empty">点击洞口开始编辑，或在墙面上画窗、画门洞。</p>}
+  @if(locked){<p class="opening-protected">🔒 黑色实墙、外围结构和固定墙体仅可查看，不能修改门窗。</p>}
+ </aside></div>
+ <footer class="opening-footer"><p>{{selected?.kind==='door'?'拖内部左右移动 · 拖侧边调宽 · 拖顶部调高':'拖内部移动 · 拖边角缩放 · Shift 等比例'}} · Esc 取消</p><p role="status" aria-live="polite" [class.invalid]="invalid">{{message}}</p></footer>
+</dialog>
