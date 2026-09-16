@@ -1,7 +1,7 @@
 import type { Layout, SavedEntity } from './layout';
 import type { Project } from './viewer';
 import type { CatalogItem } from './catalog-types';
-import { isRoomFinish } from './finish-presets';
+import { isRoomFinish } from './finish-presets.ts';
 
 /** Pure domain functions shared by the browser and the stdio MCP server. Units: m, rad, CNY. */
 export type DesignBrief = {

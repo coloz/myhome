@@ -5,6 +5,10 @@ assert.equal(WALL_COLORS.length,14);assert.equal(FLOOR_STYLES.length,12);
 for(const p of [...WALL_COLORS,...FLOOR_STYLES]){assert(fs.existsSync('public/'+p.preview));for(const n of ['color','normal','roughness'])assert(fs.existsSync(`public/materials/${p.texture}/${n}.jpg`));}
 for(const floor of FLOOR_STYLES)for(const wall of WALL_COLORS)assert.deepEqual(validateFinishes({living:{wall:wall.id,floor:floor.id}},['living']),{living:{wall:wall.id,floor:floor.id}});
 assert.throws(()=>validateFinishes({living:{wall:'made-up',floor:'oak'}},['living']));
+assert.deepEqual(validateFinishes({living:{wall:'solid',floor:'oak',wallColor:'#B7CAD3'}},['living']),{living:{wall:'solid',floor:'oak',wallColor:'#b7cad3'}});
+assert.deepEqual(validateFinishes({living:{wall:'blue-tile',floor:'oak',wallColor:'#eeaa99'}},['living']),{living:{wall:'blue-tile',floor:'oak',wallColor:'#eeaa99'}});
+for(const color of ['red','#12345','#fff;opacity:0',null,7])assert.throws(()=>validateFinishes({living:{wall:'solid',floor:'oak',wallColor:color}},['living']));
+const {normalizeWallColor}=require('../src/finish-presets.ts');assert.equal(normalizeWallColor(' ABC '),'#aabbcc');assert.equal(normalizeWallColor('#0055AA'),'#0055aa');assert.equal(normalizeWallColor('oops'),null);
 function measure(length,angle){const m=new T.Mesh(new T.BoxGeometry(length,3,.15));m.rotation.y=angle;m.position.set(3,1.5,4);m.updateMatrixWorld(true);assignMetricWallUV(m);const uv=m.geometry.getAttribute('uv'),pos=m.geometry.getAttribute('position'),n=m.geometry.getAttribute('normal');let min=Infinity,max=-Infinity;
  for(let i=0;i<pos.count;i++){if(n.getZ(i)>.9){min=Math.min(min,uv.getX(i));max=Math.max(max,uv.getX(i));assert(Math.abs(uv.getY(i)-(pos.getY(i)+1.5))<.00001);}}
  assert(Math.abs(max-min-length)<.00001,'wall texture width in metres');return m;
