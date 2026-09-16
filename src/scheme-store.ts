@@ -115,10 +115,16 @@ export class SchemeStore {
     body:body?JSON.stringify(body):undefined,signal:controller.signal,
    });
    if(!response.ok){
+    // PostgREST uses 400 for several unrelated failures. Inspect the database
+    // error without exposing details (which can contain the complete layout).
+    const error:unknown=await response.json().catch(()=>null);
+    const code=error&&typeof error==='object'&&'code' in error&&typeof error.code==='string'&&/^[A-Z0-9]{5,12}$/.test(error.code)?error.code:'';
+    const message=error&&typeof error==='object'&&'message' in error&&typeof error.message==='string'?error.message:'';
     if(response.status===404)throw new Error('云端方案库尚未初始化，请完成数据库配置后重试。');
     if(response.status===401||response.status===403)throw new Error('云端访问权限未就绪，请检查数据库配置。');
-    if(response.status===400&&body&&typeof body==='object'&&'p_template_id' in body&&body.p_template_id===RAW_SCHEME.id)throw new Error('已保留本机修改；云端需更新户型支持后才能同步。');
-    throw new Error('云端暂时不可用（'+response.status+'），修改保留在本地，稍后重试。');
+    if(code==='23514'&&message.includes('"home_design_schemes_template_id_check"'))throw new Error('已保留本机修改；云端需更新户型支持后才能同步，请联系项目管理员。');
+    if(code==='23514'&&message.includes('"home_design_layout_valid"'))throw new Error('已保留本机修改；方案未通过云端布局校验，请检查户型版本、家具数量及数据库更新。');
+    throw new Error('云端暂时不可用（'+response.status+(code?' / '+code:'')+'），修改保留在本地，稍后重试。');
    }
    const rows:unknown=await response.json();
    if(!Array.isArray(rows)||!rows.every(row=>this.validRow(row)))throw new Error('云端返回了不支持的方案数据，已保留本地布置。');

@@ -27,7 +27,7 @@ async function installSupabaseMock(context,{signedIn=true,db=database()}={}){
   if(url.pathname.endsWith('/rpc/save_home_design_scheme')){
    if(!req.headers().authorization)return respond({message:'Sign in'},403);
    const p=req.postDataJSON();db.writes.push(structuredClone(p));
-   if(db.rejectRaw&&p.p_template_id==='raw-shell')return respond({message:'home_design_schemes_template_id_check'},400);
+   if(db.rejectRaw&&p.p_template_id==='raw-shell')return respond({code:'23514',message:'new row for relation "home_design_schemes" violates check constraint "home_design_schemes_template_id_check"'},400);
    if(db.delay)await new Promise(r=>setTimeout(r,db.delay));
    if(db.deleted.has(p.p_id))return respond([]);
    const row=db.rows.get(p.p_id);

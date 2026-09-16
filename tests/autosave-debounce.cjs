@@ -1,7 +1,7 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),path=require('node:path'),ts=require('typescript'),{randomUUID}=require('node:crypto');
 const checks=[],microtasks=async()=>{for(let i=0;i<30;i++)await Promise.resolve();};
 function harness(){
- let now=1000000,nextTimer=0,hold=false,fail=false,authorized=true,active=0,maxActive=0;
+ let now=1000000,nextTimer=0,hold=false,fail=false,authorized=true,active=0,maxActive=0,rejection=null;
  const errors=[],successes=[];
  const timers=new Map(),cache=new Map(),requests=[],pending=[],rows=new Map();
  const window=new EventTarget(),document=Object.assign(new EventTarget(),{visibilityState:'visible'});
@@ -13,6 +13,7 @@ function harness(){
    const data=JSON.parse(options.body);requests.push({at:now,data});active++;maxActive=Math.max(maxActive,active);
    if(hold)await new Promise(resolve=>pending.push(resolve));active--;
    if(fail)throw new TypeError('offline');
+   if(rejection)return {ok:false,status:rejection.status??400,json:async()=>{if(rejection.invalidJSON)throw new SyntaxError('Not JSON');return rejection.body;}};
    const old=rows.get(data.p_id),row=old?.last_mutation_id===data.p_mutation_id?old:{id:data.p_id,name:data.p_name,template_id:data.p_template_id,layout:data.p_layout,revision:(old?.revision??0)+1,updated_at:new ClockDate().toISOString(),last_mutation_id:data.p_mutation_id};
    rows.set(row.id,row);return {ok:true,json:async()=>[row]};
   }};
@@ -26,7 +27,7 @@ function harness(){
  const {SchemeStore}=load('src/scheme-store.ts');let store;
  const fresh=()=>{store?.destroy();store=new SchemeStore(async()=>authorized?'test-token':null);store.writable=true;store.onSaveError=(...args)=>errors.push(args);store.onSaveSuccess=id=>successes.push(id);return store;};fresh();
  const tick=async ms=>{const end=now+ms;while(true){const next=[...timers].filter(([,t])=>t.at<=end).sort((a,b)=>a[1].at-b[1].at)[0];if(!next)break;now=next[1].at;timers.delete(next[0]);next[1].fn();await microtasks();}now=end;await microtasks();};
- return {get store(){return store;},get now(){return now;},get maxActive(){return maxActive;},set hold(v){hold=v;},set fail(v){fail=v;},set authorized(v){authorized=v;},tick,fresh,requests,rows,cache,window,document,errors,successes,release:async()=>{pending.shift()?.();await microtasks();}};
+ return {get store(){return store;},get now(){return now;},get maxActive(){return maxActive;},set hold(v){hold=v;},set fail(v){fail=v;},set authorized(v){authorized=v;},set rejection(v){rejection=v;},tick,fresh,requests,rows,cache,window,document,errors,successes,release:async()=>{pending.shift()?.();await microtasks();}};
 }
 const layout=value=>({format:'home-simulator',version:2,modelVersion:'test',rooms:{},entities:[],value});
 const run=async(name,fn)=>{const h=harness();try{await fn(h);checks.push(name);console.log('PASS: '+name);}finally{h.store.destroy();}};
@@ -73,6 +74,27 @@ const run=async(name,fn)=>{const h=harness();try{await fn(h);checks.push(name);c
  await run('Explicit local simulations wait quietly for login, then upload their original ID',async h=>{
   h.authorized=false;h.store.writable=false;const draft=h.store.create('模拟草稿','raw-shell',layout(10),true,true);await h.tick(6000);assert.equal(h.requests.length,0);assert.equal(h.errors.length,0);assert.equal(h.store.pendingCount,1);
   h.authorized=true;h.store.writable=true;h.store.retry();await microtasks();assert.equal(h.rows.get(draft.id).layout.value,10);assert.equal(h.store.pendingCount,0);
+ });
+ await run('A schema rejection keeps the exact raw-shell mutation through reload and retries after migration',async h=>{
+  h.rejection={body:{code:'23514',message:'new row violates check constraint "home_design_schemes_template_id_check"',details:'private layout data'}};
+  h.store.save('raw-shell',layout(11));await h.tick(5000);
+  assert.match(h.store.status('raw-shell').message,/云端需更新户型支持/);assert.equal(h.store.pendingCount,1);assert.equal(h.successes.length,0);
+  const submitted=h.requests[0].data;h.fresh();assert.equal(h.store.layout('raw-shell').value,11);assert.equal(h.store.pendingCount,1);
+  h.rejection=null;h.store.retry();await microtasks();assert.deepEqual(h.requests[1].data,submitted);assert.equal(h.store.pendingCount,0);assert.equal(h.rows.get('raw-shell').layout.value,11);
+ });
+ await run('Layout validation and unrelated 400 responses are not misreported as unsupported raw-shell',async h=>{
+  const cases=[
+   [{body:{code:'23514',message:'new row violates check constraint "home_design_layout_valid"',details:'private layout data'}},/布局校验/],
+   [{body:{code:'22023',message:'Invalid design save request',details:'private layout data'}},/400 \/ 22023/],
+   [{body:{code:'22P02',message:'invalid uuid'}},/400 \/ 22P02/],
+   [{body:{message:'Bad request'}},/400/],
+   [{invalidJSON:true},/400/],
+  ];
+  for(const [rejection,expected] of cases){
+   h.rejection=rejection;h.store.save('raw-shell',layout(12));await h.tick(5000);
+   const message=h.store.status('raw-shell').message;assert.match(message,expected);assert.doesNotMatch(message,/云端需更新户型支持|private layout data|网络连接中断/);assert.equal(h.store.pendingCount,1);
+  }
+  h.rejection=null;h.store.retry();await microtasks();assert.equal(h.store.pendingCount,0);assert.equal(h.rows.get('raw-shell').layout.value,12);
  });
  fs.writeFileSync('test-results/autosave-debounce-report.json',JSON.stringify({passed:true,checks},null,2));
 })().catch(e=>{console.error(e);process.exit(1);});
