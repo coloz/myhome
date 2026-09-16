@@ -1,0 +1,10 @@
+const {chromium}=require('playwright'),fs=require('node:fs'),assert=require('node:assert/strict');
+const BASE=process.env.VIEWER_URL||'http://127.0.0.1:8788/';
+(async()=>{const browser=await chromium.launch({channel:'msedge',headless:true,args:['--enable-webgl','--ignore-gpu-blocklist']}),context=await browser.newContext({acceptDownloads:true});await require('./supabase-mock.cjs').installSupabaseMock(context);const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));try{
+ await page.goto(BASE+'?scheme=raw-shell');await page.waitForFunction(()=>window.__homeViewer&&!document.querySelector('.loading'),null,{timeout:90000});
+ await page.getByLabel('搜索家具').fill(JSON.parse(fs.readFileSync('public/library/catalog.v1.json')).items.find(i=>i.id==='ph-modern_arm_chair_01').name);await page.waitForTimeout(300);
+ await page.locator('[data-catalog-id="ph-modern_arm_chair_01"]').click();await page.waitForFunction(()=>{const v=window.__homeViewer,s=v.snapshot();return s.selection&&v.components(s.selection).modelPending===false},{},{timeout:45000});
+ const event=page.waitForEvent('download',{timeout:60000});await page.getByRole('button',{name:'导出当前 GLB ↗',exact:true}).click();const d=await event,b=fs.readFileSync(await d.path());assert.equal(b.readUInt32LE(),0x46546c67);const g=JSON.parse(b.subarray(20,20+b.readUInt32LE(12)));
+ assert(g.materials.some(m=>m.normalTexture&&m.pbrMetallicRoughness?.baseColorTexture));assert(g.images.length>0);assert(g.images.every(i=>i.bufferView!==undefined));assert(g.nodes.some(n=>n.extras?.furnitureId));assert.deepEqual(errors,[]);
+ fs.writeFileSync('test-results/furniture-quality-export-report.json',JSON.stringify({passed:true,bytes:b.length,embeddedImages:g.images.length,checks:['Current home GLB exports complete PBR furniture with embedded colour/normal textures and stable furniture ownership'],consoleErrors:errors},null,2));console.log('Full PBR furniture exports with embedded textures',b.length);
+ }finally{await browser.close()}})().catch(e=>{console.error(e);process.exit(1)});

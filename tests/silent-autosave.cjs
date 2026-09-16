@@ -1,0 +1,48 @@
+const {chromium}=require('playwright'),assert=require('node:assert/strict'),fs=require('node:fs');
+const {installSupabaseMock,database}=require('./supabase-mock.cjs');
+const BASE=process.env.VIEWER_URL||'http://127.0.0.1:8788/',cache='home-simulator:supabase:nbdodqezyijrztikvkcd:v1:';
+const seed=JSON.parse(fs.readFileSync('test-results/raw-shell-layout.json','utf8'));
+const legacy=[{id:'raw-shell',name:'我的原户型',layout:seed},{id:'local-existing',name:'已改墙体的布置',layout:seed}];
+const ready=(p,id)=>p.waitForFunction(id=>window.__homeViewer?.snapshot().schemeId===id&&!document.querySelector('.loading'),id,{timeout:120000});
+const snap=p=>p.evaluate(()=>window.__homeViewer.snapshot());
+const saved=(p,id)=>p.waitForFunction(id=>window.__homeViewer?.snapshot().sync.find(s=>s.id===id)?.state==='saved',id,{timeout:25000});
+const silent=async p=>{assert.equal(await p.locator('.cloud-status,.save-status').count(),0);assert.equal(await p.getByRole('button',{name:'保存到云端',exact:true}).count(),0);assert.equal(await p.locator('.save-error').count(),0);assert(!/已保存在本机|已保存到云端|本地已保存|等待上传|个方案待同步/.test(await p.locator('body').innerText()));};
+const exportLayout=async p=>{const event=p.waitForEvent('download');await p.getByRole('button',{name:'导出方案',exact:true}).click();return JSON.parse(fs.readFileSync(await(await event).path(),'utf8'));};
+(async()=>{
+ const browser=await chromium.launch({channel:'msedge',headless:true,args:['--enable-webgl','--ignore-gpu-blocklist']});const errors=[],checks=[],db=database();
+ try{
+  const context=await browser.newContext({viewport:{width:1536,height:1000},acceptDownloads:true});await installSupabaseMock(context,{signedIn:false,db});
+  await context.addInitScript(legacy=>{if(!localStorage.getItem('unified-test-seed')){localStorage.setItem('home-simulator:raw-workspace:v1',JSON.stringify(legacy));localStorage.setItem('home-simulator:active-raw-design','local-existing');localStorage.setItem('unified-test-seed','1');}},legacy);
+  const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));await page.goto(BASE+'?workspace=raw');await ready(page,'local-existing');
+  assert(!new URL(page.url()).searchParams.has('workspace'));assert.equal(await page.getByRole('listbox',{name:'切换家装方案'}).getByRole('option').count(),4);
+  assert.equal(await page.locator('.topbar select').count(),0);assert.equal((await page.locator('.topbar').boundingBox()).height,48);
+  assert(await page.evaluate(()=>document.querySelector('.scheme-explorer').getBoundingClientRect().bottom<=document.querySelector('.list-heading').getBoundingClientRect().top));
+  const initial=await exportLayout(page);assert.deepEqual(initial.entities,seed.entities);assert.deepEqual(initial.finishes,seed.finishes);
+  await page.locator('.save-error').filter({hasText:'请登录'}).waitFor();assert.equal(db.writes.length,0);
+  const pending=await page.evaluate(k=>JSON.parse(localStorage.getItem(k)),cache+'local-existing');assert(pending.dirty);assert.deepEqual(pending.row.layout.entities,seed.entities);
+  checks.push('Legacy schemes retain original IDs, names, furniture and walls; unauthenticated pending saves show a login failure message');
+  await page.locator('.save-error').getByRole('button',{name:'登录',exact:true}).click();await page.getByLabel('登录邮箱').fill('editor@example.test');await page.getByLabel('登录密码').fill('test-password');await page.locator('dialog[aria-labelledby=login-title]').getByRole('button',{name:'登录',exact:true}).click();
+  await page.getByRole('button',{name:'退出',exact:true}).waitFor();await ready(page,'local-existing');await saved(page,'local-existing');await saved(page,'raw-shell');
+  assert.equal(db.rows.get('local-existing').name,legacy[1].name);assert.deepEqual(db.rows.get('local-existing').layout,initial);assert(db.rows.has('raw-shell'));assert.equal(db.rows.size,2);await silent(page);
+  checks.push('Login automatically uploads all existing local-only schemes under the same IDs without a publish button or duplicate copies; success is silent');
+  await page.getByRole('button',{name:'新建方案',exact:true}).click();await page.getByLabel('方案名称',{exact:true}).fill('自动同步的新方案');await page.getByRole('button',{name:'创建方案',exact:true}).click();await page.waitForFunction(()=>window.__homeViewer?.snapshot().schemeId!=='local-existing'&&!document.querySelector('.loading')&&!document.querySelector('.scheme-dialog[open]'));
+  const id=(await snap(page)).schemeId;await saved(page,id);assert(db.rows.has(id));await silent(page);
+  await page.getByRole('button',{name:'添加双门冰箱',exact:true}).click();const en=(await snap(page)).selection,oldWrites=db.writes.length;
+  await page.waitForTimeout(2700);await silent(page);assert.equal(db.writes.length,oldWrites);await page.keyboard.press('Tab');await page.waitForTimeout(2700);assert.equal(db.writes.length,oldWrites);await saved(page,id);assert.equal(db.writes.length,oldWrites+1);assert.equal(db.rows.get(id).layout.entities.find(e=>e.id===en).rotation,Math.PI/2);await silent(page);
+  checks.push('New raw-template schemes save automatically; 5-second debounce uploads only the final rotation and shows no pending/success message');
+  db.offline=true;await page.getByLabel('家具旋转角度').fill('180');await page.getByLabel('家具旋转角度').press('Tab');await page.locator('.save-error').filter({hasText:'云端保存失败'}).waitFor();
+  await page.screenshot({path:'test-results/cloud-save-error.png'});await page.getByRole('button',{name:'关闭保存失败消息',exact:true}).click();await page.waitForTimeout(4500);assert.equal(await page.locator('.save-error').count(),0,'Automatic retries repeatedly reopened the same error');
+  db.offline=false;await page.evaluate(()=>window.dispatchEvent(new Event('online')));await saved(page,id);assert.equal(db.rows.get(id).layout.entities.find(e=>e.id===en).rotation,Math.PI);await silent(page);
+  await page.reload();await ready(page,id);assert.equal((await snap(page)).entities.find(e=>e.id===en).rotation,Math.PI);await silent(page);
+  checks.push('Failure messages can be dismissed without stopping retries; reconnect succeeds silently and restored edits survive reload');
+  db.rejectRaw=true;await page.getByRole('button',{name:'添加双门冰箱',exact:true}).click();await page.locator('.save-error').filter({hasText:'云端需更新'}).waitFor();
+  await page.setViewportSize({width:390,height:844});await page.waitForTimeout(300);assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await page.screenshot({path:'test-results/cloud-save-error-mobile.png'});
+  db.rejectRaw=false;await page.getByRole('button',{name:'重试保存',exact:true}).click();await saved(page,id);await silent(page);await require('./scheme-ui.cjs').openSchemes(page);await page.screenshot({path:'test-results/unified-schemes-mobile.png'});
+  await page.setViewportSize({width:1536,height:1000});await page.screenshot({path:'test-results/unified-schemes-desktop.png'});
+  checks.push('Server rejection displays a compact error message with retry; a successful retry clears it without a success toast on desktop and mobile');
+  const guestContext=await browser.newContext({viewport:{width:1280,height:900}});await installSupabaseMock(guestContext,{signedIn:false,db});const guest=await guestContext.newPage();await guest.goto(BASE+'?scheme='+id);await ready(guest,id);assert.equal((await snap(guest)).entities.length,2);await silent(guest);assert(await guest.getByRole('button',{name:'添加双门冰箱',exact:true}).isDisabled());
+  checks.push('A fresh browser reads the automatically saved design; authenticated write permissions remain enforced');
+  assert.deepEqual(errors,[]);fs.writeFileSync('test-results/unified-schemes-report.json',JSON.stringify({passed:true,checks,consoleErrors:errors},null,2));console.log(checks.join('\n'));
+ }catch(e){for(const p of browser.contexts().flatMap(c=>c.pages())){await p.screenshot({path:'test-results/unified-schemes-error.png'}).catch(()=>{});console.error(await p.locator('body').innerText().catch(()=>''));}throw e;}
+ finally{await browser.close();}
+})().catch(e=>{console.error(e);process.exit(1);});

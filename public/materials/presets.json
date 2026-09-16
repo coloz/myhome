@@ -1,0 +1,292 @@
+{
+  "walls": [
+    {
+      "id": "white",
+      "name": "暖白细纹墙漆",
+      "color": "#eeeae1",
+      "texture": "white_plaster_02",
+      "category": "墙漆",
+      "meters": 2,
+      "normal": 0.15,
+      "tint": "#eeeae1",
+      "preview": "materials/previews/white.webp"
+    },
+    {
+      "id": "cream",
+      "name": "淡奶油墙漆",
+      "color": "#e9debf",
+      "texture": "white_plaster_02",
+      "category": "墙漆",
+      "meters": 2,
+      "normal": 0.15,
+      "tint": "#e9debf",
+      "preview": "materials/previews/cream.webp"
+    },
+    {
+      "id": "blue",
+      "name": "浅蓝墙漆",
+      "color": "#b7cad3",
+      "texture": "white_plaster_02",
+      "category": "墙漆",
+      "meters": 2,
+      "normal": 0.15,
+      "tint": "#b7cad3",
+      "preview": "materials/previews/blue.webp"
+    },
+    {
+      "id": "sage",
+      "name": "灰绿墙漆",
+      "color": "#b9c2b6",
+      "texture": "white_plaster_02",
+      "category": "墙漆",
+      "meters": 2,
+      "normal": 0.15,
+      "tint": "#b9c2b6",
+      "preview": "materials/previews/sage.webp"
+    },
+    {
+      "id": "limewash",
+      "name": "柔白石灰涂料",
+      "color": "#e1ded5",
+      "texture": "painted_plaster_wall",
+      "category": "涂料",
+      "meters": 2,
+      "normal": 0.3,
+      "tint": "#ffffff",
+      "preview": "materials/previews/limewash.webp"
+    },
+    {
+      "id": "clay",
+      "name": "砂色泥灰涂料",
+      "color": "#cbb994",
+      "texture": "clay_plaster",
+      "category": "涂料",
+      "meters": 2,
+      "normal": 0.4,
+      "tint": "#ffffff",
+      "preview": "materials/previews/clay.webp"
+    },
+    {
+      "id": "concrete",
+      "name": "灰色细砂墙面",
+      "color": "#c1c2bc",
+      "texture": "grey_plaster",
+      "category": "涂料",
+      "meters": 2,
+      "normal": 0.4,
+      "tint": "#ffffff",
+      "preview": "materials/previews/concrete.webp"
+    },
+    {
+      "id": "white-tile",
+      "name": "白色长条墙砖",
+      "color": "#edecea",
+      "texture": "long_white_tiles",
+      "category": "瓷砖",
+      "meters": 1,
+      "normal": 0.55,
+      "tint": "#ffffff",
+      "preview": "materials/previews/white-tile.webp"
+    },
+    {
+      "id": "blue-tile",
+      "name": "淡蓝方砖",
+      "color": "#c0d6e2",
+      "texture": "clean_square_tiles",
+      "category": "瓷砖",
+      "meters": 1,
+      "normal": 0.5,
+      "tint": "#c0d6e2",
+      "preview": "materials/previews/blue-tile.webp"
+    },
+    {
+      "id": "yellow-tile",
+      "name": "奶油黄方砖",
+      "color": "#eee2b0",
+      "texture": "clean_square_tiles",
+      "category": "瓷砖",
+      "meters": 1,
+      "normal": 0.5,
+      "tint": "#eee2b0",
+      "preview": "materials/previews/yellow-tile.webp"
+    },
+    {
+      "id": "white-square",
+      "name": "白色方砖",
+      "color": "#eeeeeb",
+      "texture": "clean_square_tiles",
+      "category": "瓷砖",
+      "meters": 1,
+      "normal": 0.5,
+      "tint": "#ffffff",
+      "preview": "materials/previews/white-square.webp"
+    },
+    {
+      "id": "marble-wall",
+      "name": "浅色纹理大理石",
+      "color": "#e6e4e0",
+      "texture": "polished_marble",
+      "category": "石材",
+      "meters": 2,
+      "normal": 0.2,
+      "tint": "#ffffff",
+      "preview": "materials/previews/marble-wall.webp"
+    },
+    {
+      "id": "wood-wall",
+      "name": "温润木饰面",
+      "color": "#c59a6a",
+      "texture": "kitchen_wood",
+      "category": "木饰面",
+      "meters": 1.5,
+      "normal": 0.25,
+      "tint": "#ffffff",
+      "preview": "materials/previews/wood-wall.webp"
+    },
+    {
+      "id": "walnut-wall",
+      "name": "深色木饰面",
+      "color": "#805139",
+      "texture": "wood_table_001",
+      "category": "木饰面",
+      "meters": 1.5,
+      "normal": 0.25,
+      "tint": "#ffffff",
+      "preview": "materials/previews/walnut-wall.webp"
+    }
+  ],
+  "floors": [
+    {
+      "id": "oak",
+      "name": "温润木地板",
+      "color": "#bb9164",
+      "texture": "wooden_floor_01",
+      "category": "木地板",
+      "meters": 2,
+      "normal": 0.4,
+      "tint": "#ffffff",
+      "preview": "materials/previews/oak.webp"
+    },
+    {
+      "id": "light-oak",
+      "name": "浅色木地板",
+      "color": "#d2b58e",
+      "texture": "wood_floor",
+      "category": "木地板",
+      "meters": 2,
+      "normal": 0.4,
+      "tint": "#ffffff",
+      "preview": "materials/previews/light-oak.webp"
+    },
+    {
+      "id": "tile",
+      "name": "浅灰方砖",
+      "color": "#c6c5bf",
+      "texture": "clean_square_tiles",
+      "category": "瓷砖",
+      "meters": 4.8,
+      "normal": 0.5,
+      "tint": "#c6c5bf",
+      "preview": "materials/previews/tile.webp"
+    },
+    {
+      "id": "terrazzo",
+      "name": "细粒水磨石",
+      "color": "#d7d3c8",
+      "texture": "terrazzo_tiles",
+      "category": "水磨石",
+      "meters": 2,
+      "normal": 0.35,
+      "tint": "#ffffff",
+      "preview": "materials/previews/terrazzo.webp"
+    },
+    {
+      "id": "herringbone",
+      "name": "人字拼木地板",
+      "color": "#ae8e68",
+      "texture": "herringbone_parquet",
+      "category": "拼花木地板",
+      "meters": 2,
+      "normal": 0.4,
+      "tint": "#ffffff",
+      "preview": "materials/previews/herringbone.webp"
+    },
+    {
+      "id": "diagonal",
+      "name": "斜拼木地板",
+      "color": "#ad8964",
+      "texture": "diagonal_parquet",
+      "category": "拼花木地板",
+      "meters": 2,
+      "normal": 0.4,
+      "tint": "#ffffff",
+      "preview": "materials/previews/diagonal.webp"
+    },
+    {
+      "id": "honey-wood",
+      "name": "蜂蜜色木地板",
+      "color": "#caac85",
+      "texture": "wooden_floor_01",
+      "category": "木地板",
+      "meters": 2,
+      "normal": 0.35,
+      "tint": "#ffe4bd",
+      "preview": "materials/previews/honey-wood.webp"
+    },
+    {
+      "id": "smoked-wood",
+      "name": "烟熏色木地板",
+      "color": "#776d61",
+      "texture": "wood_floor",
+      "category": "木地板",
+      "meters": 2,
+      "normal": 0.4,
+      "tint": "#a1a1a1",
+      "preview": "materials/previews/smoked-wood.webp"
+    },
+    {
+      "id": "marble-floor",
+      "name": "浅纹大理石",
+      "color": "#e5e4e2",
+      "texture": "polished_marble",
+      "category": "石材",
+      "meters": 2,
+      "normal": 0.2,
+      "tint": "#ffffff",
+      "preview": "materials/previews/marble-floor.webp"
+    },
+    {
+      "id": "large-tile",
+      "name": "仿古灰砖",
+      "color": "#979b9b",
+      "texture": "large_grey_tiles",
+      "category": "瓷砖",
+      "meters": 2,
+      "normal": 0.4,
+      "tint": "#ffffff",
+      "preview": "materials/previews/large-tile.webp"
+    },
+    {
+      "id": "terracotta",
+      "name": "暖红陶砖",
+      "color": "#ac7457",
+      "texture": "terracotta_floor_tiles",
+      "category": "陶砖",
+      "meters": 2,
+      "normal": 0.5,
+      "tint": "#ffffff",
+      "preview": "materials/previews/terracotta.webp"
+    },
+    {
+      "id": "white-strip",
+      "name": "白色长条地砖",
+      "color": "#e9e8e4",
+      "texture": "long_white_tiles",
+      "category": "瓷砖",
+      "meters": 1,
+      "normal": 0.5,
+      "tint": "#ffffff",
+      "preview": "materials/previews/white-strip.webp"
+    }
+  ]
+}

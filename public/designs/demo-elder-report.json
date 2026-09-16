@@ -1,0 +1,308 @@
+{
+  "area": 103.57,
+  "furnitureCount": 20,
+  "issues": [
+    {
+      "severity": "info",
+      "code": "scope",
+      "message": "已检查目录家具包围盒、墙段和门口预留区；未验证连续通路、门扇开启轨迹、窗户操作、采光、机电或施工合规。",
+      "entityIds": []
+    }
+  ],
+  "unmeasured": 0,
+  "rooms": [
+    {
+      "id": "living",
+      "name": "客餐厅",
+      "area": 37.42,
+      "use": "用餐、会客与照护活动",
+      "count": 7
+    },
+    {
+      "id": "entry",
+      "name": "玄关",
+      "area": 8.77,
+      "use": "换鞋与日常物品收纳",
+      "count": 1
+    },
+    {
+      "id": "kitchen",
+      "name": "厨房",
+      "area": 6.16,
+      "use": "原位烹饪",
+      "count": 2
+    },
+    {
+      "id": "master",
+      "name": "主卧",
+      "area": 17.59,
+      "use": "长辈卧室",
+      "count": 3
+    },
+    {
+      "id": "bath-main",
+      "name": "主卫",
+      "area": 5,
+      "use": "保留原位湿区",
+      "count": 1
+    },
+    {
+      "id": "passage",
+      "name": "过道",
+      "area": 2.2,
+      "use": "通行，保持净空",
+      "count": 0
+    },
+    {
+      "id": "bed-west",
+      "name": "次卧二",
+      "area": 10.35,
+      "use": "家人留宿房",
+      "count": 2
+    },
+    {
+      "id": "bed-east",
+      "name": "次卧一",
+      "area": 10.3,
+      "use": "夫妻卧室",
+      "count": 2
+    },
+    {
+      "id": "bath-guest",
+      "name": "客卫",
+      "area": 5.78,
+      "use": "卫浴与洗衣",
+      "count": 2
+    }
+  ],
+  "costs": [
+    {
+      "label": "复古皮沙发",
+      "quantity": 1,
+      "unit": "件",
+      "unitPrice": 6500,
+      "amount": 6500
+    },
+    {
+      "label": "木质边桌",
+      "quantity": 4,
+      "unit": "件",
+      "unitPrice": 1800,
+      "amount": 7200
+    },
+    {
+      "label": "圆形木餐桌 02",
+      "quantity": 1,
+      "unit": "件",
+      "unitPrice": 1800,
+      "amount": 1800
+    },
+    {
+      "label": "软包餐椅",
+      "quantity": 4,
+      "unit": "件",
+      "unitPrice": 850,
+      "amount": 3400
+    },
+    {
+      "label": "木质抽屉柜",
+      "quantity": 1,
+      "unit": "件",
+      "unitPrice": 3800,
+      "amount": 3800
+    },
+    {
+      "label": "双门冰箱",
+      "quantity": 1,
+      "unit": "件",
+      "unitPrice": 3200,
+      "amount": 3200
+    },
+    {
+      "label": "独立式电灶烤箱",
+      "quantity": 1,
+      "unit": "件",
+      "unitPrice": 3200,
+      "amount": 3200
+    },
+    {
+      "label": "卫浴 · Japanese toilet unit",
+      "quantity": 2,
+      "unit": "件",
+      "unitPrice": 2600,
+      "amount": 5200
+    },
+    {
+      "label": "家电 · Clothes washing machine",
+      "quantity": 1,
+      "unit": "件",
+      "unitPrice": 3200,
+      "amount": 3200
+    },
+    {
+      "label": "床",
+      "quantity": 3,
+      "unit": "件",
+      "unitPrice": 5500,
+      "amount": 16500
+    },
+    {
+      "label": "复古木柜",
+      "quantity": 1,
+      "unit": "件",
+      "unitPrice": 3800,
+      "amount": 3800
+    },
+    {
+      "label": "客餐厅地面（含 8% 损耗）",
+      "quantity": 40.41,
+      "unit": "㎡",
+      "unitPrice": 220,
+      "amount": 8891
+    },
+    {
+      "label": "客餐厅墙面（毛面积估算）",
+      "quantity": 83.4,
+      "unit": "㎡",
+      "unitPrice": 55,
+      "amount": 4587
+    },
+    {
+      "label": "玄关地面（含 8% 损耗）",
+      "quantity": 9.47,
+      "unit": "㎡",
+      "unitPrice": 220,
+      "amount": 2084
+    },
+    {
+      "label": "玄关墙面（毛面积估算）",
+      "quantity": 38.4,
+      "unit": "㎡",
+      "unitPrice": 55,
+      "amount": 2112
+    },
+    {
+      "label": "厨房地面（含 8% 损耗）",
+      "quantity": 6.65,
+      "unit": "㎡",
+      "unitPrice": 150,
+      "amount": 998
+    },
+    {
+      "label": "厨房墙面（毛面积估算）",
+      "quantity": 30,
+      "unit": "㎡",
+      "unitPrice": 55,
+      "amount": 1650
+    },
+    {
+      "label": "主卧地面（含 8% 损耗）",
+      "quantity": 18.99,
+      "unit": "㎡",
+      "unitPrice": 220,
+      "amount": 4178
+    },
+    {
+      "label": "主卧墙面（毛面积估算）",
+      "quantity": 50.35,
+      "unit": "㎡",
+      "unitPrice": 55,
+      "amount": 2769
+    },
+    {
+      "label": "主卫地面（含 8% 损耗）",
+      "quantity": 5.4,
+      "unit": "㎡",
+      "unitPrice": 150,
+      "amount": 810
+    },
+    {
+      "label": "主卫墙面（毛面积估算）",
+      "quantity": 27,
+      "unit": "㎡",
+      "unitPrice": 55,
+      "amount": 1485
+    },
+    {
+      "label": "过道地面（含 8% 损耗）",
+      "quantity": 2.38,
+      "unit": "㎡",
+      "unitPrice": 220,
+      "amount": 523
+    },
+    {
+      "label": "过道墙面（毛面积估算）",
+      "quantity": 18.6,
+      "unit": "㎡",
+      "unitPrice": 55,
+      "amount": 1023
+    },
+    {
+      "label": "次卧二地面（含 8% 损耗）",
+      "quantity": 11.18,
+      "unit": "㎡",
+      "unitPrice": 220,
+      "amount": 2459
+    },
+    {
+      "label": "次卧二墙面（毛面积估算）",
+      "quantity": 38.7,
+      "unit": "㎡",
+      "unitPrice": 55,
+      "amount": 2128
+    },
+    {
+      "label": "次卧一地面（含 8% 损耗）",
+      "quantity": 11.12,
+      "unit": "㎡",
+      "unitPrice": 220,
+      "amount": 2446
+    },
+    {
+      "label": "次卧一墙面（毛面积估算）",
+      "quantity": 38.05,
+      "unit": "㎡",
+      "unitPrice": 55,
+      "amount": 2093
+    },
+    {
+      "label": "客卫地面（含 8% 损耗）",
+      "quantity": 6.24,
+      "unit": "㎡",
+      "unitPrice": 150,
+      "amount": 936
+    },
+    {
+      "label": "客卫墙面（毛面积估算）",
+      "quantity": 30.6,
+      "unit": "㎡",
+      "unitPrice": 55,
+      "amount": 1683
+    },
+    {
+      "label": "基础施工、厨卫固定配置及机电暂列",
+      "quantity": 103.57,
+      "unit": "㎡",
+      "unitPrice": 1100,
+      "amount": 113927
+    }
+  ],
+  "subtotal": 214582,
+  "reserve": 42916,
+  "total": 257498,
+  "budget": 260000,
+  "balance": 2502,
+  "assumptions": [
+    "货币：人民币；所有单价为软件内演示假设，不是品牌报价或市场询价。",
+    "家具尺寸顺序：宽 × 深 × 高；缩放不代表可购买的产品规格。",
+    "墙面按房间周长 × 层高估算，未扣门窗；地面加 8% 损耗。",
+    "基础暂列费覆盖未建模的施工与厨卫固定配置；目录家电另计。税费、设计费等需实际报价确认。",
+    "房间隐藏或清水房显示仅改变视图；预算仍包含所有未删除家具和设定装修。"
+  ],
+  "followUps": [
+    "复测户型、净高与设备尺寸；当前面积来自模型多边形，不是产权面积。",
+    "深化厨房台面、水槽、淋浴、洗面台及机电点位；暂列费未形成工程量清单。",
+    "现场确认采光、照明回路、插座和收纳开门空间；材质颜色不代表材料性能。",
+    "实测床边照护通道、夜间照明、扶手及防滑；本方案未验证轮椅通行。"
+  ]
+}

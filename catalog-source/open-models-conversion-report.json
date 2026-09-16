@@ -1,0 +1,686 @@
+[
+  {
+    "id": "kator-futon-couch",
+    "bytes": 111364
+  },
+  {
+    "id": "kator-cafe-chair",
+    "bytes": 142812
+  },
+  {
+    "id": "kator-cafe-table",
+    "bytes": 103292
+  },
+  {
+    "id": "kator-concrete-bench",
+    "bytes": 116776
+  },
+  {
+    "id": "kator-painted-bench",
+    "bytes": 21632
+  },
+  {
+    "id": "kator-fridge",
+    "bytes": 28656
+  },
+  {
+    "id": "kator-pedestal-vase-lamp",
+    "bytes": 138592
+  },
+  {
+    "id": "kator-wall-lamp-artwork",
+    "bytes": 110960
+  },
+  {
+    "id": "kator-mid-century-chair",
+    "bytes": 167296
+  },
+  {
+    "id": "kator-chair-ottoman",
+    "bytes": 76380
+  },
+  {
+    "id": "kator-bar-stool",
+    "bytes": 97984
+  },
+  {
+    "id": "kator-bench",
+    "bytes": 16556
+  },
+  {
+    "id": "kator-dining-chair",
+    "bytes": 31936
+  },
+  {
+    "id": "kator-folding-table",
+    "bytes": 105260
+  },
+  {
+    "id": "kator-glass-dining-table",
+    "bytes": 15328
+  },
+  {
+    "id": "kator-utility-shelving",
+    "bytes": 971144
+  },
+  {
+    "id": "kator-mid-century-bench-sofa",
+    "bytes": 221968
+  },
+  {
+    "id": "kator-mid-century-sofa",
+    "bytes": 102664
+  },
+  {
+    "id": "kator-office-chair",
+    "bytes": 472380
+  },
+  {
+    "id": "kator-custom-desk",
+    "bytes": 56172
+  },
+  {
+    "id": "kator-filing-cabinet",
+    "bytes": 22088
+  },
+  {
+    "id": "kator-full-bookcase",
+    "bytes": 312768
+  },
+  {
+    "id": "kator-propane-stove",
+    "bytes": 140632
+  },
+  {
+    "id": "kator-showerCurtain",
+    "bytes": 27488
+  },
+  {
+    "id": "kator-showerHeadAndFaucet",
+    "bytes": 313100
+  },
+  {
+    "id": "blend0-armchair",
+    "bytes": 236292
+  },
+  {
+    "id": "blend0-bed1",
+    "bytes": 812840
+  },
+  {
+    "id": "blend0-bed2",
+    "bytes": 540840
+  },
+  {
+    "id": "blend0-bedsideTable2",
+    "bytes": 39300
+  },
+  {
+    "id": "blend0-bedWithTexture",
+    "bytes": 957480
+  },
+  {
+    "id": "blend0-bookcase",
+    "bytes": 125248
+  },
+  {
+    "id": "blend0-desklamp",
+    "bytes": 73840
+  },
+  {
+    "id": "blend0-doubleOven",
+    "bytes": 604932
+  },
+  {
+    "id": "blend0-kitchenaid",
+    "bytes": 1164516
+  },
+  {
+    "id": "blend0-L_shaped_sofa",
+    "bytes": 1040004
+  },
+  {
+    "id": "blend0-led_tv",
+    "bytes": 640592
+  },
+  {
+    "id": "blend0-oakChair",
+    "bytes": 832340
+  },
+  {
+    "id": "blend0-oakTable",
+    "bytes": 192780
+  },
+  {
+    "id": "blend0-oven",
+    "bytes": 417124
+  },
+  {
+    "id": "blend0-plasticChair",
+    "bytes": 286604
+  },
+  {
+    "id": "blend0-poolTable",
+    "bytes": 1254784
+  },
+  {
+    "id": "blend0-radiator1",
+    "bytes": 219576
+  },
+  {
+    "id": "blend0-radiator2",
+    "bytes": 141276
+  },
+  {
+    "id": "blend0-radiator",
+    "bytes": 806996
+  },
+  {
+    "id": "blend0-relaxChair",
+    "bytes": 999076
+  },
+  {
+    "id": "blend0-shelves",
+    "bytes": 72852
+  },
+  {
+    "id": "blend0-shower",
+    "bytes": 97936
+  },
+  {
+    "id": "blend0-showerDoor",
+    "bytes": 41176
+  },
+  {
+    "id": "blend0-silla2",
+    "bytes": 148628
+  },
+  {
+    "id": "blend0-speaker2",
+    "bytes": 427156
+  },
+  {
+    "id": "blend0-speaker3",
+    "bytes": 394416
+  },
+  {
+    "id": "blend0-stool",
+    "bytes": 188068
+  },
+  {
+    "id": "blend0-table_football",
+    "bytes": 734772
+  },
+  {
+    "id": "blend0-tableFan",
+    "bytes": 1080632
+  },
+  {
+    "id": "blend0-tableWithTablecloth",
+    "bytes": 101560
+  },
+  {
+    "id": "blend0-technicalTable1",
+    "bytes": 46884
+  },
+  {
+    "id": "blend0-technicalTable2",
+    "bytes": 78160
+  },
+  {
+    "id": "blend0-televisionCabinet",
+    "bytes": 650672
+  },
+  {
+    "id": "blend0-toiletsUnit",
+    "bytes": 372808
+  },
+  {
+    "id": "blend0-verticalShelves",
+    "bytes": 75464
+  },
+  {
+    "id": "blend0-washbasin",
+    "bytes": 899152
+  },
+  {
+    "id": "blend0-deckChair",
+    "bytes": 77040
+  },
+  {
+    "id": "blend0-sofa",
+    "bytes": 312084
+  },
+  {
+    "id": "blend0-wardrobeWithSlidingDoors",
+    "bytes": 58112
+  },
+  {
+    "id": "blend0-cupboard",
+    "bytes": 176072
+  },
+  {
+    "id": "blend0-desk",
+    "bytes": 104676
+  },
+  {
+    "id": "blend0-sillaBlanca",
+    "bytes": 113164
+  },
+  {
+    "id": "blend0-armchair2",
+    "bytes": 125800
+  },
+  {
+    "id": "blend0-babyRockingBed",
+    "bytes": 842772
+  },
+  {
+    "id": "blend0-bed3",
+    "bytes": 709356
+  },
+  {
+    "id": "blend0-ceilingFan",
+    "bytes": 304796
+  },
+  {
+    "id": "blend0-chair",
+    "bytes": 279556
+  },
+  {
+    "id": "blend0-couch",
+    "bytes": 694612
+  },
+  {
+    "id": "blend0-modernArmchair",
+    "bytes": 290848
+  },
+  {
+    "id": "blend0-riggedFan",
+    "bytes": 893612
+  },
+  {
+    "id": "blend0-antiqueChair",
+    "bytes": 314680
+  },
+  {
+    "id": "blend0-bench",
+    "bytes": 106156
+  },
+  {
+    "id": "blend0-chairWithCushion",
+    "bytes": 401664
+  },
+  {
+    "id": "blend0-couch2",
+    "bytes": 126628
+  },
+  {
+    "id": "blend0-chair2",
+    "bytes": 83840
+  },
+  {
+    "id": "blend0-foldingChair",
+    "bytes": 65120
+  },
+  {
+    "id": "blend0-lamp2",
+    "bytes": 227460
+  },
+  {
+    "id": "blend0-osakaChair",
+    "bytes": 83936
+  },
+  {
+    "id": "blend0-radiator3",
+    "bytes": 517780
+  },
+  {
+    "id": "blend0-refrigerator",
+    "bytes": 569988
+  },
+  {
+    "id": "blend0-showerStall",
+    "bytes": 446620
+  },
+  {
+    "id": "blend0-sofa2",
+    "bytes": 213392
+  },
+  {
+    "id": "blend0-table",
+    "bytes": 160552
+  },
+  {
+    "id": "blend0-winchesterArmchair",
+    "bytes": 330952
+  },
+  {
+    "id": "blend0-winchesterSofa",
+    "bytes": 532660
+  },
+  {
+    "id": "blend0-designChair",
+    "bytes": 140588
+  },
+  {
+    "id": "blend0-drawersCabinet",
+    "bytes": 113384
+  },
+  {
+    "id": "blend0-glassDoorCabinet",
+    "bytes": 46652
+  },
+  {
+    "id": "blend0-highCabinet",
+    "bytes": 481776
+  },
+  {
+    "id": "blend0-largeFridge",
+    "bytes": 168640
+  },
+  {
+    "id": "blend0-lbDesk",
+    "bytes": 287764
+  },
+  {
+    "id": "blend0-lowerCabinet",
+    "bytes": 103716
+  },
+  {
+    "id": "blend0-lowerCornerCabinet",
+    "bytes": 102800
+  },
+  {
+    "id": "blend0-outdoorLamp",
+    "bytes": 42404
+  },
+  {
+    "id": "blend0-pianoBench",
+    "bytes": 382272
+  },
+  {
+    "id": "blend0-rangeHood",
+    "bytes": 138000
+  },
+  {
+    "id": "blend0-sinkCabinet2",
+    "bytes": 319156
+  },
+  {
+    "id": "blend0-smallUpperCabinet",
+    "bytes": 149156
+  },
+  {
+    "id": "blend0-stool2",
+    "bytes": 104128
+  },
+  {
+    "id": "blend0-stove",
+    "bytes": 250012
+  },
+  {
+    "id": "blend0-thonet",
+    "bytes": 170220
+  },
+  {
+    "id": "blend0-upperCabinet",
+    "bytes": 41168
+  },
+  {
+    "id": "blend0-upperCornerCabinet",
+    "bytes": 67968
+  },
+  {
+    "id": "blend0-upperShelves",
+    "bytes": 30580
+  },
+  {
+    "id": "blendby-bath_jay_hardy",
+    "bytes": 1175144
+  },
+  {
+    "id": "blendby-bathroomRadiator",
+    "bytes": 216932
+  },
+  {
+    "id": "blendby-bedsideTable",
+    "bytes": 44128
+  },
+  {
+    "id": "blendby-biurko3",
+    "bytes": 595872
+  },
+  {
+    "id": "blendby-boiler",
+    "bytes": 214616
+  },
+  {
+    "id": "blendby-bunkBed",
+    "bytes": 1042796
+  },
+  {
+    "id": "blendby-cafe_set_mota_chair",
+    "bytes": 112652
+  },
+  {
+    "id": "blendby-cafe_set_mota_table",
+    "bytes": 92160
+  },
+  {
+    "id": "blendby-cafe_set_tonon_chair",
+    "bytes": 210636
+  },
+  {
+    "id": "blendby-cafe_set_tonon_table",
+    "bytes": 63892
+  },
+  {
+    "id": "blendby-chair_deck",
+    "bytes": 61252
+  },
+  {
+    "id": "blendby-chairWithCushion",
+    "bytes": 446852
+  },
+  {
+    "id": "blendby-childChair",
+    "bytes": 79744
+  },
+  {
+    "id": "blendby-coffeeTable",
+    "bytes": 11248
+  },
+  {
+    "id": "blendby-cornerSofa",
+    "bytes": 448088
+  },
+  {
+    "id": "blendby-ella_chair_f",
+    "bytes": 359120
+  },
+  {
+    "id": "blendby-green_stool",
+    "bytes": 186120
+  },
+  {
+    "id": "blendby-hood",
+    "bytes": 17040
+  },
+  {
+    "id": "blendby-juniorBed",
+    "bytes": 432592
+  },
+  {
+    "id": "blendby-kitchenblender",
+    "bytes": 1980372
+  },
+  {
+    "id": "blendby-kitchenDrawersCabinet",
+    "bytes": 252304
+  },
+  {
+    "id": "blendby-kitchenLowerCabinet",
+    "bytes": 83944
+  },
+  {
+    "id": "blendby-kitchenSink",
+    "bytes": 303740
+  },
+  {
+    "id": "blendby-kitchenSmallLowerCabinet",
+    "bytes": 61020
+  },
+  {
+    "id": "blendby-kitchenSmallUpperCabinet",
+    "bytes": 38700
+  },
+  {
+    "id": "blendby-kitchenUpperCabinet",
+    "bytes": 50500
+  },
+  {
+    "id": "blendby-largeStove",
+    "bytes": 1386112
+  },
+  {
+    "id": "blendby-leaf_chair",
+    "bytes": 282284
+  },
+  {
+    "id": "blendby-microwave",
+    "bytes": 617216
+  },
+  {
+    "id": "blendby-poolLounge",
+    "bytes": 267456
+  },
+  {
+    "id": "blendby-simpleDesk",
+    "bytes": 28008
+  },
+  {
+    "id": "blendby-table",
+    "bytes": 50620
+  },
+  {
+    "id": "blendby-toilets_unit_jay_hardy",
+    "bytes": 568972
+  },
+  {
+    "id": "blendby-wardrobe",
+    "bytes": 77104
+  },
+  {
+    "id": "blendby-washbasin_jay_hardy",
+    "bytes": 502240
+  },
+  {
+    "id": "blendby-washing_machine",
+    "bytes": 156100
+  },
+  {
+    "id": "blendby-wheelchair",
+    "bytes": 1053020
+  },
+  {
+    "id": "blendby-kitchenGlassDoorCabinet",
+    "bytes": 45304
+  },
+  {
+    "id": "blendby-lettoCloud",
+    "bytes": 1138260
+  },
+  {
+    "id": "blendby-officeTable",
+    "bytes": 197324
+  },
+  {
+    "id": "blendby-sofa2",
+    "bytes": 279848
+  },
+  {
+    "id": "blendby-tvStand",
+    "bytes": 43144
+  },
+  {
+    "id": "blendby-armchair1",
+    "bytes": 163440
+  },
+  {
+    "id": "blendby-espressokettle",
+    "bytes": 718748
+  },
+  {
+    "id": "blendby-fotel",
+    "bytes": 123728
+  },
+  {
+    "id": "blendby-lamp",
+    "bytes": 277192
+  },
+  {
+    "id": "blendby-foldingChair",
+    "bytes": 1526964
+  },
+  {
+    "id": "blendby-modernRadiator",
+    "bytes": 366636
+  },
+  {
+    "id": "blendby-plaidChair",
+    "bytes": 146292
+  },
+  {
+    "id": "blendby-radiatorAndTowels",
+    "bytes": 611024
+  },
+  {
+    "id": "blendby-workbench",
+    "bytes": 152132
+  },
+  {
+    "id": "blendby-sofa3",
+    "bytes": 804440
+  },
+  {
+    "id": "blendby-armChair2",
+    "bytes": 119456
+  },
+  {
+    "id": "blendby-bookcase",
+    "bytes": 145780
+  },
+  {
+    "id": "blendby-kitchenChair",
+    "bytes": 173988
+  },
+  {
+    "id": "blendby-campingLamp",
+    "bytes": 138548
+  },
+  {
+    "id": "blendby-chair3",
+    "bytes": 49788
+  },
+  {
+    "id": "blendby-chair4",
+    "bytes": 311048
+  },
+  {
+    "id": "blendby-couch3",
+    "bytes": 428644
+  },
+  {
+    "id": "blendby-dresserWithDrawers",
+    "bytes": 199468
+  },
+  {
+    "id": "blendby-modernToilet",
+    "bytes": 322292
+  },
+  {
+    "id": "blendby-wardrobe2",
+    "bytes": 53192
+  }
+]

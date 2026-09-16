@@ -1,0 +1,37 @@
+<div class="library-heading"><strong>家具 · 家电</strong><span>{{stockCount()}} 款</span></div>
+<label class="library-search"><span aria-hidden="true">⌕</span><input type="search" aria-label="搜索家具" placeholder="名称、货号、类型或风格" [value]="query()" (input)="queryInput($event)"></label>
+<div class="categories" aria-label="家具分类">@for(c of categories();track c){<button [class.active]="category()===c" [attr.aria-pressed]="category()===c" (click)="categorySelect(c)">{{c}}</button>}</div>
+<div class="library-filters">
+ <label>类型<select aria-label="家具类型" [value]="type()" (change)="filter('type',$event)">@for(t of typeOptions();track t){<option [value]="t">{{t}}</option>}</select></label>
+ <label>品牌 / 来源<select aria-label="家具品牌" [value]="brand()" (change)="filter('brand',$event)">@for(b of brands();track b){<option [value]="b">{{b}}</option>}</select></label>
+ <label>最大宽度 / cm<input type="number" aria-label="家具最大宽度" min="0" step="10" placeholder="不限" [value]="width()||''" (input)="setWidth($event)"></label>
+</div>
+<details class="library-styles" open><summary>风格 <small>{{styles().length?'已选 '+styles().length:'不限'}}</small></summary><div role="group" aria-label="家具风格">@for(s of styleOptions();track s){<button [class.active]="styles().includes(s)" [attr.aria-pressed]="styles().includes(s)" (click)="toggleStyle(s)">{{s}}</button>}</div></details>
+<div class="library-results" aria-live="polite"><span>{{filtered().length}} 款符合条件</span><button (click)="clear()">清空筛选</button></div>
+<div class="catalog-grid">@for(item of visible();track item.id){
+ <article class="library-item"><button class="catalog-card" [draggable]="enabled()" (dragstart)="drag($event,item)" (click)="add.emit({id:item.id})" [disabled]="!enabled()" [attr.aria-label]="'添加'+item.name" [attr.data-catalog-id]="item.id">
+  <div class="library-thumbnail">@if(item.image){<img [src]="item.image" alt="" loading="lazy" decoding="async" width="192" height="150" referrerpolicy="no-referrer" (error)="imageError($event)">}<span>模型实景</span></div>
+  <strong [title]="item.name">{{item.name}}</strong><small>{{item.brand}} @if(item.variants && item.variants.length>1){ · {{item.variants.length}} 个选项}</small>
+  <div class="library-tags">@for(t of (item.typeTags??[]).slice(0,1);track t){<span>{{t}}</span>}@for(s of (item.styleTags??[]).slice(0,2);track s){<span class="style-tag">{{s}}</span>}</div>
+  <span>{{item.size}} <b>＋</b></span>
+ </button><button class="library-details" (click)="detail(item)" [attr.aria-label]="'查看'+item.name+'详情'">尺寸与来源 ↗</button></article>
+}</div>
+@if(!filtered().length){<p class="library-empty">没有符合条件的家具。试试放宽类型、风格或尺寸筛选。</p>}
+<nav class="library-pagination" aria-label="家具分页"><button (click)="turn(-1)" [disabled]="page()===0">上一页</button><span>{{page()+1}} / {{pageCount()}}</span><button (click)="turn(1)" [disabled]="page()>=pageCount()-1">下一页</button></nav>
+<p class="library-footnote">同款颜色合并。尺寸顺序：宽 × 深 × 高。<a href="library/ATTRIBUTION.html" target="_blank" rel="noopener">来源与模型说明</a></p>
+<dialog #details class="library-dialog" (cancel)="selected.set(null)">
+ @if(selected();as item){
+  <button class="dialog-close" aria-label="关闭家具详情" (click)="close()">×</button><h2>{{item.name}}</h2>
+  @if(preview()){<furniture-preview [item]="item"/><button class="library-details" (click)="preview.set(false)">返回模型截图</button>}
+  @else{ @if(item.image){<img class="library-detail-image" [src]="item.image" [alt]="item.name" referrerpolicy="no-referrer" (error)="imageError($event)">}<button class="library-details" (click)="preview.set(true)">查看三维模型 ↻</button> }
+  <div class="library-tags">@for(tag of item.typeTags;track tag){<span>{{tag}}</span>}@for(tag of item.styleTags;track tag){<span class="style-tag">{{tag}}</span>}</div>
+  <p class="library-dimensions">{{item.size}}<small>宽 × 深 × 高 · {{item.precision??'方案定制尺寸'}}</small></p>
+  <p>{{item.quality}}。图片直接渲染自放入房间的同一个模型。</p>
+  @if(item.constructionDetails?.length){<ul class="construction-details">@for(detail of item.constructionDetails;track detail){<li>{{detail}}</li>}</ul>}
+  @if(item.variants?.length){<label>配色<select aria-label="家具配色选项" [value]="variant()" (change)="variant.set(+$any($event.target).value)">@for(v of item.variants;track v.article){<option [value]="$index">{{v.name}} · {{v.article}}</option>}</select></label>}
+  @if(item.source){<p><a [href]="item.source" target="_blank" rel="noopener noreferrer">查看商品 / 模型来源 ↗</a></p>}
+  <p class="library-credit">{{item.creator}}<br>{{item.license}}</p>
+  @if(item.licenseFile){<p><a [href]="item.licenseFile" target="_blank" rel="noopener">作者原始许可与署名 ↗</a></p>}
+  <button class="header-button filled" [disabled]="!enabled()" (click)="addDetail()">添加到房间</button>
+ }
+</dialog>

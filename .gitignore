@@ -1,4 +1,73 @@
+# 依赖、构建产物与工具缓存（也适用于子目录）
 node_modules/
 .angular/
 dist/
+out-tsc/
+.cache/
+*.tsbuildinfo
+
+# 自动化测试输出；tests/fixtures/ 和 docs/ 中整理后的交付资料保留
 test-results/
+playwright-report/
+blob-report/
+coverage/
+.nyc_output/
+playwright/.cache/
+playwright/.auth/
+
+# 本机装修草稿、MCP 客户端配置与环境变量；配置模板保留
+/.home-designs/
+/mcp/client-config.json
+/mcp/client-config.local.json
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
+!.env.*.example
+!.env.*.sample
+!.env.*.template
+
+# 独立发布时复制的旧项目副本；主项目源码与部署配置保留
+/facade-release/
+
+# 可重新下载或提取的素材缓存，不是网页运行时资源
+/catalog-source/*.zip
+/catalog-source/*.download
+/catalog-source/search-*.json
+/catalog-source/measurements/
+/catalog-source/open-obj/
+/catalog-source/scopia-obj/
+/catalog-source/polyhaven/
+/catalog-source/polyhaven-*.json
+# 保留资源清单及选型记录，供素材处理脚本复现使用
+!/catalog-source/polyhaven-assets.json
+!/catalog-source/polyhaven-textures.json
+!/catalog-source/polyhaven-selected.json
+
+# 已下架资源的本地归档，以及从 TypeScript 临时转译的模块
+/catalog-source/retired-assets/
+/catalog-source/retired-thumbnails/
+/catalog-source/legacy-metadata.cjs
+/catalog-source/finish-presets.cjs
+
+# Python 环境与字节码，Blender 自动备份（原创 .blend 文件保留）
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.blend[0-9]*
+
+# 日志、临时文件和操作系统元数据
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# 不忽略 public/：其中的 GLB、材质、预览、许可和示例随网站发布。
+# 不忽略 catalog-source/authored/*.blend、选型 JSON、tools/ 和 package-lock.json。

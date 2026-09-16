@@ -1,0 +1,22 @@
+{
+  "created": [
+    "local-9af90708-c7bb-42ac-a041-152777f14a71",
+    "local-3f16745b-8f35-4de8-965d-652e2b1250f4",
+    "local-78c8d1c6-c279-4986-998c-a24fdccecdfe"
+  ],
+  "counts": [
+    23,
+    23,
+    20
+  ],
+  "errors": [],
+  "checks": [
+    "three MCP designs rendered",
+    "JSON metadata",
+    "reload persistence",
+    "independent designs",
+    "current analysis",
+    "roaming",
+    "mobile dialog"
+  ]
+}

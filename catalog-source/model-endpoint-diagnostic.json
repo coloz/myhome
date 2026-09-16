@@ -1,0 +1,21 @@
+{
+  "url": "https://web-api.ikea.com/cn/zh/rotera/data/model/70509033/",
+  "status": 403,
+  "headers": {
+    "Date": "Tue, 15 Sep 2026 17:35:08 GMT",
+    "Content-Type": "text/plain; charset=UTF-8",
+    "Content-Length": "17",
+    "Connection": "close",
+    "CF-Ray": "a3b962dcdd1b3eb0-HKG",
+    "CF-Cache-Status": "DYNAMIC",
+    "Cache-Control": "private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+    "Expires": "Thu, 01 Jan 1970 00:00:01 GMT",
+    "Server": "cloudflare",
+    "debug": "rules_seen: 234 rules_executed: 24 behaviors: 9 warm: true",
+    "Akamai-GRN": "a3b962dcdd1b3eb0",
+    "Referrer-Policy": "same-origin",
+    "X-Frame-Options": "SAMEORIGIN",
+    "Server-Timing": "cfCacheStatus;desc=\"DYNAMIC\""
+  },
+  "body": "error code: 1010\n"
+}

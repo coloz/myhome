@@ -1,6 +1,6 @@
 {
   "version": "2026-09-15-raw-shell",
-  "revision": 6,
+  "revision": 7,
   "height": 3,
   "defaultDecorated": false,
   "rooms": [
@@ -972,7 +972,7 @@
           "start": 0,
           "end": 0.09801714032956055,
           "bottom": 0.5,
-          "top": 2.8,
+          "top": 2.45,
           "kind": "window"
         }
       ],
@@ -1000,7 +1000,7 @@
           "start": 0,
           "end": 0.09801714032956135,
           "bottom": 0.5,
-          "top": 2.8,
+          "top": 2.45,
           "kind": "window"
         }
       ],
@@ -1028,7 +1028,7 @@
           "start": 0,
           "end": 0.0980171403295594,
           "bottom": 0.5,
-          "top": 2.8,
+          "top": 2.45,
           "kind": "window"
         }
       ],
@@ -1056,7 +1056,7 @@
           "start": 0,
           "end": 0.09801714032956076,
           "bottom": 0.5,
-          "top": 2.8,
+          "top": 2.45,
           "kind": "window"
         }
       ],
@@ -1084,7 +1084,7 @@
           "start": 0,
           "end": 0.09801714032956076,
           "bottom": 0.5,
-          "top": 2.8,
+          "top": 2.45,
           "kind": "window"
         }
       ],
@@ -1112,7 +1112,7 @@
           "start": 0,
           "end": 0.0980171403295594,
           "bottom": 0.5,
-          "top": 2.8,
+          "top": 2.45,
           "kind": "window"
         }
       ],
@@ -1140,7 +1140,7 @@
           "start": 0,
           "end": 0.09801714032956135,
           "bottom": 0.5,
-          "top": 2.8,
+          "top": 2.45,
           "kind": "window"
         }
       ],
@@ -1168,7 +1168,7 @@
           "start": 0,
           "end": 0.09801714032956055,
           "bottom": 0.5,
-          "top": 2.8,
+          "top": 2.45,
           "kind": "window"
         }
       ],
@@ -1193,10 +1193,10 @@
       "lock": "exterior",
       "openings": [
         {
-          "start": 0.05,
+          "start": 0.45,
           "end": 2.5,
           "bottom": 0.5,
-          "top": 2.8,
+          "top": 2.45,
           "kind": "window"
         }
       ],
@@ -1221,10 +1221,10 @@
       "lock": "exterior",
       "openings": [
         {
-          "start": 0.18,
-          "end": 2.95,
+          "start": 0.55,
+          "end": 2.45,
           "bottom": 0.5,
-          "top": 2.8,
+          "top": 2.45,
           "kind": "window"
         }
       ],
@@ -2100,21 +2100,22 @@
     "span": 15
   },
   "stats": {
-    "bytes": 538916,
-    "exportGroups": 274
+    "bytes": 1323192,
+    "exportGroups": 273
   },
-  "scaleNote": "外围按标注尺寸建模；内墙定位、门洞宽度和弧角半径按图估算。护栏暂按1.2m；窗顶暂按2.8m。",
+  "scaleNote": "外围按标注尺寸建模；内墙定位、门洞宽度和弧角半径按图估算。护栏暂按1.2m；落地窗顶暂按2.8m，次卧窗顶暂按2.45m。",
   "assumptions": [
     "玻璃护栏高1.2米",
-    "落地窗及次卧窗顶2.8米",
+    "落地窗顶2.8米；次卧窗顶2.45米",
     "黑色墙体与外围墙按图锁定",
     "门洞及细部尺寸依图估算，模型并非施工图",
     "客卫北窗宽1米，窗台1.4米，窗顶2.6米，按用户补充补建，尺寸暂估",
     "用户确认入户门两侧及光厅与客卫相邻墙体不可拆改，设为固定墙体并保留原门洞",
     "原户型主卫左侧为完整隔墙，下侧整段敞开；旧方案中主动改造过的隔墙保留",
-    "客厅南侧两端为通高实墙，每端暂按原图比例估算0.5米；中央落地窗洞口宽6米，整体外墙仍锁定"
+    "客厅南侧两端为通高实墙，每端暂按原图比例估算0.5米；中央落地窗洞口宽6米，整体外墙仍锁定",
+    "按实拍比例缩小次卧窗：次卧二直窗1.90米，次卧一直窗2.05米并接原弧窗；保留0.50米窗台，窗顶暂按2.45米。细部尺寸为照片估算。"
   ],
-  "visualRevision": "2026-09-15-curved-glass",
+  "visualRevision": "2026-09-16-photo-windows-v2",
   "layoutUpdate": {
     "fromRevision": 1,
     "fromRevisions": [
@@ -2122,7 +2123,8 @@
       2,
       3,
       4,
-      5
+      5,
+      6
     ],
     "previousOriginalIds": [],
     "additions": [],
@@ -2571,7 +2573,657 @@
           ],
           "deleted": false
         }
+      },
+      {
+        "before": {
+          "id": "bed-curve-0",
+          "name": "次卧一弧形窗",
+          "a": [
+            9.85,
+            -9.85
+          ],
+          "b": [
+            9.840392640201614,
+            -9.947545161008064
+          ],
+          "thickness": 0.18,
+          "height": 3,
+          "rooms": [
+            "bed-east"
+          ],
+          "lock": "exterior",
+          "openings": [
+            {
+              "start": 0,
+              "end": 0.09801714032956055,
+              "bottom": 0.5,
+              "top": 2.8,
+              "kind": "window"
+            }
+          ],
+          "deleted": false
+        },
+        "after": {
+          "id": "bed-curve-0",
+          "name": "次卧一弧形窗",
+          "a": [
+            9.85,
+            -9.85
+          ],
+          "b": [
+            9.840392640201614,
+            -9.947545161008064
+          ],
+          "thickness": 0.18,
+          "height": 3,
+          "rooms": [
+            "bed-east"
+          ],
+          "lock": "exterior",
+          "openings": [
+            {
+              "start": 0,
+              "end": 0.09801714032956055,
+              "bottom": 0.5,
+              "top": 2.45,
+              "kind": "window"
+            }
+          ],
+          "deleted": false
+        }
+      },
+      {
+        "before": {
+          "id": "bed-curve-1",
+          "name": "次卧一弧形窗",
+          "a": [
+            9.840392640201614,
+            -9.947545161008064
+          ],
+          "b": [
+            9.811939766255643,
+            -10.041341716182545
+          ],
+          "thickness": 0.18,
+          "height": 3,
+          "rooms": [
+            "bed-east"
+          ],
+          "lock": "exterior",
+          "openings": [
+            {
+              "start": 0,
+              "end": 0.09801714032956135,
+              "bottom": 0.5,
+              "top": 2.8,
+              "kind": "window"
+            }
+          ],
+          "deleted": false
+        },
+        "after": {
+          "id": "bed-curve-1",
+          "name": "次卧一弧形窗",
+          "a": [
+            9.840392640201614,
+            -9.947545161008064
+          ],
+          "b": [
+            9.811939766255643,
+            -10.041341716182545
+          ],
+          "thickness": 0.18,
+          "height": 3,
+          "rooms": [
+            "bed-east"
+          ],
+          "lock": "exterior",
+          "openings": [
+            {
+              "start": 0,
+              "end": 0.09801714032956135,
+              "bottom": 0.5,
+              "top": 2.45,
+              "kind": "window"
+            }
+          ],
+          "deleted": false
+        }
+      },
+      {
+        "before": {
+          "id": "bed-curve-2",
+          "name": "次卧一弧形窗",
+          "a": [
+            9.811939766255643,
+            -10.041341716182545
+          ],
+          "b": [
+            9.765734806151272,
+            -10.1277851165098
+          ],
+          "thickness": 0.18,
+          "height": 3,
+          "rooms": [
+            "bed-east"
+          ],
+          "lock": "exterior",
+          "openings": [
+            {
+              "start": 0,
+              "end": 0.0980171403295594,
+              "bottom": 0.5,
+              "top": 2.8,
+              "kind": "window"
+            }
+          ],
+          "deleted": false
+        },
+        "after": {
+          "id": "bed-curve-2",
+          "name": "次卧一弧形窗",
+          "a": [
+            9.811939766255643,
+            -10.041341716182545
+          ],
+          "b": [
+            9.765734806151272,
+            -10.1277851165098
+          ],
+          "thickness": 0.18,
+          "height": 3,
+          "rooms": [
+            "bed-east"
+          ],
+          "lock": "exterior",
+          "openings": [
+            {
+              "start": 0,
+              "end": 0.0980171403295594,
+              "bottom": 0.5,
+              "top": 2.45,
+              "kind": "window"
+            }
+          ],
+          "deleted": false
+        }
+      },
+      {
+        "before": {
+          "id": "bed-curve-3",
+          "name": "次卧一弧形窗",
+          "a": [
+            9.765734806151272,
+            -10.1277851165098
+          ],
+          "b": [
+            9.703553390593273,
+            -10.203553390593273
+          ],
+          "thickness": 0.18,
+          "height": 3,
+          "rooms": [
+            "bed-east"
+          ],
+          "lock": "exterior",
+          "openings": [
+            {
+              "start": 0,
+              "end": 0.09801714032956076,
+              "bottom": 0.5,
+              "top": 2.8,
+              "kind": "window"
+            }
+          ],
+          "deleted": false
+        },
+        "after": {
+          "id": "bed-curve-3",
+          "name": "次卧一弧形窗",
+          "a": [
+            9.765734806151272,
+            -10.1277851165098
+          ],
+          "b": [
+            9.703553390593273,
+            -10.203553390593273
+          ],
+          "thickness": 0.18,
+          "height": 3,
+          "rooms": [
+            "bed-east"
+          ],
+          "lock": "exterior",
+          "openings": [
+            {
+              "start": 0,
+              "end": 0.09801714032956076,
+              "bottom": 0.5,
+              "top": 2.45,
+              "kind": "window"
+            }
+          ],
+          "deleted": false
+        }
+      },
+      {
+        "before": {
+          "id": "bed-curve-4",
+          "name": "次卧一弧形窗",
+          "a": [
+            9.703553390593273,
+            -10.203553390593273
+          ],
+          "b": [
+            9.6277851165098,
+            -10.265734806151272
+          ],
+          "thickness": 0.18,
+          "height": 3,
+          "rooms": [
+            "bed-east"
+          ],
+          "lock": "exterior",
+          "openings": [
+            {
+              "start": 0,
+              "end": 0.09801714032956076,
+              "bottom": 0.5,
+              "top": 2.8,
+              "kind": "window"
+            }
+          ],
+          "deleted": false
+        },
+        "after": {
+          "id": "bed-curve-4",
+          "name": "次卧一弧形窗",
+          "a": [
+            9.703553390593273,
+            -10.203553390593273
+          ],
+          "b": [
+            9.6277851165098,
+            -10.265734806151272
+          ],
+          "thickness": 0.18,
+          "height": 3,
+          "rooms": [
+            "bed-east"
+          ],
+          "lock": "exterior",
+          "openings": [
+            {
+              "start": 0,
+              "end": 0.09801714032956076,
+              "bottom": 0.5,
+              "top": 2.45,
+              "kind": "window"
+            }
+          ],
+          "deleted": false
+        }
+      },
+      {
+        "before": {
+          "id": "bed-curve-5",
+          "name": "次卧一弧形窗",
+          "a": [
+            9.6277851165098,
+            -10.265734806151272
+          ],
+          "b": [
+            9.541341716182545,
+            -10.311939766255643
+          ],
+          "thickness": 0.18,
+          "height": 3,
+          "rooms": [
+            "bed-east"
+          ],
+          "lock": "exterior",
+          "openings": [
+            {
+              "start": 0,
+              "end": 0.0980171403295594,
+              "bottom": 0.5,
+              "top": 2.8,
+              "kind": "window"
+            }
+          ],
+          "deleted": false
+        },
+        "after": {
+          "id": "bed-curve-5",
+          "name": "次卧一弧形窗",
+          "a": [
+            9.6277851165098,
+            -10.265734806151272
+          ],
+          "b": [
+            9.541341716182545,
+            -10.311939766255643
+          ],
+          "thickness": 0.18,
+          "height": 3,
+          "rooms": [
+            "bed-east"
+          ],
+          "lock": "exterior",
+          "openings": [
+            {
+              "start": 0,
+              "end": 0.0980171403295594,
+              "bottom": 0.5,
+              "top": 2.45,
+              "kind": "window"
+            }
+          ],
+          "deleted": false
+        }
+      },
+      {
+        "before": {
+          "id": "bed-curve-6",
+          "name": "次卧一弧形窗",
+          "a": [
+            9.541341716182545,
+            -10.311939766255643
+          ],
+          "b": [
+            9.447545161008064,
+            -10.340392640201614
+          ],
+          "thickness": 0.18,
+          "height": 3,
+          "rooms": [
+            "bed-east"
+          ],
+          "lock": "exterior",
+          "openings": [
+            {
+              "start": 0,
+              "end": 0.09801714032956135,
+              "bottom": 0.5,
+              "top": 2.8,
+              "kind": "window"
+            }
+          ],
+          "deleted": false
+        },
+        "after": {
+          "id": "bed-curve-6",
+          "name": "次卧一弧形窗",
+          "a": [
+            9.541341716182545,
+            -10.311939766255643
+          ],
+          "b": [
+            9.447545161008064,
+            -10.340392640201614
+          ],
+          "thickness": 0.18,
+          "height": 3,
+          "rooms": [
+            "bed-east"
+          ],
+          "lock": "exterior",
+          "openings": [
+            {
+              "start": 0,
+              "end": 0.09801714032956135,
+              "bottom": 0.5,
+              "top": 2.45,
+              "kind": "window"
+            }
+          ],
+          "deleted": false
+        }
+      },
+      {
+        "before": {
+          "id": "bed-curve-7",
+          "name": "次卧一弧形窗",
+          "a": [
+            9.447545161008064,
+            -10.340392640201614
+          ],
+          "b": [
+            9.35,
+            -10.35
+          ],
+          "thickness": 0.18,
+          "height": 3,
+          "rooms": [
+            "bed-east"
+          ],
+          "lock": "exterior",
+          "openings": [
+            {
+              "start": 0,
+              "end": 0.09801714032956055,
+              "bottom": 0.5,
+              "top": 2.8,
+              "kind": "window"
+            }
+          ],
+          "deleted": false
+        },
+        "after": {
+          "id": "bed-curve-7",
+          "name": "次卧一弧形窗",
+          "a": [
+            9.447545161008064,
+            -10.340392640201614
+          ],
+          "b": [
+            9.35,
+            -10.35
+          ],
+          "thickness": 0.18,
+          "height": 3,
+          "rooms": [
+            "bed-east"
+          ],
+          "lock": "exterior",
+          "openings": [
+            {
+              "start": 0,
+              "end": 0.09801714032956055,
+              "bottom": 0.5,
+              "top": 2.45,
+              "kind": "window"
+            }
+          ],
+          "deleted": false
+        }
+      },
+      {
+        "before": {
+          "id": "east-bedroom-north",
+          "name": "次卧一北窗 · 窗台50cm",
+          "a": [
+            6.85,
+            -10.35
+          ],
+          "b": [
+            9.35,
+            -10.35
+          ],
+          "thickness": 0.2,
+          "height": 3,
+          "rooms": [
+            "bed-east"
+          ],
+          "lock": "exterior",
+          "openings": [
+            {
+              "start": 0.05,
+              "end": 2.5,
+              "bottom": 0.5,
+              "top": 2.8,
+              "kind": "window"
+            }
+          ],
+          "deleted": false
+        },
+        "after": {
+          "id": "east-bedroom-north",
+          "name": "次卧一北窗 · 窗台50cm",
+          "a": [
+            6.85,
+            -10.35
+          ],
+          "b": [
+            9.35,
+            -10.35
+          ],
+          "thickness": 0.2,
+          "height": 3,
+          "rooms": [
+            "bed-east"
+          ],
+          "lock": "exterior",
+          "openings": [
+            {
+              "start": 0.45,
+              "end": 2.5,
+              "bottom": 0.5,
+              "top": 2.45,
+              "kind": "window"
+            }
+          ],
+          "deleted": false
+        }
+      },
+      {
+        "before": {
+          "id": "west-bedroom-north",
+          "name": "次卧二北窗 · 窗台50cm",
+          "a": [
+            3.85,
+            -10.35
+          ],
+          "b": [
+            6.85,
+            -10.35
+          ],
+          "thickness": 0.2,
+          "height": 3,
+          "rooms": [
+            "bed-west"
+          ],
+          "lock": "exterior",
+          "openings": [
+            {
+              "start": 0.18,
+              "end": 2.95,
+              "bottom": 0.5,
+              "top": 2.8,
+              "kind": "window"
+            }
+          ],
+          "deleted": false
+        },
+        "after": {
+          "id": "west-bedroom-north",
+          "name": "次卧二北窗 · 窗台50cm",
+          "a": [
+            3.85,
+            -10.35
+          ],
+          "b": [
+            6.85,
+            -10.35
+          ],
+          "thickness": 0.2,
+          "height": 3,
+          "rooms": [
+            "bed-west"
+          ],
+          "lock": "exterior",
+          "openings": [
+            {
+              "start": 0.55,
+              "end": 2.45,
+              "bottom": 0.5,
+              "top": 2.45,
+              "kind": "window"
+            }
+          ],
+          "deleted": false
+        }
       }
+    ]
+  },
+  "livingWindow": {
+    "width": 6.0,
+    "height": 2.8,
+    "divisions": [
+      0.12,
+      0.5,
+      0.88
+    ],
+    "sideTransom": 0.92,
+    "frameColor": "#292724",
+    "glassPanes": 6
+  },
+  "bedroomWindows": [
+    {
+      "room": "master",
+      "width": 2.95,
+      "sill": 0,
+      "top": 2.8,
+      "openingSide": "low",
+      "referenceMirrored": true
+    },
+    {
+      "room": "bed-west",
+      "width": 1.9,
+      "sill": 0.5,
+      "top": 2.45,
+      "openingSide": "high",
+      "referenceMirrored": true
+    },
+    {
+      "room": "bed-east",
+      "width": 2.05,
+      "sill": 0.5,
+      "top": 2.45,
+      "openingSide": "low",
+      "referenceMirrored": true
+    }
+  ],
+  "facade": {
+    "revision": "2026-09-16-photo-windows-v2",
+    "sides": [
+      "north",
+      "south",
+      "east"
+    ],
+    "style": "暖白矿物面、深棕铜色细框、浅出挑横向腰线；厨房南外墙为棕色。保留原有门窗和圆弧玻璃。",
+    "finishIndependent": true,
+    "meshes": 197,
+    "sourceFaces": 440,
+    "hosts": [
+      "bath-east",
+      "bath-north",
+      "bed-curve",
+      "east-bedroom-east",
+      "east-bedroom-north",
+      "guest-bath-north",
+      "kitchen-north",
+      "kitchen-south",
+      "living-south",
+      "master-curve",
+      "master-east",
+      "master-south",
+      "west-bedroom-north"
+    ],
+    "palette": [
+      "#e9e7df",
+      "#67503d",
+      "#80604a"
     ]
   }
 }

@@ -1,0 +1,40 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { mkdtempSync, rmSync, readFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { resolve, sep } from 'node:path';
+import { Client } from '@modelcontextprotocol/sdk/client/index.js';
+import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
+import { workspace } from '../mcp/design-store.mjs';
+test('MCP protocol discovery, prompts, persistence, edits, optimistic conflicts and exports',async()=>{
+  const directory=mkdtempSync(resolve(tmpdir(),'home-mcp-test-'));
+  const client=new Client({name:'home-tests',version:'1.0.0'});
+  const connect=()=>client.connect(new StdioClientTransport({command:process.execPath,args:['--experimental-strip-types',resolve(workspace,'mcp/server.mjs')],cwd:workspace,env:{...process.env,HOME_DESIGN_DIR:directory},stderr:'pipe'}));
+  const raw=(name,args={})=>client.callTool({name,arguments:args});
+  const call=async(name,args={})=>{const r=await raw(name,args);assert(!r.isError,r.content?.[0]?.text);return r.structuredContent;};
+  try{
+    await connect();assert.equal((await client.listTools()).tools.length,14);assert.equal((await client.listPrompts()).prompts.length,3);assert.equal((await client.listResources()).resources.length,3);
+    assert((await client.getPrompt({name:'home_design_brief',arguments:{requirements:'两人居家办公'}})).messages[0].content.text.includes('两人居家办公'));
+    assert((await client.readResource({uri:'home://project'})).contents[0].text.includes('raw-shell'));
+    const created=await call('create_design',{scenario:'work'});let d=(await call('get_design',{id:created.id})).design;
+    assert.equal(d.layout.entities.length,23);const firstStamp=d.updatedAt;
+    const update=await call('update_brief',{id:d.id,expectedUpdatedAt:d.updatedAt,patch:{budget:100000}});assert(update.issues.some(i=>i.code==='budget'));
+    assert((await raw('update_brief',{id:d.id,expectedUpdatedAt:firstStamp,patch:{budget:999999}})).isError);
+    d=(await call('get_design',{id:d.id})).design;assert.equal(d.brief.budget,100000);
+    assert((await raw('add_furniture',{id:d.id,expectedUpdatedAt:d.updatedAt,catalogId:'ph-sofa_02',room:'living',x:-50,z:-50})).isError);
+    assert.equal((await call('get_design',{id:d.id})).design.updatedAt,d.updatedAt);
+    const e=d.layout.entities[0];const removed=await call('remove_furniture',{id:d.id,expectedUpdatedAt:d.updatedAt,entityId:e.id});assert.equal(removed.furnitureCount,22);
+    const restored=await call('restore_furniture',{id:d.id,expectedUpdatedAt:removed.updatedAt,entityId:e.id});assert.equal(restored.furnitureCount,23);
+    const finished=await call('set_room_finish',{id:d.id,expectedUpdatedAt:restored.updatedAt,room:'master',wall:'sage',floor:'oak'});
+    assert((await raw('set_room_finish',{id:d.id,expectedUpdatedAt:finished.updatedAt,room:'garden',wall:'sage',floor:'oak'})).isError);
+    assert((await raw('get_design',{id:'../package'})).isError);
+    const added=await call('add_furniture',{id:d.id,expectedUpdatedAt:finished.updatedAt,catalogId:'ph-side_table_01',room:'living',x:.7,z:-2.7});
+    const moved=await call('update_furniture',{id:d.id,expectedUpdatedAt:added.updatedAt,entityId:added.entityId,room:'living',x:.8,z:-2.6,rotationDegrees:45});
+    assert((await raw('update_furniture',{id:d.id,expectedUpdatedAt:moved.updatedAt,entityId:added.entityId,room:'living',x:-50,z:-50})).isError);
+    const exported=await call('export_design',{id:d.id});assert.equal(exported.layout.design.brief.budget,100000);assert.equal(exported.design.layout.finishes.master.wall,'sage');
+    assert.deepEqual(exported.design.layout.entities.find(e=>e.id===added.entityId).position,[.8,0,-2.6]);
+    assert.equal(JSON.parse(readFileSync(resolve(directory,d.id+'.json'),'utf8')).updatedAt,moved.updatedAt);
+    const second=await call('create_design',{scenario:'family'});assert.equal((await call('compare_designs',{ids:[d.id,second.id]})).designs.length,2);
+    assert.equal((await call('list_designs')).designs.length,2);
+  }finally{await client.close();const root=resolve(tmpdir());assert(directory.startsWith(root+sep));rmSync(directory,{recursive:true,force:true});}
+});

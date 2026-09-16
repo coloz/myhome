@@ -1,0 +1,1927 @@
+{
+  "schema": "home-design/v1",
+  "id": "demo-family",
+  "updatedAt": "2026-09-16T02:27:18.683Z",
+  "templateId": "raw-shell",
+  "brief": {
+    "name": "模拟示例 · 亲子成长",
+    "household": "夫妻与一名学龄儿童，长辈偶尔留宿",
+    "requirements": "三间卧室；孩子有独立阅读角；客厅保留活动空间；增加收纳；厨卫位置不变。",
+    "scenario": "family",
+    "style": "warm",
+    "budget": 240000,
+    "reservePercent": 15,
+    "workRate": 950,
+    "furnitureFactor": 1,
+    "clearance": 0.8
+  },
+  "roomUses": {
+    "living": "用餐、会客与独立亲子阅读角",
+    "entry": "换鞋与日常物品收纳",
+    "kitchen": "原位烹饪",
+    "master": "夫妻卧室",
+    "bath-main": "保留原位湿区",
+    "bath-guest": "卫浴与洗衣",
+    "passage": "通行，保持净空",
+    "garden": "光厅保持原状",
+    "bed-west": "儿童卧室（单人床）",
+    "bed-east": "长辈留宿房"
+  },
+  "layout": {
+    "format": "home-simulator",
+    "version": 2,
+    "modelVersion": "2026-09-15-raw-shell",
+    "modelRevision": 7,
+    "entities": [
+      {
+        "id": "design-1",
+        "catalogId": "ph-sofa_02",
+        "room": "living",
+        "position": [
+          2.2,
+          0,
+          -1.45
+        ],
+        "rotation": 3.141592653589793,
+        "scale": 1,
+        "deleted": false
+      },
+      {
+        "id": "design-2",
+        "catalogId": "ph-coffee_table_round_01",
+        "room": "living",
+        "position": [
+          2.2,
+          0,
+          -2.8
+        ],
+        "rotation": 0,
+        "scale": 1,
+        "deleted": false
+      },
+      {
+        "id": "design-3",
+        "catalogId": "ph-modern_wooden_cabinet",
+        "room": "living",
+        "position": [
+          4.6,
+          0,
+          -0.55
+        ],
+        "rotation": 0,
+        "scale": 1,
+        "deleted": false
+      },
+      {
+        "id": "design-4",
+        "catalogId": "ph-round_wooden_table_02",
+        "room": "living",
+        "position": [
+          5,
+          0,
+          -4.65
+        ],
+        "rotation": 0,
+        "scale": 1,
+        "deleted": false
+      },
+      {
+        "id": "design-5",
+        "catalogId": "ph-dining_chair_02",
+        "room": "living",
+        "position": [
+          4.2,
+          0,
+          -4.65
+        ],
+        "rotation": 1.5707963267948966,
+        "scale": 1,
+        "deleted": false
+      },
+      {
+        "id": "design-6",
+        "catalogId": "ph-dining_chair_02",
+        "room": "living",
+        "position": [
+          5.8,
+          0,
+          -4.65
+        ],
+        "rotation": -1.5707963267948966,
+        "scale": 1,
+        "deleted": false
+      },
+      {
+        "id": "design-7",
+        "catalogId": "ph-dining_chair_02",
+        "room": "living",
+        "position": [
+          5,
+          0,
+          -3.85
+        ],
+        "rotation": 3.141592653589793,
+        "scale": 1,
+        "deleted": false
+      },
+      {
+        "id": "design-8",
+        "catalogId": "ph-dining_chair_02",
+        "room": "living",
+        "position": [
+          5,
+          0,
+          -5.45
+        ],
+        "rotation": 0,
+        "scale": 1,
+        "deleted": false
+      },
+      {
+        "id": "design-9",
+        "catalogId": "ph-drawer_cabinet",
+        "room": "entry",
+        "position": [
+          1.72,
+          0,
+          -4.7
+        ],
+        "rotation": 1.5707963267948966,
+        "scale": 1,
+        "deleted": false
+      },
+      {
+        "id": "design-10",
+        "catalogId": "blend0-largeFridge",
+        "room": "kitchen",
+        "position": [
+          -0.65,
+          0,
+          -2.87
+        ],
+        "rotation": 0,
+        "scale": 1,
+        "deleted": false
+      },
+      {
+        "id": "design-11",
+        "catalogId": "ph-electric_stove",
+        "room": "kitchen",
+        "position": [
+          -1.78,
+          0,
+          -1.95
+        ],
+        "rotation": 1.5707963267948966,
+        "scale": 1,
+        "deleted": false
+      },
+      {
+        "id": "design-12",
+        "catalogId": "scopia-japanese-toilet",
+        "room": "bath-main",
+        "position": [
+          9.9,
+          0,
+          -6.25
+        ],
+        "rotation": 0,
+        "scale": 1,
+        "deleted": false
+      },
+      {
+        "id": "design-13",
+        "catalogId": "scopia-clothes_washing_machine",
+        "room": "bath-guest",
+        "position": [
+          3.38,
+          0,
+          -7.62
+        ],
+        "rotation": 0,
+        "scale": 1,
+        "deleted": false
+      },
+      {
+        "id": "design-14",
+        "catalogId": "scopia-japanese-toilet",
+        "room": "bath-guest",
+        "position": [
+          2.7,
+          0,
+          -7.5
+        ],
+        "rotation": 0,
+        "scale": 1,
+        "deleted": false
+      },
+      {
+        "id": "design-15",
+        "catalogId": "blend0-bedWithTexture",
+        "room": "master",
+        "position": [
+          8.85,
+          0,
+          -2.45
+        ],
+        "rotation": 0,
+        "scale": 1,
+        "deleted": false
+      },
+      {
+        "id": "design-16",
+        "catalogId": "ph-side_table_01",
+        "room": "master",
+        "position": [
+          10.13,
+          0,
+          -2.55
+        ],
+        "rotation": 0,
+        "scale": 1,
+        "deleted": false
+      },
+      {
+        "id": "design-17",
+        "catalogId": "ph-vintage_cabinet_01",
+        "room": "master",
+        "position": [
+          9.25,
+          0,
+          -4.38
+        ],
+        "rotation": 0,
+        "scale": 1,
+        "deleted": false
+      },
+      {
+        "id": "design-18",
+        "catalogId": "ph-round_wooden_table_02",
+        "room": "living",
+        "position": [
+          4.8,
+          0,
+          -2
+        ],
+        "rotation": 0,
+        "scale": 1,
+        "deleted": false
+      },
+      {
+        "id": "design-19",
+        "catalogId": "ph-dining_chair_02",
+        "room": "living",
+        "position": [
+          4.8,
+          0,
+          -2.8
+        ],
+        "rotation": 3.141592653589793,
+        "scale": 1,
+        "deleted": false
+      },
+      {
+        "id": "design-20",
+        "catalogId": "detail-bed-single",
+        "room": "bed-west",
+        "position": [
+          5.35,
+          0,
+          -9.1
+        ],
+        "rotation": 0,
+        "scale": 1,
+        "deleted": false
+      },
+      {
+        "id": "design-21",
+        "catalogId": "ph-side_table_01",
+        "room": "bed-west",
+        "position": [
+          4.25,
+          0,
+          -7.25
+        ],
+        "rotation": 0,
+        "scale": 1,
+        "deleted": false
+      },
+      {
+        "id": "design-22",
+        "catalogId": "blend0-bedWithTexture",
+        "room": "bed-east",
+        "position": [
+          8.35,
+          0,
+          -9.1
+        ],
+        "rotation": 0,
+        "scale": 1,
+        "deleted": false
+      },
+      {
+        "id": "design-23",
+        "catalogId": "ph-side_table_01",
+        "room": "bed-east",
+        "position": [
+          9.45,
+          0,
+          -7.25
+        ],
+        "rotation": 0,
+        "scale": 1,
+        "deleted": false
+      }
+    ],
+    "rooms": {
+      "living": {
+        "visible": true,
+        "decorated": true
+      },
+      "entry": {
+        "visible": true,
+        "decorated": true
+      },
+      "kitchen": {
+        "visible": true,
+        "decorated": true
+      },
+      "master": {
+        "visible": true,
+        "decorated": true
+      },
+      "bath-main": {
+        "visible": true,
+        "decorated": true
+      },
+      "passage": {
+        "visible": true,
+        "decorated": true
+      },
+      "bed-west": {
+        "visible": true,
+        "decorated": true
+      },
+      "bed-east": {
+        "visible": true,
+        "decorated": true
+      },
+      "bath-guest": {
+        "visible": true,
+        "decorated": true
+      },
+      "garden": {
+        "visible": true,
+        "decorated": false
+      }
+    },
+    "walls": [
+      {
+        "id": "living-south",
+        "name": "客厅落地窗",
+        "a": [
+          0,
+          0
+        ],
+        "b": [
+          7,
+          0
+        ],
+        "thickness": 0.2,
+        "height": 3,
+        "rooms": [
+          "living"
+        ],
+        "lock": "exterior",
+        "openings": [
+          {
+            "start": 0.5,
+            "end": 6.5,
+            "bottom": 0,
+            "top": 2.8,
+            "kind": "window"
+          }
+        ],
+        "deleted": false
+      },
+      {
+        "id": "master-south",
+        "name": "主卧落地窗",
+        "a": [
+          7,
+          0
+        ],
+        "b": [
+          10.1,
+          0
+        ],
+        "thickness": 0.2,
+        "height": 3,
+        "rooms": [
+          "master"
+        ],
+        "lock": "exterior",
+        "openings": [
+          {
+            "start": 0.15,
+            "end": 3.1,
+            "bottom": 0,
+            "top": 2.8,
+            "kind": "window"
+          }
+        ],
+        "deleted": false
+      },
+      {
+        "id": "master-curve-0",
+        "name": "主卧弧形落地窗",
+        "a": [
+          10.1,
+          0
+        ],
+        "b": [
+          10.197545161008064,
+          -0.009607359798384785
+        ],
+        "thickness": 0.18,
+        "height": 3,
+        "rooms": [
+          "master"
+        ],
+        "lock": "exterior",
+        "openings": [
+          {
+            "start": 0,
+            "end": 0.09801714032956045,
+            "bottom": 0,
+            "top": 2.8,
+            "kind": "window"
+          }
+        ],
+        "deleted": false
+      },
+      {
+        "id": "master-curve-1",
+        "name": "主卧弧形落地窗",
+        "a": [
+          10.197545161008064,
+          -0.009607359798384785
+        ],
+        "b": [
+          10.291341716182545,
+          -0.03806023374435663
+        ],
+        "thickness": 0.18,
+        "height": 3,
+        "rooms": [
+          "master"
+        ],
+        "lock": "exterior",
+        "openings": [
+          {
+            "start": 0,
+            "end": 0.09801714032956152,
+            "bottom": 0,
+            "top": 2.8,
+            "kind": "window"
+          }
+        ],
+        "deleted": false
+      },
+      {
+        "id": "master-curve-2",
+        "name": "主卧弧形落地窗",
+        "a": [
+          10.291341716182545,
+          -0.03806023374435663
+        ],
+        "b": [
+          10.3777851165098,
+          -0.08426519384872738
+        ],
+        "thickness": 0.18,
+        "height": 3,
+        "rooms": [
+          "master"
+        ],
+        "lock": "exterior",
+        "openings": [
+          {
+            "start": 0,
+            "end": 0.09801714032955947,
+            "bottom": 0,
+            "top": 2.8,
+            "kind": "window"
+          }
+        ],
+        "deleted": false
+      },
+      {
+        "id": "master-curve-3",
+        "name": "主卧弧形落地窗",
+        "a": [
+          10.3777851165098,
+          -0.08426519384872738
+        ],
+        "b": [
+          10.453553390593273,
+          -0.1464466094067262
+        ],
+        "thickness": 0.18,
+        "height": 3,
+        "rooms": [
+          "master"
+        ],
+        "lock": "exterior",
+        "openings": [
+          {
+            "start": 0,
+            "end": 0.09801714032956041,
+            "bottom": 0,
+            "top": 2.8,
+            "kind": "window"
+          }
+        ],
+        "deleted": false
+      },
+      {
+        "id": "master-curve-4",
+        "name": "主卧弧形落地窗",
+        "a": [
+          10.453553390593273,
+          -0.1464466094067262
+        ],
+        "b": [
+          10.515734806151272,
+          -0.2222148834901989
+        ],
+        "thickness": 0.18,
+        "height": 3,
+        "rooms": [
+          "master"
+        ],
+        "lock": "exterior",
+        "openings": [
+          {
+            "start": 0,
+            "end": 0.09801714032956098,
+            "bottom": 0,
+            "top": 2.8,
+            "kind": "window"
+          }
+        ],
+        "deleted": false
+      },
+      {
+        "id": "master-curve-5",
+        "name": "主卧弧形落地窗",
+        "a": [
+          10.515734806151272,
+          -0.2222148834901989
+        ],
+        "b": [
+          10.561939766255643,
+          -0.3086582838174551
+        ],
+        "thickness": 0.18,
+        "height": 3,
+        "rooms": [
+          "master"
+        ],
+        "lock": "exterior",
+        "openings": [
+          {
+            "start": 0,
+            "end": 0.09801714032956046,
+            "bottom": 0,
+            "top": 2.8,
+            "kind": "window"
+          }
+        ],
+        "deleted": false
+      },
+      {
+        "id": "master-curve-6",
+        "name": "主卧弧形落地窗",
+        "a": [
+          10.561939766255643,
+          -0.3086582838174551
+        ],
+        "b": [
+          10.590392640201614,
+          -0.4024548389919359
+        ],
+        "thickness": 0.18,
+        "height": 3,
+        "rooms": [
+          "master"
+        ],
+        "lock": "exterior",
+        "openings": [
+          {
+            "start": 0,
+            "end": 0.0980171403295605,
+            "bottom": 0,
+            "top": 2.8,
+            "kind": "window"
+          }
+        ],
+        "deleted": false
+      },
+      {
+        "id": "master-curve-7",
+        "name": "主卧弧形落地窗",
+        "a": [
+          10.590392640201614,
+          -0.4024548389919359
+        ],
+        "b": [
+          10.6,
+          -0.5
+        ],
+        "thickness": 0.18,
+        "height": 3,
+        "rooms": [
+          "master"
+        ],
+        "lock": "exterior",
+        "openings": [
+          {
+            "start": 0,
+            "end": 0.09801714032956066,
+            "bottom": 0,
+            "top": 2.8,
+            "kind": "window"
+          }
+        ],
+        "deleted": false
+      },
+      {
+        "id": "master-east",
+        "name": "主卧东侧完整外墙",
+        "a": [
+          10.6,
+          -0.5
+        ],
+        "b": [
+          10.6,
+          -4.9
+        ],
+        "thickness": 0.2,
+        "height": 3,
+        "rooms": [
+          "master"
+        ],
+        "lock": "exterior",
+        "openings": [],
+        "deleted": false
+      },
+      {
+        "id": "bath-east",
+        "name": "主卫外墙",
+        "a": [
+          10.6,
+          -4.9
+        ],
+        "b": [
+          10.6,
+          -6.9
+        ],
+        "thickness": 0.2,
+        "height": 3,
+        "rooms": [
+          "bath-main"
+        ],
+        "lock": "exterior",
+        "openings": [
+          {
+            "start": 0.8,
+            "end": 1.65,
+            "bottom": 1.1,
+            "top": 2.6,
+            "kind": "window"
+          }
+        ],
+        "deleted": false
+      },
+      {
+        "id": "bath-north",
+        "name": "主卫北侧外围实墙",
+        "a": [
+          9.85,
+          -6.9
+        ],
+        "b": [
+          10.6,
+          -6.9
+        ],
+        "thickness": 0.2,
+        "height": 3,
+        "rooms": [
+          "bath-main"
+        ],
+        "lock": "exterior",
+        "openings": [],
+        "deleted": false
+      },
+      {
+        "id": "east-bedroom-east",
+        "name": "次卧一东侧完整外墙",
+        "a": [
+          9.85,
+          -6.9
+        ],
+        "b": [
+          9.85,
+          -9.85
+        ],
+        "thickness": 0.2,
+        "height": 3,
+        "rooms": [
+          "bed-east"
+        ],
+        "lock": "exterior",
+        "openings": [],
+        "deleted": false
+      },
+      {
+        "id": "bed-curve-0",
+        "name": "次卧一弧形窗",
+        "a": [
+          9.85,
+          -9.85
+        ],
+        "b": [
+          9.840392640201614,
+          -9.947545161008064
+        ],
+        "thickness": 0.18,
+        "height": 3,
+        "rooms": [
+          "bed-east"
+        ],
+        "lock": "exterior",
+        "openings": [
+          {
+            "start": 0,
+            "end": 0.09801714032956055,
+            "bottom": 0.5,
+            "top": 2.45,
+            "kind": "window"
+          }
+        ],
+        "deleted": false
+      },
+      {
+        "id": "bed-curve-1",
+        "name": "次卧一弧形窗",
+        "a": [
+          9.840392640201614,
+          -9.947545161008064
+        ],
+        "b": [
+          9.811939766255643,
+          -10.041341716182545
+        ],
+        "thickness": 0.18,
+        "height": 3,
+        "rooms": [
+          "bed-east"
+        ],
+        "lock": "exterior",
+        "openings": [
+          {
+            "start": 0,
+            "end": 0.09801714032956135,
+            "bottom": 0.5,
+            "top": 2.45,
+            "kind": "window"
+          }
+        ],
+        "deleted": false
+      },
+      {
+        "id": "bed-curve-2",
+        "name": "次卧一弧形窗",
+        "a": [
+          9.811939766255643,
+          -10.041341716182545
+        ],
+        "b": [
+          9.765734806151272,
+          -10.1277851165098
+        ],
+        "thickness": 0.18,
+        "height": 3,
+        "rooms": [
+          "bed-east"
+        ],
+        "lock": "exterior",
+        "openings": [
+          {
+            "start": 0,
+            "end": 0.0980171403295594,
+            "bottom": 0.5,
+            "top": 2.45,
+            "kind": "window"
+          }
+        ],
+        "deleted": false
+      },
+      {
+        "id": "bed-curve-3",
+        "name": "次卧一弧形窗",
+        "a": [
+          9.765734806151272,
+          -10.1277851165098
+        ],
+        "b": [
+          9.703553390593273,
+          -10.203553390593273
+        ],
+        "thickness": 0.18,
+        "height": 3,
+        "rooms": [
+          "bed-east"
+        ],
+        "lock": "exterior",
+        "openings": [
+          {
+            "start": 0,
+            "end": 0.09801714032956076,
+            "bottom": 0.5,
+            "top": 2.45,
+            "kind": "window"
+          }
+        ],
+        "deleted": false
+      },
+      {
+        "id": "bed-curve-4",
+        "name": "次卧一弧形窗",
+        "a": [
+          9.703553390593273,
+          -10.203553390593273
+        ],
+        "b": [
+          9.6277851165098,
+          -10.265734806151272
+        ],
+        "thickness": 0.18,
+        "height": 3,
+        "rooms": [
+          "bed-east"
+        ],
+        "lock": "exterior",
+        "openings": [
+          {
+            "start": 0,
+            "end": 0.09801714032956076,
+            "bottom": 0.5,
+            "top": 2.45,
+            "kind": "window"
+          }
+        ],
+        "deleted": false
+      },
+      {
+        "id": "bed-curve-5",
+        "name": "次卧一弧形窗",
+        "a": [
+          9.6277851165098,
+          -10.265734806151272
+        ],
+        "b": [
+          9.541341716182545,
+          -10.311939766255643
+        ],
+        "thickness": 0.18,
+        "height": 3,
+        "rooms": [
+          "bed-east"
+        ],
+        "lock": "exterior",
+        "openings": [
+          {
+            "start": 0,
+            "end": 0.0980171403295594,
+            "bottom": 0.5,
+            "top": 2.45,
+            "kind": "window"
+          }
+        ],
+        "deleted": false
+      },
+      {
+        "id": "bed-curve-6",
+        "name": "次卧一弧形窗",
+        "a": [
+          9.541341716182545,
+          -10.311939766255643
+        ],
+        "b": [
+          9.447545161008064,
+          -10.340392640201614
+        ],
+        "thickness": 0.18,
+        "height": 3,
+        "rooms": [
+          "bed-east"
+        ],
+        "lock": "exterior",
+        "openings": [
+          {
+            "start": 0,
+            "end": 0.09801714032956135,
+            "bottom": 0.5,
+            "top": 2.45,
+            "kind": "window"
+          }
+        ],
+        "deleted": false
+      },
+      {
+        "id": "bed-curve-7",
+        "name": "次卧一弧形窗",
+        "a": [
+          9.447545161008064,
+          -10.340392640201614
+        ],
+        "b": [
+          9.35,
+          -10.35
+        ],
+        "thickness": 0.18,
+        "height": 3,
+        "rooms": [
+          "bed-east"
+        ],
+        "lock": "exterior",
+        "openings": [
+          {
+            "start": 0,
+            "end": 0.09801714032956055,
+            "bottom": 0.5,
+            "top": 2.45,
+            "kind": "window"
+          }
+        ],
+        "deleted": false
+      },
+      {
+        "id": "east-bedroom-north",
+        "name": "次卧一北窗 · 窗台50cm",
+        "a": [
+          6.85,
+          -10.35
+        ],
+        "b": [
+          9.35,
+          -10.35
+        ],
+        "thickness": 0.2,
+        "height": 3,
+        "rooms": [
+          "bed-east"
+        ],
+        "lock": "exterior",
+        "openings": [
+          {
+            "start": 0.45,
+            "end": 2.5,
+            "bottom": 0.5,
+            "top": 2.45,
+            "kind": "window"
+          }
+        ],
+        "deleted": false
+      },
+      {
+        "id": "west-bedroom-north",
+        "name": "次卧二北窗 · 窗台50cm",
+        "a": [
+          3.85,
+          -10.35
+        ],
+        "b": [
+          6.85,
+          -10.35
+        ],
+        "thickness": 0.2,
+        "height": 3,
+        "rooms": [
+          "bed-west"
+        ],
+        "lock": "exterior",
+        "openings": [
+          {
+            "start": 0.55,
+            "end": 2.45,
+            "bottom": 0.5,
+            "top": 2.45,
+            "kind": "window"
+          }
+        ],
+        "deleted": false
+      },
+      {
+        "id": "west-bedroom-west",
+        "name": "次卧二西侧外围实墙",
+        "a": [
+          3.85,
+          -8.2
+        ],
+        "b": [
+          3.85,
+          -10.35
+        ],
+        "thickness": 0.2,
+        "height": 3,
+        "rooms": [
+          "bed-west"
+        ],
+        "lock": "exterior",
+        "openings": [],
+        "deleted": false
+      },
+      {
+        "id": "guest-bath-north",
+        "name": "客卫北侧高窗",
+        "a": [
+          2.15,
+          -8.2
+        ],
+        "b": [
+          3.85,
+          -8.2
+        ],
+        "thickness": 0.2,
+        "height": 3,
+        "rooms": [
+          "bath-guest",
+          "garden"
+        ],
+        "lock": "structural",
+        "openings": [
+          {
+            "start": 0.35,
+            "end": 1.35,
+            "bottom": 1.4,
+            "top": 2.6,
+            "kind": "window"
+          }
+        ],
+        "deleted": false
+      },
+      {
+        "id": "guest-bath-west-top",
+        "name": "光厅与客卫相邻固定墙体",
+        "a": [
+          2.15,
+          -6.45
+        ],
+        "b": [
+          2.15,
+          -8.2
+        ],
+        "thickness": 0.15,
+        "height": 3,
+        "rooms": [
+          "bath-guest",
+          "garden",
+          "entry"
+        ],
+        "lock": "fixed",
+        "openings": [],
+        "deleted": false
+      },
+      {
+        "id": "guest-bath-west-black",
+        "name": "客卫西侧黑色实墙",
+        "a": [
+          2.15,
+          -4.8
+        ],
+        "b": [
+          2.15,
+          -6.45
+        ],
+        "thickness": 0.2,
+        "height": 3,
+        "rooms": [
+          "bath-guest",
+          "entry"
+        ],
+        "lock": "structural",
+        "openings": [],
+        "deleted": false
+      },
+      {
+        "id": "entry-west-bottom",
+        "name": "玄关西侧外围墙",
+        "a": [
+          -0.85,
+          -3.5
+        ],
+        "b": [
+          -0.85,
+          -5.6
+        ],
+        "thickness": 0.2,
+        "height": 3,
+        "rooms": [
+          "entry"
+        ],
+        "lock": "exterior",
+        "openings": [],
+        "deleted": false
+      },
+      {
+        "id": "entry-notch-bottom",
+        "name": "玄关凹位外围墙",
+        "a": [
+          -0.85,
+          -5.6
+        ],
+        "b": [
+          0.25,
+          -5.6
+        ],
+        "thickness": 0.2,
+        "height": 3,
+        "rooms": [
+          "entry"
+        ],
+        "lock": "exterior",
+        "openings": [],
+        "deleted": false
+      },
+      {
+        "id": "entry-notch-side",
+        "name": "玄关凹位侧墙",
+        "a": [
+          0.25,
+          -5.6
+        ],
+        "b": [
+          0.25,
+          -6.9
+        ],
+        "thickness": 0.2,
+        "height": 3,
+        "rooms": [
+          "entry"
+        ],
+        "lock": "exterior",
+        "openings": [],
+        "deleted": false
+      },
+      {
+        "id": "entry-south-black",
+        "name": "玄关南侧黑色墙",
+        "a": [
+          -0.85,
+          -3.5
+        ],
+        "b": [
+          0,
+          -3.5
+        ],
+        "thickness": 0.2,
+        "height": 3,
+        "rooms": [
+          "entry",
+          "kitchen"
+        ],
+        "lock": "structural",
+        "openings": [],
+        "deleted": false
+      },
+      {
+        "id": "entry-door",
+        "name": "入户门两侧固定墙体",
+        "a": [
+          0.25,
+          -6.9
+        ],
+        "b": [
+          2.15,
+          -6.9
+        ],
+        "thickness": 0.18,
+        "height": 3,
+        "rooms": [
+          "entry",
+          "garden"
+        ],
+        "lock": "fixed",
+        "openings": [
+          {
+            "start": 0.12,
+            "end": 1.32,
+            "bottom": 0,
+            "top": 2.25,
+            "kind": "door"
+          }
+        ],
+        "deleted": false
+      },
+      {
+        "id": "garden-south-west",
+        "name": "光厅西南外围",
+        "a": [
+          -0.85,
+          -6.9
+        ],
+        "b": [
+          0.25,
+          -6.9
+        ],
+        "thickness": 0.2,
+        "height": 3,
+        "rooms": [
+          "garden"
+        ],
+        "lock": "exterior",
+        "openings": [],
+        "deleted": false
+      },
+      {
+        "id": "garden-west-low",
+        "name": "光厅西侧外墙",
+        "a": [
+          -0.85,
+          -6.9
+        ],
+        "b": [
+          -0.85,
+          -8.35
+        ],
+        "thickness": 0.2,
+        "height": 3,
+        "rooms": [
+          "garden"
+        ],
+        "lock": "exterior",
+        "openings": [],
+        "deleted": false
+      },
+      {
+        "id": "garden-west-step",
+        "name": "光厅西侧外墙转折",
+        "a": [
+          -0.85,
+          -8.35
+        ],
+        "b": [
+          0,
+          -8.35
+        ],
+        "thickness": 0.2,
+        "height": 3,
+        "rooms": [
+          "garden"
+        ],
+        "lock": "exterior",
+        "openings": [],
+        "deleted": false
+      },
+      {
+        "id": "elevator-front",
+        "name": "双开电梯门左侧立面",
+        "a": [
+          0,
+          -8.35
+        ],
+        "b": [
+          0,
+          -10.85
+        ],
+        "thickness": 0.2,
+        "height": 3,
+        "rooms": [
+          "garden"
+        ],
+        "lock": "exterior",
+        "openings": [
+          {
+            "start": 0.28,
+            "end": 2.08,
+            "bottom": 0,
+            "top": 2.35,
+            "kind": "door"
+          }
+        ],
+        "deleted": false
+      },
+      {
+        "id": "garden-north",
+        "name": "光厅半高玻璃护栏",
+        "a": [
+          0,
+          -10.85
+        ],
+        "b": [
+          2.25,
+          -10.85
+        ],
+        "thickness": 0.045,
+        "height": 1.2,
+        "rooms": [
+          "garden"
+        ],
+        "lock": "exterior",
+        "openings": [],
+        "deleted": false,
+        "railing": true
+      },
+      {
+        "id": "garden-round-0",
+        "name": "光厅半高玻璃护栏",
+        "a": [
+          2.7,
+          -10.4
+        ],
+        "b": [
+          2.691353376181454,
+          -10.487790644907259
+        ],
+        "thickness": 0.045,
+        "height": 1.2,
+        "rooms": [
+          "garden"
+        ],
+        "lock": "exterior",
+        "openings": [],
+        "deleted": false,
+        "railing": true
+      },
+      {
+        "id": "garden-round-1",
+        "name": "光厅半高玻璃护栏",
+        "a": [
+          2.691353376181454,
+          -10.487790644907259
+        ],
+        "b": [
+          2.665745789630079,
+          -10.572207544564291
+        ],
+        "thickness": 0.045,
+        "height": 1.2,
+        "rooms": [
+          "garden"
+        ],
+        "lock": "exterior",
+        "openings": [],
+        "deleted": false,
+        "railing": true
+      },
+      {
+        "id": "garden-round-2",
+        "name": "光厅半高玻璃护栏",
+        "a": [
+          2.665745789630079,
+          -10.572207544564291
+        ],
+        "b": [
+          2.6241613255361456,
+          -10.650006604858822
+        ],
+        "thickness": 0.045,
+        "height": 1.2,
+        "rooms": [
+          "garden"
+        ],
+        "lock": "exterior",
+        "openings": [],
+        "deleted": false,
+        "railing": true
+      },
+      {
+        "id": "garden-round-3",
+        "name": "光厅半高玻璃护栏",
+        "a": [
+          2.6241613255361456,
+          -10.650006604858822
+        ],
+        "b": [
+          2.5681980515339466,
+          -10.718198051533946
+        ],
+        "thickness": 0.045,
+        "height": 1.2,
+        "rooms": [
+          "garden"
+        ],
+        "lock": "exterior",
+        "openings": [],
+        "deleted": false,
+        "railing": true
+      },
+      {
+        "id": "garden-round-4",
+        "name": "光厅半高玻璃护栏",
+        "a": [
+          2.5681980515339466,
+          -10.718198051533946
+        ],
+        "b": [
+          2.500006604858821,
+          -10.774161325536145
+        ],
+        "thickness": 0.045,
+        "height": 1.2,
+        "rooms": [
+          "garden"
+        ],
+        "lock": "exterior",
+        "openings": [],
+        "deleted": false,
+        "railing": true
+      },
+      {
+        "id": "garden-round-5",
+        "name": "光厅半高玻璃护栏",
+        "a": [
+          2.500006604858821,
+          -10.774161325536145
+        ],
+        "b": [
+          2.4222075445642903,
+          -10.81574578963008
+        ],
+        "thickness": 0.045,
+        "height": 1.2,
+        "rooms": [
+          "garden"
+        ],
+        "lock": "exterior",
+        "openings": [],
+        "deleted": false,
+        "railing": true
+      },
+      {
+        "id": "garden-round-6",
+        "name": "光厅半高玻璃护栏",
+        "a": [
+          2.4222075445642903,
+          -10.81574578963008
+        ],
+        "b": [
+          2.337790644907258,
+          -10.841353376181454
+        ],
+        "thickness": 0.045,
+        "height": 1.2,
+        "rooms": [
+          "garden"
+        ],
+        "lock": "exterior",
+        "openings": [],
+        "deleted": false,
+        "railing": true
+      },
+      {
+        "id": "garden-round-7",
+        "name": "光厅半高玻璃护栏",
+        "a": [
+          2.337790644907258,
+          -10.841353376181454
+        ],
+        "b": [
+          2.25,
+          -10.85
+        ],
+        "thickness": 0.045,
+        "height": 1.2,
+        "rooms": [
+          "garden"
+        ],
+        "lock": "exterior",
+        "openings": [],
+        "deleted": false,
+        "railing": true
+      },
+      {
+        "id": "garden-east",
+        "name": "光厅半高玻璃护栏",
+        "a": [
+          2.7,
+          -8.2
+        ],
+        "b": [
+          2.7,
+          -10.4
+        ],
+        "thickness": 0.045,
+        "height": 1.2,
+        "rooms": [
+          "garden"
+        ],
+        "lock": "exterior",
+        "openings": [],
+        "deleted": false,
+        "railing": true
+      },
+      {
+        "id": "kitchen-west",
+        "name": "厨房西外墙",
+        "a": [
+          -2.2,
+          -0.7
+        ],
+        "b": [
+          -2.2,
+          -3.5
+        ],
+        "thickness": 0.2,
+        "height": 3,
+        "rooms": [
+          "kitchen"
+        ],
+        "lock": "exterior",
+        "openings": [],
+        "deleted": false
+      },
+      {
+        "id": "kitchen-north",
+        "name": "厨房北外墙",
+        "a": [
+          -2.2,
+          -3.5
+        ],
+        "b": [
+          -0.85,
+          -3.5
+        ],
+        "thickness": 0.2,
+        "height": 3,
+        "rooms": [
+          "kitchen"
+        ],
+        "lock": "exterior",
+        "openings": [],
+        "deleted": false
+      },
+      {
+        "id": "kitchen-south",
+        "name": "厨房外窗",
+        "a": [
+          -2.2,
+          -0.7
+        ],
+        "b": [
+          0,
+          -0.7
+        ],
+        "thickness": 0.2,
+        "height": 3,
+        "rooms": [
+          "kitchen"
+        ],
+        "lock": "exterior",
+        "openings": [
+          {
+            "start": 0.4,
+            "end": 1.8,
+            "bottom": 0.9,
+            "top": 2.6,
+            "kind": "window"
+          }
+        ],
+        "deleted": false
+      },
+      {
+        "id": "living-west-bottom",
+        "name": "客厅西南外围墙",
+        "a": [
+          0,
+          0
+        ],
+        "b": [
+          0,
+          -0.7
+        ],
+        "thickness": 0.2,
+        "height": 3,
+        "rooms": [
+          "living"
+        ],
+        "lock": "exterior",
+        "openings": [],
+        "deleted": false
+      },
+      {
+        "id": "guest-bath-east",
+        "name": "客卫东侧灰色隔墙",
+        "a": [
+          3.85,
+          -4.8
+        ],
+        "b": [
+          3.85,
+          -8.2
+        ],
+        "thickness": 0.15,
+        "height": 3,
+        "rooms": [
+          "bath-guest",
+          "living",
+          "bed-west"
+        ],
+        "lock": "",
+        "openings": [],
+        "deleted": false
+      },
+      {
+        "id": "guest-bath-south",
+        "name": "客卫南侧入口隔墙",
+        "a": [
+          2.15,
+          -4.8
+        ],
+        "b": [
+          3.85,
+          -4.8
+        ],
+        "thickness": 0.15,
+        "height": 3,
+        "rooms": [
+          "bath-guest",
+          "living"
+        ],
+        "lock": "",
+        "openings": [
+          {
+            "start": 0.58,
+            "end": 1.48,
+            "bottom": 0,
+            "top": 2.2,
+            "kind": "door"
+          }
+        ],
+        "deleted": false
+      },
+      {
+        "id": "guest-bath-separation",
+        "name": "客卫内部分隔墙",
+        "a": [
+          2.15,
+          -6
+        ],
+        "b": [
+          3.85,
+          -6
+        ],
+        "thickness": 0.1,
+        "height": 3,
+        "rooms": [
+          "bath-guest"
+        ],
+        "lock": "",
+        "openings": [
+          {
+            "start": 0.25,
+            "end": 1.1,
+            "bottom": 0,
+            "top": 2.15,
+            "kind": "door"
+          }
+        ],
+        "deleted": false
+      },
+      {
+        "id": "bedrooms-partition",
+        "name": "两个次卧之间灰色隔墙",
+        "a": [
+          6.85,
+          -6.9
+        ],
+        "b": [
+          6.85,
+          -10.35
+        ],
+        "thickness": 0.15,
+        "height": 3,
+        "rooms": [
+          "bed-west",
+          "bed-east"
+        ],
+        "lock": "",
+        "openings": [],
+        "deleted": false
+      },
+      {
+        "id": "west-bedroom-south",
+        "name": "次卧二南侧灰色隔墙",
+        "a": [
+          3.85,
+          -6.9
+        ],
+        "b": [
+          6.85,
+          -6.9
+        ],
+        "thickness": 0.15,
+        "height": 3,
+        "rooms": [
+          "bed-west",
+          "living"
+        ],
+        "lock": "",
+        "openings": [
+          {
+            "start": 1.9,
+            "end": 2.8,
+            "bottom": 0,
+            "top": 2.2,
+            "kind": "door"
+          }
+        ],
+        "deleted": false
+      },
+      {
+        "id": "east-bedroom-south",
+        "name": "次卧一南侧灰色隔墙",
+        "a": [
+          6.85,
+          -6.9
+        ],
+        "b": [
+          9.85,
+          -6.9
+        ],
+        "thickness": 0.15,
+        "height": 3,
+        "rooms": [
+          "bed-east",
+          "passage",
+          "bath-main"
+        ],
+        "lock": "",
+        "openings": [
+          {
+            "start": 0.12,
+            "end": 1.02,
+            "bottom": 0,
+            "top": 2.2,
+            "kind": "door"
+          }
+        ],
+        "deleted": false
+      },
+      {
+        "id": "bath-main-west",
+        "name": "主卫西侧灰色隔墙",
+        "a": [
+          8.1,
+          -4.9
+        ],
+        "b": [
+          8.1,
+          -6.9
+        ],
+        "thickness": 0.15,
+        "height": 3,
+        "rooms": [
+          "bath-main",
+          "passage"
+        ],
+        "lock": "",
+        "openings": [],
+        "deleted": false
+      },
+      {
+        "id": "master-door",
+        "name": "主卧入门灰色隔墙",
+        "a": [
+          7,
+          -4.9
+        ],
+        "b": [
+          8.1,
+          -4.9
+        ],
+        "thickness": 0.15,
+        "height": 3,
+        "rooms": [
+          "master",
+          "passage"
+        ],
+        "lock": "",
+        "openings": [
+          {
+            "start": 0.1,
+            "end": 1,
+            "bottom": 0,
+            "top": 2.2,
+            "kind": "door"
+          }
+        ],
+        "deleted": false
+      },
+      {
+        "id": "master-west-black-north",
+        "name": "主卧西侧北段黑色实墙",
+        "a": [
+          7,
+          -3.3
+        ],
+        "b": [
+          7,
+          -4.9
+        ],
+        "thickness": 0.2,
+        "height": 3,
+        "rooms": [
+          "master",
+          "living"
+        ],
+        "lock": "structural",
+        "openings": [],
+        "deleted": false
+      },
+      {
+        "id": "master-west-gray",
+        "name": "主卧西侧中段灰色隔墙",
+        "a": [
+          7,
+          -1.6
+        ],
+        "b": [
+          7,
+          -3.3
+        ],
+        "thickness": 0.15,
+        "height": 3,
+        "rooms": [
+          "master",
+          "living"
+        ],
+        "lock": "",
+        "openings": [],
+        "deleted": false
+      },
+      {
+        "id": "master-west-black-south",
+        "name": "主卧西侧南段黑色实墙",
+        "a": [
+          7,
+          0
+        ],
+        "b": [
+          7,
+          -1.6
+        ],
+        "thickness": 0.2,
+        "height": 3,
+        "rooms": [
+          "master",
+          "living"
+        ],
+        "lock": "structural",
+        "openings": [],
+        "deleted": false
+      }
+    ],
+    "finishes": {
+      "living": {
+        "wall": "white",
+        "floor": "oak"
+      },
+      "entry": {
+        "wall": "white",
+        "floor": "oak"
+      },
+      "kitchen": {
+        "wall": "white",
+        "floor": "tile"
+      },
+      "master": {
+        "wall": "white",
+        "floor": "oak"
+      },
+      "bath-main": {
+        "wall": "white",
+        "floor": "tile"
+      },
+      "passage": {
+        "wall": "white",
+        "floor": "oak"
+      },
+      "bed-west": {
+        "wall": "white",
+        "floor": "oak"
+      },
+      "bed-east": {
+        "wall": "white",
+        "floor": "oak"
+      },
+      "bath-guest": {
+        "wall": "white",
+        "floor": "tile"
+      }
+    }
+  }
+}

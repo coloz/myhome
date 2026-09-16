@@ -1,0 +1,872 @@
+[
+  {
+    "id": "scopia-islandBath",
+    "material": "whiteBath",
+    "roughness": 0.24,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-islandBath",
+    "material": "metalChromeBoolean",
+    "roughness": 0.2,
+    "metalness": 1
+  },
+  {
+    "id": "scopia-islandBath",
+    "material": "metalChrome",
+    "roughness": 0.2,
+    "metalness": 1
+  },
+  {
+    "id": "scopia-islandBath",
+    "material": "metalChromeChain",
+    "roughness": 0.2,
+    "metalness": 1
+  },
+  {
+    "id": "scopia-islandBath",
+    "material": "hole",
+    "roughness": 0.86,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-islandBath",
+    "material": "holeTap",
+    "roughness": 0.86,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-islandBath",
+    "material": "metalChromeTap",
+    "roughness": 0.2,
+    "metalness": 1
+  },
+  {
+    "id": "scopia-islandBath",
+    "material": "metalChromeHandle",
+    "roughness": 0.2,
+    "metalness": 1
+  },
+  {
+    "id": "scopia-islandBath",
+    "material": "textureHoles",
+    "roughness": 0.86,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-japanese-toilet",
+    "material": "ArmControlCommand",
+    "roughness": 0.24,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-japanese-toilet",
+    "material": "Controls",
+    "roughness": 0.24,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-japanese-toilet",
+    "material": "Sensor",
+    "roughness": 0.24,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-japanese-toilet",
+    "material": "SeatControlAndAxis",
+    "roughness": 0.24,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-japanese-toilet",
+    "material": "Handle",
+    "roughness": 0.24,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-japanese-toilet",
+    "material": "MetalicPlug",
+    "roughness": 0.2,
+    "metalness": 1
+  },
+  {
+    "id": "scopia-japanese-toilet",
+    "material": "Seat",
+    "roughness": 0.24,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-japanese-toilet",
+    "material": "Water",
+    "roughness": 0.24,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-japanese-toilet",
+    "material": "Hinge",
+    "roughness": 0.24,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-japanese-toilet",
+    "material": "PlasticCover",
+    "roughness": 0.24,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-japanese-toilet",
+    "material": "SeatProtection",
+    "roughness": 0.24,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-japanese-toilet",
+    "material": "Tap",
+    "roughness": 0.24,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-japanese-toilet",
+    "material": "HoleTap",
+    "roughness": 0.86,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-japanese-toilet",
+    "material": "MetalicTap.001",
+    "roughness": 0.2,
+    "metalness": 1
+  },
+  {
+    "id": "scopia-japanese-toilet",
+    "material": "WaterContainer",
+    "roughness": 0.24,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-japanese-toilet",
+    "material": "Sink",
+    "roughness": 0.24,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-japanese-toilet",
+    "material": "Wheel",
+    "roughness": 0.5,
+    "metalness": 0
+  },
+  {
+    "id": "blend0-refrigerator",
+    "material": "Grey_Plastic",
+    "roughness": 0.35,
+    "metalness": 0
+  },
+  {
+    "id": "blend0-refrigerator",
+    "material": "Appliance_Stainless_display2",
+    "roughness": 0.15,
+    "metalness": 0
+  },
+  {
+    "id": "blend0-refrigerator",
+    "material": "Appliance_Stainless",
+    "roughness": 0.3,
+    "metalness": 1
+  },
+  {
+    "id": "blend0-refrigerator",
+    "material": "Appliance_Stainless_display1",
+    "roughness": 0.15,
+    "metalness": 0
+  },
+  {
+    "id": "blend0-kitchenaid",
+    "material": "Kitchenaid_Glass",
+    "roughness": 0.15,
+    "metalness": 0
+  },
+  {
+    "id": "blend0-kitchenaid",
+    "material": "Kitchenaid_White",
+    "roughness": 0.35,
+    "metalness": 0
+  },
+  {
+    "id": "blend0-kitchenaid",
+    "material": "Kitchenaid_Yellow",
+    "roughness": 0.35,
+    "metalness": 0
+  },
+  {
+    "id": "blend0-kitchenaid",
+    "material": "Kitchenaid_Chrome",
+    "roughness": 0.2,
+    "metalness": 1
+  },
+  {
+    "id": "blend0-kitchenaid",
+    "material": "Kitchenaid_BrushedChrome",
+    "roughness": 0.3,
+    "metalness": 1
+  },
+  {
+    "id": "blend0-kitchenaid",
+    "material": "Kitchenaid_BlackPlastic",
+    "roughness": 0.35,
+    "metalness": 0
+  },
+  {
+    "id": "blend0-kitchenaid",
+    "material": "Kitchenaid_BrushedChrome_Writing",
+    "roughness": 0.3,
+    "metalness": 1
+  },
+  {
+    "id": "blend0-kitchenaid",
+    "material": "Kitchenaid_Chrome_Writing",
+    "roughness": 0.2,
+    "metalness": 1
+  },
+  {
+    "id": "blend0-doubleOven",
+    "material": "cromo",
+    "roughness": 0.2,
+    "metalness": 1
+  },
+  {
+    "id": "blend0-doubleOven",
+    "material": "vidro_black",
+    "roughness": 0.15,
+    "metalness": 0
+  },
+  {
+    "id": "blend0-doubleOven",
+    "material": "vidro",
+    "roughness": 0.15,
+    "metalness": 0
+  },
+  {
+    "id": "blend0-doubleOven",
+    "material": "cinza",
+    "roughness": 0.5,
+    "metalness": 0
+  },
+  {
+    "id": "blend0-doubleOven",
+    "material": "p_fosco",
+    "roughness": 0.5,
+    "metalness": 0
+  },
+  {
+    "id": "blend0-doubleOven",
+    "material": "verde_led",
+    "roughness": 0.5,
+    "metalness": 0
+  },
+  {
+    "id": "blend0-doubleOven",
+    "material": "forno",
+    "roughness": 0.5,
+    "metalness": 0
+  },
+  {
+    "id": "blend0-doubleOven",
+    "material": "inox",
+    "roughness": 0.2,
+    "metalness": 1
+  },
+  {
+    "id": "blend0-largeFridge",
+    "material": "metal",
+    "roughness": 0.2,
+    "metalness": 1
+  },
+  {
+    "id": "blend0-largeFridge",
+    "material": "waterDispenser",
+    "roughness": 0.5,
+    "metalness": 0
+  },
+  {
+    "id": "blend0-largeFridge",
+    "material": "base",
+    "roughness": 0.35,
+    "metalness": 0
+  },
+  {
+    "id": "blend0-largeFridge",
+    "material": "black",
+    "roughness": 0.5,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-clothes_washing_machine",
+    "material": "white-metal-without-texture",
+    "roughness": 0.24,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-clothes_washing_machine",
+    "material": "black-rubber",
+    "roughness": 0.86,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-clothes_washing_machine",
+    "material": "white-no-reflection",
+    "roughness": 0.35,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-clothes_washing_machine",
+    "material": "light-grey-no-reflection",
+    "roughness": 0.5,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-clothes_washing_machine",
+    "material": "metal-light",
+    "roughness": 0.2,
+    "metalness": 1
+  },
+  {
+    "id": "scopia-clothes_washing_machine",
+    "material": "glass",
+    "roughness": 0.15,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-clothes_washing_machine",
+    "material": "white-metal-textured",
+    "roughness": 0.24,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-clothes_washing_machine",
+    "material": "metal",
+    "roughness": 0.2,
+    "metalness": 1
+  },
+  {
+    "id": "scopia-clothes_washing_machine",
+    "material": "red-plastic",
+    "roughness": 0.35,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-coffee_machine",
+    "material": "metal_base_holes.png",
+    "roughness": 0.86,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-coffee_machine",
+    "material": "black_plastic_base_holes.png",
+    "roughness": 0.86,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-cooker",
+    "material": "BasePlastic",
+    "roughness": 0.35,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-cooker",
+    "material": "BaseControlPanel",
+    "roughness": 0.35,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-cooker",
+    "material": "MetalButton",
+    "roughness": 0.2,
+    "metalness": 1
+  },
+  {
+    "id": "scopia-cooker",
+    "material": "Controls",
+    "roughness": 0.35,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-cooker",
+    "material": "Pot",
+    "roughness": 0.86,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-cooker",
+    "material": "Glass",
+    "roughness": 0.15,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-induction-cooker-2-zones",
+    "material": "Material",
+    "roughness": 0.15,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-induction-cooker-4-zones",
+    "material": "Material.001",
+    "roughness": 0.15,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-inkjet_and_scanner_printer",
+    "material": "black-textured",
+    "roughness": 0.35,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-inkjet_and_scanner_printer",
+    "material": "semitrans",
+    "roughness": 0.5,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-mini_stereo",
+    "material": "metalic",
+    "roughness": 0.2,
+    "metalness": 1
+  },
+  {
+    "id": "scopia-mini_stereo",
+    "material": "stereo-core-material",
+    "roughness": 0.5,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-mini_stereo",
+    "material": "speaker-material",
+    "roughness": 0.5,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-dishwasher",
+    "material": "Body",
+    "roughness": 0.3,
+    "metalness": 0.95
+  },
+  {
+    "id": "scopia-dishwasher",
+    "material": "Baseboard",
+    "roughness": 0.35,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-dishwasher",
+    "material": "TopDishwasher",
+    "roughness": 0.3,
+    "metalness": 0.95
+  },
+  {
+    "id": "scopia-dishwasher",
+    "material": "BodyInterior",
+    "roughness": 0.3,
+    "metalness": 0.95
+  },
+  {
+    "id": "scopia-dishwasher",
+    "material": "LowerDrawer",
+    "roughness": 0.5,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-dishwasher",
+    "material": "TopDrawer",
+    "roughness": 0.5,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-dishwasher",
+    "material": "LowerSprayArm",
+    "roughness": 0.5,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-dishwasher",
+    "material": "DoorDecoration",
+    "roughness": 0.5,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-dishwasher",
+    "material": "TopDoor",
+    "roughness": 0.3,
+    "metalness": 0.95
+  },
+  {
+    "id": "scopia-dishwasher",
+    "material": "Door",
+    "roughness": 0.3,
+    "metalness": 0.95
+  },
+  {
+    "id": "scopia-dishwasher",
+    "material": "Handle",
+    "roughness": 0.5,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-dishwasher",
+    "material": "Programmer",
+    "roughness": 0.5,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-dishwasher",
+    "material": "DoorInterior",
+    "roughness": 0.3,
+    "metalness": 0.95
+  },
+  {
+    "id": "scopia-dishwasher",
+    "material": "TopSprayArm",
+    "roughness": 0.5,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-dishwasher",
+    "material": "PlasticWaterChannel",
+    "roughness": 0.35,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-small-oven",
+    "material": "controls",
+    "roughness": 0.35,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-small-oven",
+    "material": "metallGrill",
+    "roughness": 0.2,
+    "metalness": 1
+  },
+  {
+    "id": "scopia-small-oven",
+    "material": "redLight",
+    "roughness": 0.5,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-small-oven",
+    "material": "metalInterior",
+    "roughness": 0.2,
+    "metalness": 1
+  },
+  {
+    "id": "scopia-small-oven",
+    "material": "whiteOven",
+    "roughness": 0.35,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-small-oven",
+    "material": "blackPlastic",
+    "roughness": 0.35,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-small-oven",
+    "material": "metal_NONE",
+    "roughness": 0.2,
+    "metalness": 1
+  },
+  {
+    "id": "scopia-small-oven",
+    "material": "whiteDoor",
+    "roughness": 0.35,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-small-oven",
+    "material": "metalgrey",
+    "roughness": 0.2,
+    "metalness": 1
+  },
+  {
+    "id": "scopia-small-oven",
+    "material": "blackFrame",
+    "roughness": 0.5,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-small-oven",
+    "material": "glass",
+    "roughness": 0.15,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-small-oven",
+    "material": "metal",
+    "roughness": 0.2,
+    "metalness": 1
+  },
+  {
+    "id": "scopia-stereo_amplifier",
+    "material": "black-without-texture",
+    "roughness": 0.5,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-stereo_amplifier",
+    "material": "yellow",
+    "roughness": 0.35,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-stereo_amplifier",
+    "material": "black",
+    "roughness": 0.5,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-stereo_amplifier",
+    "material": "legs",
+    "roughness": 0.5,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-toaster",
+    "material": "orangeBody",
+    "roughness": 0.5,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-toaster",
+    "material": "metalBody",
+    "roughness": 0.2,
+    "metalness": 1
+  },
+  {
+    "id": "scopia-toaster",
+    "material": "metalControls",
+    "roughness": 0.2,
+    "metalness": 1
+  },
+  {
+    "id": "scopia-toaster",
+    "material": "metalChrome",
+    "roughness": 0.2,
+    "metalness": 1
+  },
+  {
+    "id": "scopia-toaster",
+    "material": "blackPlastic.001",
+    "roughness": 0.35,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-toaster",
+    "material": "blackPlasticWheel",
+    "roughness": 0.35,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-video-projector",
+    "material": "projector",
+    "roughness": 0.5,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-video-projector",
+    "material": "foot",
+    "roughness": 0.5,
+    "metalness": 0
+  },
+  {
+    "id": "blend0-rangeHood",
+    "material": "metal",
+    "roughness": 0.2,
+    "metalness": 1
+  },
+  {
+    "id": "blend0-rangeHood",
+    "material": "blue",
+    "roughness": 0.5,
+    "metalness": 0
+  },
+  {
+    "id": "blend0-rangeHood",
+    "material": "black",
+    "roughness": 0.5,
+    "metalness": 0
+  },
+  {
+    "id": "blend0-rangeHood",
+    "material": "glass",
+    "roughness": 0.15,
+    "metalness": 0
+  },
+  {
+    "id": "blend0-rangeHood",
+    "material": "white",
+    "roughness": 0.35,
+    "metalness": 0
+  },
+  {
+    "id": "blend0-oven",
+    "material": "vidro",
+    "roughness": 0.15,
+    "metalness": 0
+  },
+  {
+    "id": "blend0-oven",
+    "material": "forno",
+    "roughness": 0.5,
+    "metalness": 0
+  },
+  {
+    "id": "blend0-oven",
+    "material": "cinza",
+    "roughness": 0.5,
+    "metalness": 0
+  },
+  {
+    "id": "blend0-oven",
+    "material": "vidro_black",
+    "roughness": 0.15,
+    "metalness": 0
+  },
+  {
+    "id": "blend0-oven",
+    "material": "verde_led",
+    "roughness": 0.5,
+    "metalness": 0
+  },
+  {
+    "id": "blend0-oven",
+    "material": "inox",
+    "roughness": 0.2,
+    "metalness": 1
+  },
+  {
+    "id": "blend0-oven",
+    "material": "p_fosco",
+    "roughness": 0.5,
+    "metalness": 0
+  },
+  {
+    "id": "blend0-oven",
+    "material": "cromo",
+    "roughness": 0.2,
+    "metalness": 1
+  },
+  {
+    "id": "blend0-riggedFan",
+    "material": "Alu",
+    "roughness": 0.5,
+    "metalness": 0
+  },
+  {
+    "id": "blend0-riggedFan",
+    "material": "Plastic",
+    "roughness": 0.35,
+    "metalness": 0
+  },
+  {
+    "id": "blend0-riggedFan",
+    "material": "Blades",
+    "roughness": 0.5,
+    "metalness": 0
+  },
+  {
+    "id": "blend0-riggedFan",
+    "material": "Rubber",
+    "roughness": 0.86,
+    "metalness": 0
+  },
+  {
+    "id": "blend0-bedWithTexture",
+    "material": "bed_venge.001",
+    "roughness": 0.6,
+    "metalness": 0
+  },
+  {
+    "id": "blend0-bedWithTexture",
+    "material": "coverlet",
+    "roughness": 0.9,
+    "metalness": 0
+  },
+  {
+    "id": "blend0-bedWithTexture",
+    "material": "mattress",
+    "roughness": 0.9,
+    "metalness": 0
+  },
+  {
+    "id": "blend0-bedWithTexture",
+    "material": "rightPillow",
+    "roughness": 0.9,
+    "metalness": 0
+  },
+  {
+    "id": "blend0-bedWithTexture",
+    "material": "leftPillow",
+    "roughness": 0.9,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-rattanArmchair",
+    "material": "rattan",
+    "roughness": 0.6,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-rattanArmchair",
+    "material": "beigeCushion",
+    "roughness": 0.9,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-rattanArmchair",
+    "material": "borderCushion",
+    "roughness": 0.9,
+    "metalness": 0
+  },
+  {
+    "id": "blendby-cornerSofa",
+    "material": "1",
+    "roughness": 0.9,
+    "metalness": 0
+  },
+  {
+    "id": "blendby-cornerSofa",
+    "material": "podush_1",
+    "roughness": 0.9,
+    "metalness": 0
+  },
+  {
+    "id": "blendby-cornerSofa",
+    "material": "2",
+    "roughness": 0.9,
+    "metalness": 0
+  },
+  {
+    "id": "blendby-cornerSofa",
+    "material": "6",
+    "roughness": 0.9,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-rattanSofa",
+    "material": "beigeCushion.001",
+    "roughness": 0.9,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-rattanSofa",
+    "material": "borderCushion.001",
+    "roughness": 0.9,
+    "metalness": 0
+  },
+  {
+    "id": "scopia-rattanSofa",
+    "material": "rattan.001",
+    "roughness": 0.6,
+    "metalness": 0
+  }
+]

@@ -4,6 +4,7 @@
  <a class="brand" href="./"><span class="brand-symbol">木</span><span>木与光</span></a>
  <div class="project-name" [title]="scheme().name"><strong>{{scheme().name}}</strong></div>
  <div class="header-actions" [attr.inert]="roaming()?'':null">
+  <button class="header-button design-launch" (click)="openDesignStudio()" [disabled]="!ready()">家装设计</button>
   <button class="history" aria-label="撤销" title="撤销" [disabled]="!canEdit()||!editor().undo" (click)="viewer?.undo()"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 4-5 5 5 5M4 9h9a6 6 0 0 1 0 12"/></svg></button><button class="history" aria-label="重做" title="重做" [disabled]="!canEdit()||!editor().redo" (click)="viewer?.redo()"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 4 5 5-5 5M20 9h-9a6 6 0 0 0 0 12"/></svg></button>
   <button class="header-button" (click)="importInput.click()" [disabled]="!ready()||!canEdit()"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M4 15v5h16v-5"/></svg>导入</button><button class="header-button" (click)="viewer?.exportLayout()" [disabled]="!ready()"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3m-4 4 4-4 4 4M4 13v7h16v-7"/></svg>导出方案</button>
  </div>
@@ -11,16 +12,18 @@
  <input #importInput type="file" accept=".json,application/json" hidden (change)="importFile($event)">
 </header>
 <aside id="room-sidebar" class="sidebar" [class.open]="sidebarOpen()" aria-label="方案与房间导航">
+ <button class="design-sidebar-launch" (click)="openDesignStudio()" [disabled]="!ready()"><strong>从生活需求开始设计 ↗</strong><small>三种场景 · 布置检查 · 预算比较</small></button>
  <section class="scheme-explorer" aria-label="方案文件">
   <div class="scheme-heading">
    <button class="scheme-section-toggle" aria-controls="scheme-files" [attr.aria-expanded]="schemesOpen()" (click)="schemesOpen.set(!schemesOpen())"><svg class="ui-icon chevron" [class.expanded]="schemesOpen()" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg><span>方案</span><small>{{schemes().length}}</small></button>
    <button class="explorer-action new-scheme" aria-label="新建方案" title="新建方案" (click)="openNewScheme()" [disabled]="!ready()||!canEdit()"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H5v18h14V9M14 3v6h5M12 12v6M9 15h6"/></svg></button>
+   <button class="explorer-action delete-scheme" aria-label="删除方案" [title]="canDeleteScheme()?'删除 '+scheme().name:'选择自建方案后可删除；内置户型保留'" [disabled]="!canDeleteScheme()" (click)="openDeleteScheme()"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M9 6V3h6v3M6 6l1 15h10l1-15M10 10v7M14 10v7"/></svg></button>
    <button class="explorer-action refresh-schemes" aria-label="刷新方案" title="刷新方案" (click)="refreshSchemes()" [disabled]="!ready()&&!error()"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M19.5 12a7.5 7.5 0 1 0-2 5"/></svg></button>
   </div>
   <div id="scheme-files" class="scheme-files" role="listbox" aria-label="切换家装方案" [hidden]="!schemesOpen()" (keydown)="schemeKeydown($event)">
    @for(item of schemes();track item.id){<button class="scheme-file" role="option" [attr.data-scheme-id]="item.id" [attr.aria-selected]="item.id===scheme().id" [attr.aria-disabled]="!ready()&&!error()" [attr.tabindex]="item.id===scheme().id?0:-1" [title]="item.name" (click)="changeScheme(item.id)"><svg class="ui-icon file-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H5v18h14V8zM14 3v5h5M8 12h8M8 16h5"/></svg><span>{{item.name}}</span>@if(item.id===scheme().id){<i class="current-file" aria-hidden="true"></i>}</button>}
   </div>
-  <div class="cloud-status" [attr.data-state]="saveStatus().state" role="status" aria-live="polite"><span>● {{saveStatus().message}}</span>@if(localDraft()&&signedIn()){<button (click)="publishScheme()" [disabled]="!ready()" title="将当前布置另存到共享方案库，本机原稿保留">保存到云端</button>}@if(pendingCount()){<small>{{pendingCount()}} 个方案待同步</small>}@if(canEdit()&&saveStatus().state==='error'){<button (click)="retrySave()">重试保存</button>}@if(saveStatus().state==='conflict'){<button (click)="preserveConflict()" [disabled]="!ready()">另存本地副本</button>}</div>
+  @if(project()){<p class="model-version">户型：{{modelLabel()}}</p>}
  </section>
 
  <div class="list-heading"><span>房间导航</span><span class="column-label">可见 / 装修</span></div>
@@ -70,11 +73,10 @@
 </main>
 <aside id="furniture-inspector" class="editor-panel" aria-label="家具与属性" [class.open]="panelOpen()" [class.roam-inactive]="roaming()" [attr.inert]="roaming()?'':null">
  <div class="inspector-toolbar"><div class="panel-tabs" role="group" aria-label="家具面板"><button [class.active]="tab()==='catalog'" [attr.aria-pressed]="tab()==='catalog'" (click)="setTab('catalog')">家具库</button><button [class.active]="tab()==='selection'" [attr.aria-pressed]="tab()==='selection'" (click)="setTab('selection')">选中物件</button>@if(project()?.walls){<button [class.active]="tab()==='architecture'" (click)="setTab('architecture')">墙体 / 装修</button>}</div><button class="panel-close" aria-label="收起面板" (click)="panelOpen.set(false)">×</button></div>
- @if(!canEdit()){<div class="read-only-note"><strong>当前为浏览模式</strong><p>登录后可以修改布置和新建方案。</p><button class="header-button filled" (click)="openLogin()">登录编辑</button></div>}
+ @if(tab()==='catalog'&&replaceTarget();as target){<div class="selection-library-info" role="status">正在替换：{{target.name}}。选择下方模型，保留原位置与朝向。<button (click)="replaceTarget.set(null)">取消替换</button></div>}
+ <furniture-library [hidden]="tab()!=='catalog'" [items]="catalogItems()" [enabled]="ready()&&canEdit()&&!objectsLocked()" (add)="addLibrary($event)" />
  @if(tab()==='catalog'){
-  <p class="panel-help">{{objectsLocked()?'物件已锁定。关闭底部“锁定物件”后，可添加、选择和拖动家具。':'点击添加，或把样式拖入空间。添加后可直接拖动家具调整位置。'}}</p>
-  <div class="categories">@for(c of categories;track c){<button [class.active]="category()===c" (click)="category.set(c)">{{c}}</button>}</div>
-  <div class="catalog-grid">@for(item of filteredCatalog();track item.id){<button class="catalog-card" [draggable]="canEdit()&&!objectsLocked()" (dragstart)="dragStart($event,item.id)" (click)="add(item.id)" [disabled]="!ready()||!canEdit()||objectsLocked()" [attr.aria-label]="'添加'+item.name"><div class="furniture-icon" [class]="'furniture-icon '+item.type" [style.--item-color]="item.color"><i></i><b></b><em></em></div><strong>{{item.name}}</strong><small>{{item.style}}</small><span>{{item.size}} <b>＋</b></span></button>}</div>
+
  }@else if(tab()==='architecture'){
   <div class="architecture-panel">
    <h3>墙体编辑 <small>{{wallCount()}} 堵可编辑</small></h3>
@@ -110,33 +112,48 @@
    }
    <details class="object-list wall-list"><summary>全部墙体 · {{architecture().walls.length}}</summary>@for(w of architecture().walls;track w.id){@if(!w.deleted){<button (click)="selectWall(w.id)" [class.active]="architecture().selection?.id===w.id">{{w.name}}<span>{{w.lock?'🔒':'↗'}}</span></button>}}</details>
    <div class="finish-materials"><h3>墙地面装修</h3><label>应用范围<select aria-label="装修材质应用范围" [value]="finishRoom()" (change)="finishRoom.set($any($event.target).value)"><option value="all">全屋（光厅除外）</option>@for(room of project()?.rooms;track room.id){@if(!room.greeneryOnly){<option [value]="room.id">{{room.name}}</option>}}</select></label>
-    <p class="property-heading">墙面</p><div class="material-grid">@for(c of wallColors;track c.id){<button [class.active]="finishValue('wall')===c.id" (click)="changeFinish('wall',c.id)"><i [style.background]="c.color"></i>{{c.name}}</button>}</div>
-    <p class="property-heading">地面</p><div class="material-grid">@for(c of floorStyles;track c.id){<button [class.active]="finishValue('floor')===c.id" (click)="changeFinish('floor',c.id)"><i [style.background]="c.color"></i>{{c.name}}</button>}</div>
+    <p class="property-heading">墙面 · 纯色与 {{wallColors.length}} 种纹理</p>
+    <button class="solid-wall-option" [class.active]="finishValue('wall')==='solid'" [attr.aria-pressed]="finishValue('wall')==='solid'" [disabled]="!canEdit()" (click)="changeFinish('wall','solid')" aria-label="墙面材质 纯色"><i [style.background]="solidWallColor()??defaultSolidColor"></i><span>纯色墙面<small>无纹理 · 自定义调色</small></span></button>
+    @if(finishValue('wall')==='solid'){
+     <fieldset class="solid-wall-controls" [disabled]="!canEdit()"><legend>墙面颜色</legend>
+      <div class="solid-wall-swatches" role="group" aria-label="常用墙面纯色">@for(c of solidSwatches;track c.color){<button [style.background]="c.color" [class.active]="solidWallColor()===c.color" [attr.aria-pressed]="solidWallColor()===c.color" [attr.aria-label]="'墙面纯色 '+c.name" [title]="c.name" (click)="setSolidColor(c.color)"></button>}</div>
+      <div class="solid-wall-custom"><label>取色器<input type="color" aria-label="墙面自定义颜色" [value]="solidWallColor()??defaultSolidColor" (input)="setSolidColor($any($event.target).value,true)" (change)="endSolidColor()" (blur)="endSolidColor()"></label><label>HEX 色值<input type="text" aria-label="墙面 HEX 色值" [value]="solidWallColor()??''" maxlength="7" placeholder="#B7CAD3" spellcheck="false" [attr.aria-invalid]="wallColorError()?true:null" [attr.aria-describedby]="wallColorError()?'wall-color-error':null" (change)="setSolidColor($any($event.target).value)" (keydown.enter)="setSolidColor($any($event.target).value)"></label></div>
+      @if(!solidWallColor()){<p class="finish-note">当前房间颜色不同，选择新颜色可统一应用。</p>}
+      @if(wallColorError()){<p class="wall-color-error" id="wall-color-error" role="alert">{{wallColorError()}}</p>}
+     </fieldset>
+    }
+    <div class="material-grid finish-grid">@for(c of wallColors;track c.id){<button [class.active]="finishValue('wall')===c.id" [attr.aria-pressed]="finishValue('wall')===c.id" [attr.aria-label]="'墙面材质 '+c.name" (click)="changeFinish('wall',c.id)"><img [src]="c.preview" alt="" loading="lazy" width="130" height="72"><span>{{c.name}}<small>{{c.category}}</small></span></button>}</div>
+    <p class="property-heading">地面 · {{floorStyles.length}} 种</p><div class="material-grid finish-grid">@for(c of floorStyles;track c.id){<button [class.active]="finishValue('floor')===c.id" [attr.aria-pressed]="finishValue('floor')===c.id" [attr.aria-label]="'地面材质 '+c.name" (click)="changeFinish('floor',c.id)"><img [src]="c.preview" alt="" loading="lazy" width="130" height="72"><span>{{c.name}}<small>{{c.category}}</small></span></button>}</div>
+    <p class="finish-note">点击材质即可应用。纹理按实际尺度铺设，光厅保留清水基底。<a href="materials/ATTRIBUTION.html" target="_blank" rel="noopener">纹理来源</a></p><button class="subtle-button" (click)="retryFinishTextures()">重试纹理</button>
     <p class="panel-help">选择材质即显示对应空间装修；底部“清水房”可随时隐藏面层与家具。光厅保留清水状态。</p>
    </div>
   </div>
  }@else{
   @if(editor().selection;as s){
-   <div class="selected-card"><span class="eyebrow">SELECTED OBJECT</span><h3>{{s.name}}</h3><p>拖动物件移动 · 5 cm 网格吸附</p></div>
-   <div class="property-grid"><label>横向 X / m<input aria-label="家具横向位置" type="number" step=".05" [value]="s.x.toFixed(2)" (change)="transform('x',$event)"></label><label>纵向 Z / m<input aria-label="家具纵向位置" type="number" step=".05" [value]="s.z.toFixed(2)" (change)="transform('z',$event)"></label><label>旋转 / °<input aria-label="家具旋转角度" type="number" step="15" [value]="s.angle.toFixed(0)" (change)="transform('angle',$event)"></label><label>比例<input aria-label="家具比例" type="number" min=".3" max="3" step=".1" [value]="s.scale.toFixed(2)" (change)="transform('scale',$event)"></label></div>
-   <div class="rotate-actions"><button (click)="viewer?.rotate(-90)">↶ 旋转 90°</button><button (click)="viewer?.rotate(90)">旋转 90° ↷</button></div>
-   <p class="property-heading">主体配色 <small>保留金属和透明部件</small></p><div class="swatches">@for(color of colors;track color){<button [style.background]="color" [class.chosen]="s.color===color" [attr.aria-label]="'家具配色 '+color" (click)="viewer?.setColor(color)"></button>}</div>
-   <div class="object-actions"><button (click)="viewer?.duplicate()">复制物件 ＋</button><button class="danger" (click)="viewer?.removeSelected()">删除物件</button></div>
+   <div class="selected-card"><span class="eyebrow">SELECTED OBJECT</span><h3>{{s.name}}</h3><p>拖动物件移动 · 5 cm 网格吸附 · Tab 旋转 90°</p></div>
+   @if(selectedSpec();as spec){<div class="selection-library-info"><div class="library-tags">@for(tag of spec.typeTags;track tag){<span>{{tag}}</span>}@for(tag of spec.styleTags;track tag){<span class="style-tag">{{tag}}</span>}</div><p>{{spec.size}} · {{spec.precision??'方案定制'}}</p></div>}
+   @if(s.modelStatus==='loading'){<p role="status">正在加载家具模型…</p>}
+   @if(s.modelStatus==='error'){<p role="alert">家具模型加载失败 <button (click)="viewer?.retrySelectedModel()">重试加载</button></p>}
+   @if(s.modelStatus==='retired'){<p role="status">此简化模型已下架，不再显示。位置记录已保留，可选择完整模型替换，或删除记录。</p>}
+   @if(s.catalogId){<button class="reset-layout" (click)="beginReplacement()">从家具库替换</button>}
+   <div class="property-grid"><label>横向 X / m<input aria-label="家具横向位置" type="number" step=".05" [value]="s.x.toFixed(2)" (change)="transform('x',$event)"></label><label>纵向 Z / m<input aria-label="家具纵向位置" type="number" step=".05" [value]="s.z.toFixed(2)" (change)="transform('z',$event)"></label><label>离地高度 / m<input aria-label="家具离地高度" type="number" min="0" max="3" step=".05" [value]="s.y.toFixed(2)" (change)="transform('y',$event)"></label><label>旋转 / °<input aria-label="家具旋转角度" type="number" step="15" [value]="s.angle.toFixed(0)" (change)="transform('angle',$event)"></label><label>比例<input aria-label="家具比例" type="number" min=".3" max="3" step=".1" [value]="s.scale.toFixed(2)" (change)="transform('scale',$event)"></label></div>
+   <div class="rotate-actions"><button (click)="viewer?.rotate(-90)">↶ 旋转 90°</button><button title="旋转 90°（Tab）" aria-keyshortcuts="Tab" (click)="viewer?.rotate(90)">旋转 90° ↷</button></div>
+   @if(!s.catalogId){<p class="property-heading">主体配色 <small>保留金属和透明部件</small></p><div class="swatches">@for(color of colors;track color){<button [style.background]="color" [class.chosen]="s.color===color" [attr.aria-label]="'家具配色 '+color" (click)="viewer?.setColor(color)"></button>}</div>}@else if(s.modelStatus!=='retired'){<p class="panel-help">保留原模型的木纹、织物、金属与玻璃材质。</p>}
+   <div class="object-actions"><button [disabled]="s.modelStatus==='retired'" (click)="viewer?.duplicate()">复制物件 ＋</button><button class="danger" (click)="viewer?.removeSelected()">删除物件</button></div>
   }@else{<div class="empty-selection"><span>⌖</span><h3>{{objectsLocked()?'物件已锁定':'点击一个家具'}}</h3><p>{{objectsLocked()?'关闭底部“锁定物件”后，可重新选择和拖动家具。':'在空间中点击，或从下方清单选择，即可移动、旋转、换色与删除。'}}</p></div>}
   <details class="object-list" open><summary>当前家具清单 · {{roomItems().length}}</summary>@for(item of roomItems();track item.id){<button (click)="focus(item.id)" [disabled]="!canEdit()||objectsLocked()" [class.active]="editor().selection?.id===item.id">{{item.name}}<span>↗</span></button>}</details>
  }
- <div class="save-status"><span>●</span> {{editor().message||'编辑后自动保存'}}@if(cacheWarning()){<p class="cache-warning">{{cacheWarning()}}</p>}</div>
  @if(editor().legacyBackup){<button class="reset-layout" (click)="viewer?.exportLegacyBackup()">下载家具合并前的原存档 ↓</button>}
  <button class="reset-layout" (click)="viewer?.reset()" [disabled]="!ready()||!canEdit()">恢复初始布置（可撤销）</button>
 </aside>
-<footer><span>{{editor().count}} 个可编辑物件</span><p>尺寸与材质为方案示意</p><button (click)="showInfo.set(true)">使用说明 ⓘ</button><button (click)="exportGlb()" [disabled]="!ready()">导出当前 GLB ↗</button></footer>
+<footer><span>{{editor().count}} 个物件记录</span><p>家具尺寸见各模型详情</p><button (click)="showInfo.set(true)">使用说明 ⓘ</button><button (click)="exportGlb()" [disabled]="!ready()">导出当前 GLB ↗</button></footer>
 </div>
 @if(architecture().openingWall;as wall){@if(viewer;as ed){<home-opening-editor [editor]="ed" [wall]="wall" [selectedId]="architecture().openingId" [undoCount]="editor().undo" [redoCount]="editor().redo"/>}}
 <dialog #loginDialog class="scheme-dialog" aria-labelledby="login-title">
  <form (submit)="login($event)">
   <button type="button" class="close" aria-label="关闭登录" (click)="loginDialog.close()">×</button>
   <span class="eyebrow">WELCOME BACK</span><h2 id="login-title">登录，继续布置你的家</h2>
-  <p>使用已有账号登录，即可编辑所有共享方案。</p>
+  <p>使用已有账号登录，即可编辑方案并自动保存到云端。</p>
   <label>邮箱<input autofocus type="email" name="email" autocomplete="username" required aria-label="登录邮箱"></label>
   <label>密码<input type="password" name="password" autocomplete="current-password" required aria-label="登录密码"></label>
   @if(authError()){<p class="form-error" role="alert">{{authError()}}</p>}
@@ -149,14 +166,28 @@
   <span class="eyebrow">A NEW POSSIBILITY</span><h2 id="new-scheme-title">新建一个家装方案</h2>
   <p>为新的想法起个名字，继续探索家的可能。</p>
   <label>方案名称<input autofocus required maxlength="60" aria-label="方案名称" placeholder="例如：暖木色客厅" [value]="newName()" (input)="newName.set($any($event.target).value)"></label>
-  <label>起始布置<select aria-label="起始布置" [value]="newSource()" (change)="newSource.set($any($event.target).value)"><option value="copy">复制当前布置 · {{scheme().name}}</option>@for(item of templates;track item.id){<option [value]="item.id">{{item.name}} · 初始布置</option>}</select></label>
+  <label>起始布置<select aria-label="起始布置" (change)="newSource.set($any($event.target).value)"><option value="copy" [selected]="newSource()==='copy'">复制当前布置 · {{scheme().name}}</option>@for(item of templates;track item.id){<option [value]="item.id" [selected]="newSource()===item.id">{{item.name}} · 初始布置</option>}</select></label>
   <p class="small">新方案独立保存，创建后即可编辑。</p>
+  @if(newSource()==='raw-shell'){<p class="small">从最新原始清水房开始，客厅落地窗两端保留短实墙。</p>}
   @if(createError()){<p class="form-error" role="alert">{{createError()}}</p>}
   <div class="dialog-actions"><button type="button" class="header-button" (click)="schemeDialog.close()">取消</button><button class="header-button filled" type="submit" [disabled]="creating()||!newName().trim()">{{creating()?'正在创建…':'创建方案'}}</button></div>
  </form>
 </dialog>
-@if(notice()){<div class="toast" role="status">{{notice()}}<button (click)="notice.set('')" aria-label="关闭提示">×</button></div>}
+<dialog #designDialog class="design-dialog" aria-label="家装设计工作台" (cancel)="designBusy()?$event.preventDefault():closeDesignStudio()">
+ @if(studioLayout();as layout){@if(project();as p){<design-studio [currentLayout]="layout" [currentProject]="p" [busy]="designBusy()" (closeStudio)="closeDesignStudio()" (applyDesign)="applyDesign($event)"/>}}
+</dialog>
+<dialog #deleteDialog class="scheme-dialog" aria-labelledby="delete-scheme-title" (cancel)="deleting()?$event.preventDefault():closeDeleteScheme()">
+ <form (submit)="deleteScheme($event)">
+  <h2 id="delete-scheme-title">删除方案？</h2>
+  <p>确定删除“<strong>{{deleteTarget()?.name}}</strong>”吗？</p>
+  <p>此方案的家具布置和墙体修改将被删除，已同步的方案也会从云端移除。删除后无法撤销。</p>
+  @if(deleteError()){<p class="form-error" role="alert">{{deleteError()}}</p>}
+  <div class="dialog-actions"><button type="button" class="header-button" autofocus [disabled]="deleting()" (click)="closeDeleteScheme()">取消</button><button type="submit" class="header-button danger" [disabled]="deleting()">{{deleting()?'正在删除…':'确认删除'}}</button></div>
+ </form>
+</dialog>
+@if(saveError();as failure){<div class="toast save-error" role="alert"><span>{{failure.message}}</span><div class="message-actions">@if(!signedIn()){<button class="message-action" (click)="openLogin()">登录</button>}@else if(failure.conflict){<button class="message-action" (click)="preserveConflict(failure.id)" [disabled]="!ready()">另存为新方案</button>}@else{<button class="message-action" (click)="retrySave()">重试保存</button>}<button (click)="saveError.set(null)" aria-label="关闭保存失败消息">×</button></div></div>}
+@else if(notice()){<div class="toast" role="status">{{notice()}}<button (click)="notice.set('')" aria-label="关闭提示">×</button></div>}
 @if(showSource()){<div class="modal" (click)="showSource.set(false)" role="dialog" aria-modal="true" aria-label="最新户型图"><div class="modal-card plan-card" (click)="$event.stopPropagation()"><button class="close" (click)="showSource.set(false)" aria-label="关闭户型图">×</button><h2>{{scheme().name}} · 户型原图</h2><img [src]="scheme().plan" alt="用户提供的当前方案户型平面图"><p>{{scheme().note}}</p></div></div>}
-@if(showInfo()){<div class="modal" (click)="showInfo.set(false)" role="dialog" aria-modal="true" aria-label="使用说明"><div class="modal-card" (click)="$event.stopPropagation()"><button class="close" (click)="showInfo.set(false)" aria-label="关闭说明">×</button><span class="eyebrow">ABOUT THIS SIMULATOR</span><h2>一个可以自由布置的家。</h2><p>选择“原始户型 · 清水房”后，在右侧“墙体 / 装修”中选择或绘制墙体。绘制时依次点击起点和终点，按住Shift约束水平或竖直，Esc取消；灰色锁定墙无法编辑，蓝色隔墙可以拖动墙身移动、拖动橙色圆点旋转，按住Shift以15°吸附，也可输入位置与角度或删除。门窗随所属墙体整体处理，删除后支持撤销。装修材质按房间设置，光厅保留清水基底。原始清水房、方案一、方案二和自己创建的布置均在左侧“方案”列表中切换，也可从三个户型中的任意一个新建方案。</p><p>画面右上角依次提供“自由查看”“户型图”“第一人称漫游”。漫游每次从入户门外开始，面向屋内；WASD 前后左右移动，鼠标转向，Esc 退出并恢复原视角。视线高 160 cm，移动速度固定为 2.8 米/秒。漫游时暂停家具拖动、保留完整墙面。墙体和窗户会阻挡移动，门洞可通行，家具与门扇暂不做碰撞。浏览器若无法锁定鼠标，可按住左键拖动转向。</p><p>点击家具选中，拖动调整位置；右侧可输入位置、旋转角度和比例，选择配色、复制或删除。按 Delete 删除，Ctrl / ⌘ + Z 撤销，Ctrl / ⌘ + Shift + Z 重做。</p><p>从样式库点击添加，或直接拖入空间。通过“家具编辑”切换到浏览模式，可避免移动家具。</p><p>左侧眼睛控制整个房间，座椅图标控制该房间装修。“清水房”去掉家具、柜体、灯具、面层，将墙面恢复水泥基底。光厅的开关仅控制盆栽。</p><p>本机方案可直接编辑；共享方案登录后可编辑。保存状态显示在当前方案下方，本机方案登录后可点击“保存到云端”另存共享副本，原稿保留。左侧“方案”旁的新建按钮可复制当前布置，或选择任一户型的初始布置创建独立方案。家具和房间状态在编辑后自动上传，并保留本地缓存；断网后自动重试。切换方案或点击刷新按钮可读取最新云端布置。多人同时编辑时会保留本地修改并提示另存副本。导出 JSON 可备份、分享或在此模型中重新导入；导入时请先切换到文件所属户型；JSON 保存可继续编辑的布置；“导出当前 GLB”保存可在其他三维软件打开的当前方案。</p><p>自动隐藏仅移除当前视线最近的一组墙，保留后方墙体。天花板默认关闭，可独立开启；平面图始终隐藏天花板并使用低位墙体。按住鼠标中键或右键拖动平移视角，滚轮缩放。模型由 Blender 转换，按最新图更新主卧和主卫。</p><p class="small">这是布置模拟器。原始户型支持绘制、修改和删除室内灰色隔墙，黑色实墙及外围墙锁定；原有两套装修方案沿用原模型。可编辑墙体允许开窗及开门洞，门窗可共存。新门洞默认90 × 220 cm，每个洞口的位置与尺寸均可调整。墙体位置、角度、厚度、端点和高度可在属性栏修改。尚未进行现场尺寸测绘。清水材质为示意；三维家具与图片生成效果图会有细节差异。</p></div></div>}
+@if(showInfo()){<div class="modal" (click)="showInfo.set(false)" role="dialog" aria-modal="true" aria-label="使用说明"><div class="modal-card" (click)="$event.stopPropagation()"><button class="close" (click)="showInfo.set(false)" aria-label="关闭说明">×</button><span class="eyebrow">ABOUT THIS SIMULATOR</span><h2>一个可以自由布置的家。</h2><p>选择“原始户型 · 清水房”后，在右侧“墙体 / 装修”中选择或绘制墙体。绘制时依次点击起点和终点，按住Shift约束水平或竖直，Esc取消；灰色锁定墙无法编辑，蓝色隔墙可以拖动墙身移动、拖动橙色圆点旋转，按住Shift以15°吸附，也可输入位置与角度或删除。门窗随所属墙体整体处理，删除后支持撤销。装修材质按房间设置，光厅保留清水基底。原始清水房、方案一、方案二和自己创建的布置均在左侧“方案”列表中切换，也可从三个户型中的任意一个新建方案。</p><p>画面右上角依次提供“自由查看”“户型图”“第一人称漫游”。漫游每次从入户门外开始，面向屋内；WASD 前后左右移动，鼠标转向，Esc 退出并恢复原视角。视线高 160 cm，移动速度固定为 2.8 米/秒。漫游时暂停家具拖动、保留完整墙面。墙体和窗户会阻挡移动，门洞可通行，家具与门扇暂不做碰撞。浏览器若无法锁定鼠标，可按住左键拖动转向。</p><p>点击家具选中，拖动调整位置；右侧可输入位置、旋转角度和比例，选择配色、复制或删除。按 Tab 将选中物件旋转 90°，按 Delete 删除，Ctrl / ⌘ + Z 撤销，Ctrl / ⌘ + Shift + Z 重做。</p><p>从样式库点击添加，或直接拖入空间。通过“家具编辑”切换到浏览模式，可避免移动家具。</p><p>左侧眼睛控制整个房间，座椅图标控制该房间装修。“清水房”去掉家具、柜体、灯具、面层，将墙面恢复水泥基底。光厅的开关仅控制盆栽。</p><p>所有方案均自动保存到云端，无需手动另存或选择保存位置。云端保存需登录，失败时显示消息；成功时不弹提示。原有方案按原名称自动同步。左侧“方案”旁的新建按钮可复制当前布置，或选择任一户型的初始布置创建独立方案。家具和房间状态在停止修改 5 秒后异步上传；5 秒内再次修改则重新计时，只上传最新数据。断网后自动重试。切换方案或点击刷新按钮可读取最新云端布置。多人同时编辑时会保留本地修改并提示另存副本。导出 JSON 可备份、分享或在此模型中重新导入；导入时请先切换到文件所属户型；JSON 保存可继续编辑的布置；“导出当前 GLB”保存可在其他三维软件打开的当前方案。</p><p>自动隐藏仅移除当前视线最近的一组墙，保留后方墙体。天花板默认关闭，可独立开启；平面图始终隐藏天花板并使用低位墙体。按住鼠标中键或右键拖动平移视角，滚轮缩放。模型由 Blender 转换，按最新图更新主卧和主卫。</p><p class="small">这是布置模拟器。原始户型支持绘制、修改和删除室内灰色隔墙，黑色实墙及外围墙锁定；原有两套装修方案沿用原模型。可编辑墙体允许开窗及开门洞，门窗可共存。新门洞默认90 × 220 cm，每个洞口的位置与尺寸均可调整。墙体位置、角度、厚度、端点和高度可在属性栏修改。尚未进行现场尺寸测绘。清水材质为示意；三维家具与图片生成效果图会有细节差异。</p></div></div>}
 
 

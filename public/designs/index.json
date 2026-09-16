@@ -1,0 +1,17 @@
+[
+  {
+    "id": "demo-family",
+    "name": "模拟示例 · 亲子成长",
+    "scenario": "family"
+  },
+  {
+    "id": "demo-work",
+    "name": "模拟示例 · 双人办公",
+    "scenario": "work"
+  },
+  {
+    "id": "demo-elder",
+    "name": "模拟示例 · 长辈同住",
+    "scenario": "elder"
+  }
+]
