@@ -4,8 +4,8 @@ import { onFloor } from './walk-motion';
 export type WallOpening={id?:string;start:number;end:number;bottom:number;top:number;kind:'door'|'window'};
 export type WallRecord={id:string;name:string;a:number[];b:number[];thickness:number;height:number;rooms:string[];lock:''|'structural'|'exterior'|'fixed';openings:WallOpening[];deleted:boolean;railing?:boolean};
 export type RoomFinish={wall:string;floor:string};
-export const WALL_COLORS=[{id:'white',name:'暖白墙漆',color:'#eeeae1'},{id:'cream',name:'淡奶油墙漆',color:'#e9debf'},{id:'blue',name:'浅蓝墙漆',color:'#b7cad3'},{id:'sage',name:'灰绿墙漆',color:'#b9c2b6'}];
-export const FLOOR_STYLES=[{id:'oak',name:'温润橡木',color:'#bb9164'},{id:'light-oak',name:'浅色木地板',color:'#d2b58e'},{id:'tile',name:'浅灰方砖',color:'#c6c5bf'},{id:'terrazzo',name:'水磨石',color:'#d7d3c8'}];
+import { WALL_COLORS, FLOOR_STYLES } from './finish-presets';
+export { WALL_COLORS, FLOOR_STYLES } from './finish-presets';
 export const DEFAULT_FINISH:RoomFinish={wall:'white',floor:'oak'};
 export function wallLength(w:WallRecord){return Math.hypot(w.b[0]-w.a[0],w.b[1]-w.a[1]);}
 export function transformWall(w:WallRecord,dx:number,dz:number,radians:number):WallRecord{

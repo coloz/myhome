@@ -1,0 +1,322 @@
+[
+  {
+    "id": "ph-metal_office_desk",
+    "name": "金属双柜书桌",
+    "description": "Metal Office Desk",
+    "brand": "Poly Haven",
+    "category": "桌子",
+    "type": "table",
+    "typeTags": [
+      "桌子"
+    ],
+    "styleTags": [
+      "北欧"
+    ],
+    "style": "北欧",
+    "color": "#c3b091",
+    "dimensions": [
+      2.0000003576278687,
+      0.9472135305404663,
+      0.7875000238418579
+    ],
+    "size": "200.0 × 94.7 × 78.8 cm",
+    "model": "library/models/ph-metal_office_desk.glb",
+    "source": "https://polyhaven.com/a/metal_office_desk",
+    "creator": "Ulan Cabanilla / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-metal_office_desk",
+    "elevation": 0,
+    "modelBytes": 5240604,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  },
+  {
+    "id": "ph-steel_frame_shelves_01",
+    "name": "钢木五层置物架",
+    "description": "Steel Frame Shelves 01",
+    "brand": "Poly Haven",
+    "category": "收纳",
+    "type": "cabinet",
+    "typeTags": [
+      "收纳"
+    ],
+    "styleTags": [
+      "北欧"
+    ],
+    "style": "北欧",
+    "color": "#c3b091",
+    "dimensions": [
+      1.0974145412445069,
+      0.5021175384521485,
+      2.1405006067827346
+    ],
+    "size": "109.7 × 50.2 × 214.1 cm",
+    "model": "library/models/ph-steel_frame_shelves_01.glb",
+    "source": "https://polyhaven.com/a/steel_frame_shelves_01",
+    "creator": "James Ray Cock / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-steel_frame_shelves_01",
+    "elevation": 0,
+    "modelBytes": 5568284,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  },
+  {
+    "id": "ph-steel_frame_shelves_02",
+    "name": "钢木宽幅置物架",
+    "description": "Steel Frame Shelves 02",
+    "brand": "Poly Haven",
+    "category": "收纳",
+    "type": "cabinet",
+    "typeTags": [
+      "收纳"
+    ],
+    "styleTags": [
+      "北欧"
+    ],
+    "style": "北欧",
+    "color": "#c3b091",
+    "dimensions": [
+      0.5933027565479279,
+      0.5023781061172485,
+      2.1416114285821095
+    ],
+    "size": "59.3 × 50.2 × 214.2 cm",
+    "model": "library/models/ph-steel_frame_shelves_02.glb",
+    "source": "https://polyhaven.com/a/steel_frame_shelves_02",
+    "creator": "James Ray Cock / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-steel_frame_shelves_02",
+    "elevation": 0,
+    "modelBytes": 1521452,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  },
+  {
+    "id": "ph-steel_frame_shelves_03",
+    "name": "钢木抽屉置物架",
+    "description": "Steel Frame Shelves 03",
+    "brand": "Poly Haven",
+    "category": "收纳",
+    "type": "cabinet",
+    "typeTags": [
+      "收纳"
+    ],
+    "styleTags": [
+      "北欧"
+    ],
+    "style": "北欧",
+    "color": "#c3b091",
+    "dimensions": [
+      2.3510769605636597,
+      0.7212461084127426,
+      2.311832904815674
+    ],
+    "size": "235.1 × 72.1 × 231.2 cm",
+    "model": "library/models/ph-steel_frame_shelves_03.glb",
+    "source": "https://polyhaven.com/a/steel_frame_shelves_03",
+    "creator": "Ulan Cabanilla / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-steel_frame_shelves_03",
+    "elevation": 0,
+    "modelBytes": 13190056,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 6
+  },
+  {
+    "id": "ph-desk_lamp_arm_01",
+    "name": "关节长臂台灯",
+    "description": "Desk Lamp Arm 01",
+    "brand": "Poly Haven",
+    "category": "灯具",
+    "type": "lamp",
+    "typeTags": [
+      "灯具"
+    ],
+    "styleTags": [
+      "北欧"
+    ],
+    "style": "北欧",
+    "color": "#c3b091",
+    "dimensions": [
+      0.20172932744026184,
+      0.6138725876808167,
+      0.8926106989383698
+    ],
+    "size": "20.2 × 61.4 × 89.3 cm",
+    "model": "library/models/ph-desk_lamp_arm_01.glb",
+    "source": "https://polyhaven.com/a/desk_lamp_arm_01",
+    "creator": "Yann Kervran, Kuutti Siitonen / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-desk_lamp_arm_01",
+    "elevation": 0,
+    "modelBytes": 8471684,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  },
+  {
+    "id": "ph-modern_ceiling_lamp_01",
+    "name": "现代玻璃吊灯",
+    "description": "Modern Ceiling Lamp 01",
+    "brand": "Poly Haven",
+    "category": "灯具",
+    "type": "lamp",
+    "typeTags": [
+      "灯具"
+    ],
+    "styleTags": [
+      "简约现代"
+    ],
+    "style": "简约现代",
+    "color": "#c3b091",
+    "dimensions": [
+      0.4316493272781372,
+      0.4316607564687729,
+      0.9515514969825745
+    ],
+    "size": "43.2 × 43.2 × 95.2 cm",
+    "model": "library/models/ph-modern_ceiling_lamp_01.glb",
+    "source": "https://polyhaven.com/a/modern_ceiling_lamp_01",
+    "creator": "James Ray Cock / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-modern_ceiling_lamp_01",
+    "elevation": 2.0484485030174255,
+    "modelBytes": 1071352,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  },
+  {
+    "id": "ph-painted_wooden_bench",
+    "name": "靠背木长凳",
+    "description": "Painted Wooden Bench",
+    "brand": "Poly Haven",
+    "category": "椅凳",
+    "type": "chair",
+    "typeTags": [
+      "椅凳"
+    ],
+    "styleTags": [
+      "北欧"
+    ],
+    "style": "北欧",
+    "color": "#c3b091",
+    "dimensions": [
+      1.1649435758590698,
+      0.4965430945158005,
+      0.8892914750613272
+    ],
+    "size": "116.5 × 49.7 × 88.9 cm",
+    "model": "library/models/ph-painted_wooden_bench.glb",
+    "source": "https://polyhaven.com/a/painted_wooden_bench",
+    "creator": "Kirill Sannikov / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-painted_wooden_bench",
+    "elevation": 0,
+    "modelBytes": 7994104,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  },
+  {
+    "id": "ph-SchoolChair_01",
+    "name": "木座金属学习椅",
+    "description": "School Chair 01",
+    "brand": "Poly Haven",
+    "category": "椅凳",
+    "type": "chair",
+    "typeTags": [
+      "椅凳"
+    ],
+    "styleTags": [
+      "北欧"
+    ],
+    "style": "北欧",
+    "color": "#c3b091",
+    "dimensions": [
+      0.5658532977104187,
+      0.6752548813819885,
+      1.006035539903678
+    ],
+    "size": "56.6 × 67.5 × 100.6 cm",
+    "model": "library/models/ph-SchoolChair_01.glb",
+    "source": "https://polyhaven.com/a/SchoolChair_01",
+    "creator": "Ethan Place / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-SchoolChair_01",
+    "elevation": 0,
+    "modelBytes": 1552204,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  },
+  {
+    "id": "ph-painted_wooden_chair_01",
+    "name": "涂装木餐椅",
+    "description": "Painted Wooden Chair 01",
+    "brand": "Poly Haven",
+    "category": "椅凳",
+    "type": "chair",
+    "typeTags": [
+      "椅凳"
+    ],
+    "styleTags": [
+      "北欧"
+    ],
+    "style": "北欧",
+    "color": "#c3b091",
+    "dimensions": [
+      0.43175144493579865,
+      0.5398241728544235,
+      0.9564821355743334
+    ],
+    "size": "43.2 × 54.0 × 95.6 cm",
+    "model": "library/models/ph-painted_wooden_chair_01.glb",
+    "source": "https://polyhaven.com/a/painted_wooden_chair_01",
+    "creator": "Kuutti Siitonen / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-painted_wooden_chair_01",
+    "elevation": 0,
+    "modelBytes": 1531484,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  },
+  {
+    "id": "ph-wooden_table_02",
+    "name": "木质工作桌",
+    "description": "Wooden Table 02",
+    "brand": "Poly Haven",
+    "category": "桌子",
+    "type": "table",
+    "typeTags": [
+      "桌子"
+    ],
+    "styleTags": [
+      "北欧"
+    ],
+    "style": "北欧",
+    "color": "#c3b091",
+    "dimensions": [
+      1.13441663980484,
+      0.7060248255729675,
+      0.7995428870490286
+    ],
+    "size": "113.4 × 70.6 × 80.0 cm",
+    "model": "library/models/ph-wooden_table_02.glb",
+    "source": "https://polyhaven.com/a/wooden_table_02",
+    "creator": "Serhii Khromov / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-wooden_table_02",
+    "elevation": 0,
+    "modelBytes": 1947308,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  }
+]

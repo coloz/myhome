@@ -1,0 +1,917 @@
+[
+  {
+    "id": "detail-wardrobe",
+    "name": "橡木暖白双门衣柜",
+    "category": "收纳",
+    "type": "衣柜",
+    "typeTags": [
+      "衣柜"
+    ],
+    "styleTags": [
+      "简约现代",
+      "北欧"
+    ],
+    "style": "简约现代 · 北欧",
+    "color": "#c3a17a",
+    "brand": "原创精细模型",
+    "description": "18mm独立板件与倒角；柜门/抽屉接缝；层板、拉手或滑轨五金；木纹颜色 / 法线 / 粗糙度",
+    "dimensions": [
+      1.2000000476837158,
+      0.7588005065917969,
+      2.199000120162964
+    ],
+    "size": "120.0 × 75.9 × 219.9 cm",
+    "precision": "原创设计尺寸 · 可按需缩放",
+    "model": "library/models/detail-wardrobe.glb",
+    "modelBytes": 3036892,
+    "quality": "原创建模 · 倒角 / 五金 / PBR",
+    "source": "library/AUTHORED.html",
+    "creator": "家装模拟器 · 原创建模",
+    "license": "原创模型；纹理 CC0-1.0",
+    "styleKey": "detail-wardrobe",
+    "constructionDetails": [
+      "18mm独立板件与倒角",
+      "柜门/抽屉接缝",
+      "层板、拉手或滑轨五金",
+      "木纹颜色 / 法线 / 粗糙度"
+    ],
+    "parts": 40,
+    "materialMaps": 3,
+    "elevation": 0
+  },
+  {
+    "id": "detail-sliding",
+    "name": "窄轨推拉衣柜",
+    "category": "收纳",
+    "type": "衣柜",
+    "typeTags": [
+      "衣柜"
+    ],
+    "styleTags": [
+      "简约现代",
+      "北欧"
+    ],
+    "style": "简约现代 · 北欧",
+    "color": "#c3a17a",
+    "brand": "原创精细模型",
+    "description": "18mm独立板件与倒角；柜门/抽屉接缝；层板、拉手或滑轨五金；木纹颜色 / 法线 / 粗糙度",
+    "dimensions": [
+      1.600000023841858,
+      0.6439999938011169,
+      2.120000123977661
+    ],
+    "size": "160.0 × 64.4 × 212.0 cm",
+    "precision": "原创设计尺寸 · 可按需缩放",
+    "model": "library/models/detail-sliding.glb",
+    "modelBytes": 2890560,
+    "quality": "原创建模 · 倒角 / 五金 / PBR",
+    "source": "library/AUTHORED.html",
+    "creator": "家装模拟器 · 原创建模",
+    "license": "原创模型；纹理 CC0-1.0",
+    "styleKey": "detail-sliding",
+    "constructionDetails": [
+      "18mm独立板件与倒角",
+      "柜门/抽屉接缝",
+      "层板、拉手或滑轨五金",
+      "木纹颜色 / 法线 / 粗糙度"
+    ],
+    "parts": 16,
+    "materialMaps": 3,
+    "elevation": 0
+  },
+  {
+    "id": "detail-bookcase",
+    "name": "橡木可调层板书柜",
+    "category": "收纳",
+    "type": "书柜",
+    "typeTags": [
+      "书柜"
+    ],
+    "styleTags": [
+      "简约现代",
+      "北欧"
+    ],
+    "style": "简约现代 · 北欧",
+    "color": "#c3a17a",
+    "brand": "原创精细模型",
+    "description": "18mm独立板件与倒角；柜门/抽屉接缝；层板、拉手或滑轨五金；木纹颜色 / 法线 / 粗糙度",
+    "dimensions": [
+      0.800000011920929,
+      0.30000001192092896,
+      1.7899999618530273
+    ],
+    "size": "80.0 × 30.0 × 179.0 cm",
+    "precision": "原创设计尺寸 · 可按需缩放",
+    "model": "library/models/detail-bookcase.glb",
+    "modelBytes": 3005020,
+    "quality": "原创建模 · 倒角 / 五金 / PBR",
+    "source": "library/AUTHORED.html",
+    "creator": "家装模拟器 · 原创建模",
+    "license": "原创模型；纹理 CC0-1.0",
+    "styleKey": "detail-bookcase",
+    "constructionDetails": [
+      "18mm独立板件与倒角",
+      "柜门/抽屉接缝",
+      "层板、拉手或滑轨五金",
+      "木纹颜色 / 法线 / 粗糙度"
+    ],
+    "parts": 69,
+    "materialMaps": 3,
+    "elevation": 0
+  },
+  {
+    "id": "detail-cube",
+    "name": "九格抽屉收纳柜",
+    "category": "收纳",
+    "type": "格子柜",
+    "typeTags": [
+      "格子柜"
+    ],
+    "styleTags": [
+      "简约现代",
+      "北欧"
+    ],
+    "style": "简约现代 · 北欧",
+    "color": "#c3a17a",
+    "brand": "原创精细模型",
+    "description": "18mm独立板件与倒角；柜门/抽屉接缝；层板、拉手或滑轨五金；木纹颜色 / 法线 / 粗糙度",
+    "dimensions": [
+      1.2200000286102295,
+      0.406000018119812,
+      1.1600000858306885
+    ],
+    "size": "122.0 × 40.6 × 116.0 cm",
+    "precision": "原创设计尺寸 · 可按需缩放",
+    "model": "library/models/detail-cube.glb",
+    "modelBytes": 2964376,
+    "quality": "原创建模 · 倒角 / 五金 / PBR",
+    "source": "library/AUTHORED.html",
+    "creator": "家装模拟器 · 原创建模",
+    "license": "原创模型；纹理 CC0-1.0",
+    "styleKey": "detail-cube",
+    "constructionDetails": [
+      "18mm独立板件与倒角",
+      "柜门/抽屉接缝",
+      "层板、拉手或滑轨五金",
+      "木纹颜色 / 法线 / 粗糙度"
+    ],
+    "parts": 27,
+    "materialMaps": 3,
+    "elevation": 0
+  },
+  {
+    "id": "detail-chest",
+    "name": "细脚四斗抽屉柜",
+    "category": "收纳",
+    "type": "抽屉柜",
+    "typeTags": [
+      "抽屉柜"
+    ],
+    "styleTags": [
+      "简约现代",
+      "北欧"
+    ],
+    "style": "简约现代 · 北欧",
+    "color": "#c3a17a",
+    "brand": "原创精细模型",
+    "description": "18mm独立板件与倒角；柜门/抽屉接缝；层板、拉手或滑轨五金；木纹颜色 / 法线 / 粗糙度",
+    "dimensions": [
+      0.800000011920929,
+      0.49900001287460327,
+      1.0499999523162842
+    ],
+    "size": "80.0 × 49.9 × 105.0 cm",
+    "precision": "原创设计尺寸 · 可按需缩放",
+    "model": "library/models/detail-chest.glb",
+    "modelBytes": 3104216,
+    "quality": "原创建模 · 倒角 / 五金 / PBR",
+    "source": "library/AUTHORED.html",
+    "creator": "家装模拟器 · 原创建模",
+    "license": "原创模型；纹理 CC0-1.0",
+    "styleKey": "detail-chest",
+    "constructionDetails": [
+      "18mm独立板件与倒角",
+      "柜门/抽屉接缝",
+      "层板、拉手或滑轨五金",
+      "木纹颜色 / 法线 / 粗糙度"
+    ],
+    "parts": 49,
+    "materialMaps": 3,
+    "elevation": 0
+  },
+  {
+    "id": "detail-bedside",
+    "name": "开放格床头柜",
+    "category": "收纳",
+    "type": "床头柜",
+    "typeTags": [
+      "床头柜"
+    ],
+    "styleTags": [
+      "简约现代",
+      "北欧"
+    ],
+    "style": "简约现代 · 北欧",
+    "color": "#c3a17a",
+    "brand": "原创精细模型",
+    "description": "18mm独立板件与倒角；柜门/抽屉接缝；层板、拉手或滑轨五金；木纹颜色 / 法线 / 粗糙度",
+    "dimensions": [
+      0.45000001788139343,
+      0.44699999690055847,
+      0.5300000309944153
+    ],
+    "size": "45.0 × 44.7 × 53.0 cm",
+    "precision": "原创设计尺寸 · 可按需缩放",
+    "model": "library/models/detail-bedside.glb",
+    "modelBytes": 2934920,
+    "quality": "原创建模 · 倒角 / 五金 / PBR",
+    "source": "library/AUTHORED.html",
+    "creator": "家装模拟器 · 原创建模",
+    "license": "原创模型；纹理 CC0-1.0",
+    "styleKey": "detail-bedside",
+    "constructionDetails": [
+      "18mm独立板件与倒角",
+      "柜门/抽屉接缝",
+      "层板、拉手或滑轨五金",
+      "木纹颜色 / 法线 / 粗糙度"
+    ],
+    "parts": 23,
+    "materialMaps": 3,
+    "elevation": 0
+  },
+  {
+    "id": "detail-shoe",
+    "name": "窄进深三层鞋柜",
+    "category": "收纳",
+    "type": "鞋柜",
+    "typeTags": [
+      "鞋柜"
+    ],
+    "styleTags": [
+      "简约现代",
+      "北欧"
+    ],
+    "style": "简约现代 · 北欧",
+    "color": "#c3a17a",
+    "brand": "原创精细模型",
+    "description": "18mm独立板件与倒角；柜门/抽屉接缝；层板、拉手或滑轨五金；木纹颜色 / 法线 / 粗糙度",
+    "dimensions": [
+      0.800000011920929,
+      0.32600000500679016,
+      1.0299999713897705
+    ],
+    "size": "80.0 × 32.6 × 103.0 cm",
+    "precision": "原创设计尺寸 · 可按需缩放",
+    "model": "library/models/detail-shoe.glb",
+    "modelBytes": 3129948,
+    "quality": "原创建模 · 倒角 / 五金 / PBR",
+    "source": "library/AUTHORED.html",
+    "creator": "家装模拟器 · 原创建模",
+    "license": "原创模型；纹理 CC0-1.0",
+    "styleKey": "detail-shoe",
+    "constructionDetails": [
+      "18mm独立板件与倒角",
+      "柜门/抽屉接缝",
+      "层板、拉手或滑轨五金",
+      "木纹颜色 / 法线 / 粗糙度"
+    ],
+    "parts": 53,
+    "materialMaps": 3,
+    "elevation": 0
+  },
+  {
+    "id": "detail-tv",
+    "name": "钢琴白橡木电视柜",
+    "category": "收纳",
+    "type": "电视柜",
+    "typeTags": [
+      "电视柜"
+    ],
+    "styleTags": [
+      "简约现代",
+      "北欧"
+    ],
+    "style": "简约现代 · 北欧",
+    "color": "#c3a17a",
+    "brand": "原创精细模型",
+    "description": "18mm独立板件与倒角；柜门/抽屉接缝；层板、拉手或滑轨五金；木纹颜色 / 法线 / 粗糙度",
+    "dimensions": [
+      1.7999999523162842,
+      0.44999998807907104,
+      0.49000000953674316
+    ],
+    "size": "180.0 × 45.0 × 49.0 cm",
+    "precision": "原创设计尺寸 · 可按需缩放",
+    "model": "library/models/detail-tv.glb",
+    "modelBytes": 3013564,
+    "quality": "原创建模 · 倒角 / 五金 / PBR",
+    "source": "library/AUTHORED.html",
+    "creator": "家装模拟器 · 原创建模",
+    "license": "原创模型；纹理 CC0-1.0",
+    "styleKey": "detail-tv",
+    "constructionDetails": [
+      "18mm独立板件与倒角",
+      "柜门/抽屉接缝",
+      "层板、拉手或滑轨五金",
+      "木纹颜色 / 法线 / 粗糙度"
+    ],
+    "parts": 35,
+    "materialMaps": 3,
+    "elevation": 0
+  },
+  {
+    "id": "detail-desk",
+    "name": "抽屉实木书桌",
+    "category": "桌子",
+    "type": "书桌",
+    "typeTags": [
+      "书桌"
+    ],
+    "styleTags": [
+      "北欧",
+      "简约现代"
+    ],
+    "style": "北欧 · 简约现代",
+    "color": "#c3a17a",
+    "brand": "原创精细模型",
+    "description": "28mm倒角桌面；独立抽屉与滑轨；锥形腿与脚垫；金属拉手、理线孔",
+    "dimensions": [
+      1.2000000476837158,
+      0.6410000324249268,
+      0.7534999847412109
+    ],
+    "size": "120.0 × 64.1 × 75.3 cm",
+    "precision": "原创设计尺寸 · 可按需缩放",
+    "model": "library/models/detail-desk.glb",
+    "modelBytes": 2954972,
+    "quality": "原创建模 · 倒角 / 五金 / PBR",
+    "source": "library/AUTHORED.html",
+    "creator": "家装模拟器 · 原创建模",
+    "license": "原创模型；纹理 CC0-1.0",
+    "styleKey": "detail-desk",
+    "constructionDetails": [
+      "28mm倒角桌面",
+      "独立抽屉与滑轨",
+      "锥形腿与脚垫",
+      "金属拉手、理线孔"
+    ],
+    "parts": 27,
+    "materialMaps": 3,
+    "elevation": 0
+  },
+  {
+    "id": "detail-standing-desk",
+    "name": "双柱电动升降桌",
+    "category": "桌子",
+    "type": "升降桌",
+    "typeTags": [
+      "升降桌"
+    ],
+    "styleTags": [
+      "简约现代"
+    ],
+    "style": "简约现代",
+    "color": "#c3a17a",
+    "brand": "原创精细模型",
+    "description": "两节伸缩立柱；升降控制器与按键；线缆托盘；调平脚垫、桌面安装支架",
+    "dimensions": [
+      1.399999976158142,
+      0.7245000004768372,
+      0.7534999847412109
+    ],
+    "size": "140.0 × 72.5 × 75.3 cm",
+    "precision": "原创设计尺寸 · 可按需缩放",
+    "model": "library/models/detail-standing-desk.glb",
+    "modelBytes": 2957772,
+    "quality": "原创建模 · 倒角 / 五金 / PBR",
+    "source": "library/AUTHORED.html",
+    "creator": "家装模拟器 · 原创建模",
+    "license": "原创模型；纹理 CC0-1.0",
+    "styleKey": "detail-standing-desk",
+    "constructionDetails": [
+      "两节伸缩立柱",
+      "升降控制器与按键",
+      "线缆托盘",
+      "调平脚垫、桌面安装支架"
+    ],
+    "parts": 27,
+    "materialMaps": 3,
+    "elevation": 0
+  },
+  {
+    "id": "detail-bed-oak",
+    "name": "橡木双人床与浅蓝床品",
+    "category": "床",
+    "type": "双人床",
+    "typeTags": [
+      "双人床"
+    ],
+    "styleTags": [
+      "北欧",
+      "简约现代"
+    ],
+    "style": "北欧 · 简约现代",
+    "color": "#c3a17a",
+    "brand": "原创精细模型",
+    "description": "实木床头与排骨架；包边床垫；鼓起枕头及滚边；真实起伏与下垂被面",
+    "dimensions": [
+      1.8884902000427246,
+      2.0999999046325684,
+      1.3499999046325684
+    ],
+    "size": "188.8 × 210.0 × 135.0 cm",
+    "precision": "原创设计尺寸 · 可按需缩放",
+    "model": "library/models/detail-bed-oak.glb",
+    "modelBytes": 5488964,
+    "quality": "原创建模 · 倒角 / 五金 / PBR",
+    "source": "library/AUTHORED.html",
+    "creator": "家装模拟器 · 原创建模",
+    "license": "原创模型；纹理 CC0-1.0",
+    "styleKey": "detail-bed-oak",
+    "constructionDetails": [
+      "实木床头与排骨架",
+      "包边床垫",
+      "鼓起枕头及滚边",
+      "真实起伏与下垂被面"
+    ],
+    "parts": 37,
+    "materialMaps": 7,
+    "elevation": 0
+  },
+  {
+    "id": "detail-bed-single",
+    "name": "软包靠背单人床",
+    "category": "床",
+    "type": "单人床",
+    "typeTags": [
+      "单人床"
+    ],
+    "styleTags": [
+      "简约现代"
+    ],
+    "style": "简约现代",
+    "color": "#c3a17a",
+    "brand": "原创精细模型",
+    "description": "分片软包床头；排骨架与床垫包边；织物微表面；下垂被面与褶皱",
+    "dimensions": [
+      1.2885394096374512,
+      2.0999999046325684,
+      1.3499999046325684
+    ],
+    "size": "128.9 × 210.0 × 135.0 cm",
+    "precision": "原创设计尺寸 · 可按需缩放",
+    "model": "library/models/detail-bed-single.glb",
+    "modelBytes": 5656400,
+    "quality": "原创建模 · 倒角 / 五金 / PBR",
+    "source": "library/AUTHORED.html",
+    "creator": "家装模拟器 · 原创建模",
+    "license": "原创模型；纹理 CC0-1.0",
+    "styleKey": "detail-bed-single",
+    "constructionDetails": [
+      "分片软包床头",
+      "排骨架与床垫包边",
+      "织物微表面",
+      "下垂被面与褶皱"
+    ],
+    "parts": 39,
+    "materialMaps": 7,
+    "elevation": 0
+  },
+  {
+    "id": "detail-sofa",
+    "name": "米白宽扶手双人沙发",
+    "category": "沙发",
+    "type": "直排沙发",
+    "typeTags": [
+      "直排沙发"
+    ],
+    "styleTags": [
+      "简约现代",
+      "中古"
+    ],
+    "style": "简约现代 · 中古",
+    "color": "#c3a17a",
+    "brand": "原创精细模型",
+    "description": "饱满软包曲面；独立坐垫与松软靠垫；逐件滚边缝线；隐藏木脚与织物法线",
+    "dimensions": [
+      2.055000066757202,
+      0.9200000166893005,
+      1.0420000553131104
+    ],
+    "size": "205.5 × 92.0 × 104.2 cm",
+    "precision": "原创设计尺寸 · 可按需缩放",
+    "model": "library/models/detail-sofa.glb",
+    "modelBytes": 4160928,
+    "quality": "原创建模 · 倒角 / 五金 / PBR",
+    "source": "library/AUTHORED.html",
+    "creator": "家装模拟器 · 原创建模",
+    "license": "原创模型；纹理 CC0-1.0",
+    "styleKey": "detail-sofa",
+    "constructionDetails": [
+      "饱满软包曲面",
+      "独立坐垫与松软靠垫",
+      "逐件滚边缝线",
+      "隐藏木脚与织物法线"
+    ],
+    "parts": 24,
+    "materialMaps": 5,
+    "elevation": 0
+  },
+  {
+    "id": "detail-oak-chair",
+    "name": "橡木弧背软座餐椅",
+    "category": "椅凳",
+    "type": "餐椅",
+    "typeTags": [
+      "餐椅"
+    ],
+    "styleTags": [
+      "北欧",
+      "中古"
+    ],
+    "style": "北欧 · 中古",
+    "color": "#c3a17a",
+    "brand": "原创精细模型",
+    "description": "弧形实木椅背；倾斜锥形腿；座框与横向加固撑；织物软垫与滚边",
+    "dimensions": [
+      0.5076799988746643,
+      0.5214170217514038,
+      0.8190000057220459
+    ],
+    "size": "50.8 × 52.1 × 81.9 cm",
+    "precision": "原创设计尺寸 · 可按需缩放",
+    "model": "library/models/detail-oak-chair.glb",
+    "modelBytes": 4721720,
+    "quality": "原创建模 · 倒角 / 五金 / PBR",
+    "source": "library/AUTHORED.html",
+    "creator": "家装模拟器 · 原创建模",
+    "license": "原创模型；纹理 CC0-1.0",
+    "styleKey": "detail-oak-chair",
+    "constructionDetails": [
+      "弧形实木椅背",
+      "倾斜锥形腿",
+      "座框与横向加固撑",
+      "织物软垫与滚边"
+    ],
+    "parts": 16,
+    "materialMaps": 5,
+    "elevation": 0
+  },
+  {
+    "id": "detail-cantilever",
+    "name": "镀铬悬臂皮革餐椅",
+    "category": "椅凳",
+    "type": "餐椅",
+    "typeTags": [
+      "餐椅"
+    ],
+    "styleTags": [
+      "包豪斯",
+      "简约现代"
+    ],
+    "style": "包豪斯 · 简约现代",
+    "color": "#c3a17a",
+    "brand": "原创精细模型",
+    "description": "连续弯折钢管；皮革坐背垫；可见连接螺钉；底脚防滑条",
+    "dimensions": [
+      0.5040000081062317,
+      0.5298506021499634,
+      0.8206200003623962
+    ],
+    "size": "50.4 × 53.0 × 82.1 cm",
+    "precision": "原创设计尺寸 · 可按需缩放",
+    "model": "library/models/detail-cantilever.glb",
+    "modelBytes": 2196556,
+    "quality": "原创建模 · 倒角 / 五金 / PBR",
+    "source": "library/AUTHORED.html",
+    "creator": "家装模拟器 · 原创建模",
+    "license": "原创模型；纹理 CC0-1.0",
+    "styleKey": "detail-cantilever",
+    "constructionDetails": [
+      "连续弯折钢管",
+      "皮革坐背垫",
+      "可见连接螺钉",
+      "底脚防滑条"
+    ],
+    "parts": 20,
+    "materialMaps": 2,
+    "elevation": 0
+  },
+  {
+    "id": "detail-square-table",
+    "name": "黑色圆角正方茶几",
+    "category": "桌子",
+    "type": "茶几",
+    "typeTags": [
+      "茶几"
+    ],
+    "styleTags": [
+      "包豪斯",
+      "简约现代"
+    ],
+    "style": "包豪斯 · 简约现代",
+    "color": "#c3a17a",
+    "brand": "原创精细模型",
+    "description": "70cm正方台面；台面与桌腿圆角；下沿连接梁与螺钉；落地脚垫",
+    "dimensions": [
+      0.699999988079071,
+      0.699999988079071,
+      0.35999998450279236
+    ],
+    "size": "70.0 × 70.0 × 36.0 cm",
+    "precision": "原创设计尺寸 · 可按需缩放",
+    "model": "library/models/detail-square-table.glb",
+    "modelBytes": 139752,
+    "quality": "原创建模 · 倒角 / 五金 / PBR",
+    "source": "library/AUTHORED.html",
+    "creator": "家装模拟器 · 原创建模",
+    "license": "原创模型；纹理 CC0-1.0",
+    "styleKey": "detail-square-table",
+    "constructionDetails": [
+      "70cm正方台面",
+      "台面与桌腿圆角",
+      "下沿连接梁与螺钉",
+      "落地脚垫"
+    ],
+    "parts": 23,
+    "materialMaps": 0,
+    "elevation": 0
+  },
+  {
+    "id": "detail-glass-table",
+    "name": "透明玻璃圆餐桌",
+    "category": "桌子",
+    "type": "餐桌",
+    "typeTags": [
+      "餐桌"
+    ],
+    "styleTags": [
+      "包豪斯",
+      "简约现代"
+    ],
+    "style": "包豪斯 · 简约现代",
+    "color": "#c3a17a",
+    "brand": "原创精细模型",
+    "description": "12mm玻璃厚度；放射形镀铬支架；玻璃固定垫；联结套与支撑",
+    "dimensions": [
+      1.0800000429153442,
+      1.0800000429153442,
+      0.75
+    ],
+    "size": "108.0 × 108.0 × 75.0 cm",
+    "precision": "原创设计尺寸 · 可按需缩放",
+    "model": "library/models/detail-glass-table.glb",
+    "modelBytes": 125208,
+    "quality": "原创建模 · 倒角 / 五金 / PBR",
+    "source": "library/AUTHORED.html",
+    "creator": "家装模拟器 · 原创建模",
+    "license": "原创模型；纹理 CC0-1.0",
+    "styleKey": "detail-glass-table",
+    "constructionDetails": [
+      "12mm玻璃厚度",
+      "放射形镀铬支架",
+      "玻璃固定垫",
+      "联结套与支撑"
+    ],
+    "parts": 18,
+    "materialMaps": 0,
+    "elevation": 0
+  },
+  {
+    "id": "detail-dining-table",
+    "name": "圆角橡木四人餐桌",
+    "category": "桌子",
+    "type": "餐桌",
+    "typeTags": [
+      "餐桌"
+    ],
+    "styleTags": [
+      "北欧",
+      "简约现代"
+    ],
+    "style": "北欧 · 简约现代",
+    "color": "#c3a17a",
+    "brand": "原创精细模型",
+    "description": "32mm实体倒角台面；锥形桌腿；桌底围板；毛毡脚垫",
+    "dimensions": [
+      1.399999976158142,
+      0.800000011920929,
+      0.7579999566078186
+    ],
+    "size": "140.0 × 80.0 × 75.8 cm",
+    "precision": "原创设计尺寸 · 可按需缩放",
+    "model": "library/models/detail-dining-table.glb",
+    "modelBytes": 2855956,
+    "quality": "原创建模 · 倒角 / 五金 / PBR",
+    "source": "library/AUTHORED.html",
+    "creator": "家装模拟器 · 原创建模",
+    "license": "原创模型；纹理 CC0-1.0",
+    "styleKey": "detail-dining-table",
+    "constructionDetails": [
+      "32mm实体倒角台面",
+      "锥形桌腿",
+      "桌底围板",
+      "毛毡脚垫"
+    ],
+    "parts": 11,
+    "materialMaps": 3,
+    "elevation": 0
+  },
+  {
+    "id": "detail-bench",
+    "name": "橡木分片换鞋长凳",
+    "category": "椅凳",
+    "type": "长凳",
+    "typeTags": [
+      "长凳"
+    ],
+    "styleTags": [
+      "北欧",
+      "简约现代"
+    ],
+    "style": "北欧 · 简约现代",
+    "color": "#c3a17a",
+    "brand": "原创精细模型",
+    "description": "四片圆角座板；外撇实木脚；中央横档与横撑；独立脚垫",
+    "dimensions": [
+      1.100000023841858,
+      0.3620000183582306,
+      0.45799997448921204
+    ],
+    "size": "110.0 × 36.2 × 45.8 cm",
+    "precision": "原创设计尺寸 · 可按需缩放",
+    "model": "library/models/detail-bench.glb",
+    "modelBytes": 2881440,
+    "quality": "原创建模 · 倒角 / 五金 / PBR",
+    "source": "library/AUTHORED.html",
+    "creator": "家装模拟器 · 原创建模",
+    "license": "原创模型；纹理 CC0-1.0",
+    "styleKey": "detail-bench",
+    "constructionDetails": [
+      "四片圆角座板",
+      "外撇实木脚",
+      "中央横档与横撑",
+      "独立脚垫"
+    ],
+    "parts": 15,
+    "materialMaps": 3,
+    "elevation": 0
+  },
+  {
+    "id": "detail-trolley",
+    "name": "三层钢木收纳推车",
+    "category": "收纳",
+    "type": "收纳推车",
+    "typeTags": [
+      "收纳推车"
+    ],
+    "styleTags": [
+      "工业风",
+      "简约现代"
+    ],
+    "style": "工业风 · 简约现代",
+    "color": "#c3a17a",
+    "brand": "原创精细模型",
+    "description": "三层带护边托盘；轮胎、轮毂与叉架；万向轴承；独立金属手柄",
+    "dimensions": [
+      0.6670000553131104,
+      0.4560000002384186,
+      0.8820000290870667
+    ],
+    "size": "66.7 × 45.6 × 88.2 cm",
+    "precision": "原创设计尺寸 · 可按需缩放",
+    "model": "library/models/detail-trolley.glb",
+    "modelBytes": 2996876,
+    "quality": "原创建模 · 倒角 / 五金 / PBR",
+    "source": "library/AUTHORED.html",
+    "creator": "家装模拟器 · 原创建模",
+    "license": "原创模型；纹理 CC0-1.0",
+    "styleKey": "detail-trolley",
+    "constructionDetails": [
+      "三层带护边托盘",
+      "轮胎、轮毂与叉架",
+      "万向轴承",
+      "独立金属手柄"
+    ],
+    "parts": 33,
+    "materialMaps": 3,
+    "elevation": 0
+  },
+  {
+    "id": "detail-pegboard",
+    "name": "穿孔洞洞板与挂件",
+    "category": "收纳",
+    "type": "洞洞板",
+    "typeTags": [
+      "洞洞板"
+    ],
+    "styleTags": [
+      "简约现代"
+    ],
+    "style": "简约现代",
+    "color": "#c3a17a",
+    "brand": "原创精细模型",
+    "description": "165个实际贯穿孔；离墙安装柱和螺钉；金属插拔挂钩；整体移动的木托板",
+    "dimensions": [
+      0.6000000238418579,
+      0.19200000166893005,
+      0.800000011920929
+    ],
+    "size": "60.0 × 19.2 × 80.0 cm",
+    "precision": "原创设计尺寸 · 可按需缩放",
+    "model": "library/models/detail-pegboard.glb",
+    "modelBytes": 3483204,
+    "quality": "原创建模 · 倒角 / 五金 / PBR",
+    "source": "library/AUTHORED.html",
+    "creator": "家装模拟器 · 原创建模",
+    "license": "原创模型；纹理 CC0-1.0",
+    "styleKey": "detail-pegboard",
+    "constructionDetails": [
+      "165个实际贯穿孔",
+      "离墙安装柱和螺钉",
+      "金属插拔挂钩",
+      "整体移动的木托板"
+    ],
+    "parts": 22,
+    "materialMaps": 3,
+    "elevation": 0.9
+  },
+  {
+    "id": "detail-kitchen-base",
+    "name": "不锈钢台面三抽地柜",
+    "category": "厨卫",
+    "type": "厨房地柜",
+    "typeTags": [
+      "厨房地柜"
+    ],
+    "styleTags": [
+      "简约现代"
+    ],
+    "style": "简约现代",
+    "color": "#c3a17a",
+    "brand": "原创精细模型",
+    "description": "独立不锈钢台面；三抽面板和滑轨；实体板件与金属拉手；内收踢脚空间",
+    "dimensions": [
+      0.6039999723434448,
+      0.652999997138977,
+      0.8600000143051147
+    ],
+    "size": "60.4 × 65.3 × 86.0 cm",
+    "precision": "原创设计尺寸 · 可按需缩放",
+    "model": "library/models/detail-kitchen-base.glb",
+    "modelBytes": 3009052,
+    "quality": "原创建模 · 倒角 / 五金 / PBR",
+    "source": "library/AUTHORED.html",
+    "creator": "家装模拟器 · 原创建模",
+    "license": "原创模型；纹理 CC0-1.0",
+    "styleKey": "detail-kitchen-base",
+    "constructionDetails": [
+      "独立不锈钢台面",
+      "三抽面板和滑轨",
+      "实体板件与金属拉手",
+      "内收踢脚空间"
+    ],
+    "parts": 34,
+    "materialMaps": 3,
+    "elevation": 0
+  },
+  {
+    "id": "detail-kitchen-sink",
+    "name": "不锈钢水槽双门地柜",
+    "category": "厨卫",
+    "type": "水槽柜",
+    "typeTags": [
+      "水槽柜"
+    ],
+    "styleTags": [
+      "简约现代"
+    ],
+    "style": "简约现代",
+    "color": "#c3a17a",
+    "brand": "原创精细模型",
+    "description": "台面真实开口；下沉盆腔、落水滤篮；高抛龙头与控制手柄；门缝和阻尼铰链",
+    "dimensions": [
+      0.9000000357627869,
+      0.6510000228881836,
+      1.1844125986099243
+    ],
+    "size": "90.0 × 65.1 × 118.4 cm",
+    "precision": "原创设计尺寸 · 可按需缩放",
+    "model": "library/models/detail-kitchen-sink.glb",
+    "modelBytes": 3119620,
+    "quality": "原创建模 · 倒角 / 五金 / PBR",
+    "source": "library/AUTHORED.html",
+    "creator": "家装模拟器 · 原创建模",
+    "license": "原创模型；纹理 CC0-1.0",
+    "styleKey": "detail-kitchen-sink",
+    "constructionDetails": [
+      "台面真实开口",
+      "下沉盆腔、落水滤篮",
+      "高抛龙头与控制手柄",
+      "门缝和阻尼铰链"
+    ],
+    "parts": 59,
+    "materialMaps": 3,
+    "elevation": 0
+  }
+]

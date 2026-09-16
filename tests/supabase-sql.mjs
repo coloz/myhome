@@ -18,6 +18,8 @@ try {
  await db.exec(sql);await db.exec(sql); // Re-running setup must preserve existing rows.
  const unified=await readFile(new URL('../supabase/migrations/202609150002_unified_floor_plans.sql',import.meta.url),'utf8');
  await db.exec(unified);await db.exec(unified);
+ const deletion=await readFile(new URL('../supabase/migrations/202609150003_delete_designs.sql',import.meta.url),'utf8');
+ await db.exec(deletion);await db.exec(deletion);
  await db.exec('set role anon');
  assert.equal((await db.query('select * from public.home_design_schemes')).rows.length,2);
  await assert.rejects(db.exec("update public.home_design_schemes set name='guest'"),/permission denied/);
@@ -40,9 +42,22 @@ try {
  await assert.rejects(db.exec("delete from public.home_design_schemes where id='new-design'"),/permission denied/);
  await assert.rejects(db.exec("update public.home_design_schemes set template_id='alternative' where id='new-design'"),/cannot be changed/);
  await assert.rejects(db.exec("update public.home_design_schemes set layout='{}'::jsonb where id='new-design'"),/check constraint/);
+ const remove=(id,revision,template='original')=>db.query('select public.delete_home_design_scheme($1,$2,$3) as removed',[id,template,revision]);
+ await assert.rejects(remove('original',2),/protected template/);
+ assert.equal((await remove('new-design',0)).rows[0].removed,false,'Stale deletion removed another revision');
+ assert.equal((await remove('new-design',1)).rows[0].removed,true);
+ assert.equal((await remove('new-design',1)).rows[0].removed,true,'Delete retry is not idempotent');
+ assert.equal((await db.query("select * from public.home_design_schemes where id='new-design'")).rows.length,0);
+ assert.equal((await save('new-design',1,b)).rows.length,0,'Pending edit recreated a deleted design');
+ assert.equal((await save('new-design',0,b)).rows.length,0,'Pending first save recreated a deleted design');
+ assert.equal((await remove('never-uploaded',0)).rows[0].removed,true);
+ assert.equal((await save('never-uploaded',0,a)).rows.length,0);
+ assert.equal((await remove('raw-design',1,'raw-shell')).rows[0].removed,true);
  await db.exec("set request.jwt.claims='{\"is_anonymous\":true}'");
  await assert.rejects(save('original',2,a),/Sign in/);
+ await assert.rejects(remove('original',2),/Sign in/);
  assert.equal((await db.query("update public.home_design_schemes set name='anonymous' returning id")).rows.length,0);
  await assert.rejects(db.exec("insert into public.home_design_schemes(id,name,template_id) values ('anon-auth','anon','original')"),/row-level security/);
- console.log('SQL passed: public read, authenticated writes, no deletion, anonymous-auth denied, revision conflicts, idempotent retry, schema validation, repeatable setup.');
+ await db.exec('reset role;set role anon');await assert.rejects(remove('new-design',1),/permission denied/);
+ console.log('SQL passed: public read, authenticated writes and confirmed-delete RPC, direct deletion blocked, anonymous denied, protected templates, revision conflicts, idempotent retry, no resurrection, repeatable setup.');
 } finally {await db.close();}

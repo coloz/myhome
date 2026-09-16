@@ -1,0 +1,226 @@
+{
+  "transport": "MCP stdio / official SDK Client",
+  "generatedAt": "2026-09-16T02:27:18.939Z",
+  "evidence": [
+    {
+      "scenario": "family",
+      "phase": "initial",
+      "id": "491d797a-5213-49f3-87a5-853dacedf3ec",
+      "total": 229938,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "scope",
+          "message": "已检查目录家具包围盒、墙段和门口预留区；未验证连续通路、门扇开启轨迹、窗户操作、采光、机电或施工合规。",
+          "entityIds": []
+        }
+      ]
+    },
+    {
+      "scenario": "family",
+      "phase": "final",
+      "id": "491d797a-5213-49f3-87a5-853dacedf3ec",
+      "total": 229938,
+      "balance": 10062,
+      "furnitureCount": 23,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "scope",
+          "message": "已检查目录家具包围盒、墙段和门口预留区；未验证连续通路、门扇开启轨迹、窗户操作、采光、机电或施工合规。",
+          "entityIds": []
+        }
+      ]
+    },
+    {
+      "scenario": "work",
+      "phase": "initial",
+      "id": "9f6bfe9b-7172-42ce-a664-8763f287fd9d",
+      "total": 216715,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "scope",
+          "message": "已检查目录家具包围盒、墙段和门口预留区；未验证连续通路、门扇开启轨迹、窗户操作、采光、机电或施工合规。",
+          "entityIds": []
+        }
+      ]
+    },
+    {
+      "scenario": "work",
+      "phase": "final",
+      "id": "9f6bfe9b-7172-42ce-a664-8763f287fd9d",
+      "total": 216715,
+      "balance": 3285,
+      "furnitureCount": 23,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "scope",
+          "message": "已检查目录家具包围盒、墙段和门口预留区；未验证连续通路、门扇开启轨迹、窗户操作、采光、机电或施工合规。",
+          "entityIds": []
+        }
+      ]
+    },
+    {
+      "scenario": "elder",
+      "phase": "initial",
+      "id": "8eadbabc-3c90-49a2-97e1-b2291febd366",
+      "total": 262058,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "budget",
+          "message": "模拟总价超出预算 ¥2,058",
+          "entityIds": []
+        },
+        {
+          "severity": "info",
+          "code": "scope",
+          "message": "已检查目录家具包围盒、墙段和门口预留区；未验证连续通路、门扇开启轨迹、窗户操作、采光、机电或施工合规。",
+          "entityIds": []
+        }
+      ]
+    },
+    {
+      "scenario": "elder",
+      "phase": "final",
+      "id": "8eadbabc-3c90-49a2-97e1-b2291febd366",
+      "total": 257498,
+      "balance": 2502,
+      "furnitureCount": 20,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "scope",
+          "message": "已检查目录家具包围盒、墙段和门口预留区；未验证连续通路、门扇开启轨迹、窗户操作、采光、机电或施工合规。",
+          "entityIds": []
+        }
+      ]
+    }
+  ],
+  "comparison": {
+    "designs": [
+      {
+        "brief": {
+          "name": "模拟示例 · 亲子成长",
+          "household": "夫妻与一名学龄儿童，长辈偶尔留宿",
+          "requirements": "三间卧室；孩子有独立阅读角；客厅保留活动空间；增加收纳；厨卫位置不变。",
+          "scenario": "family",
+          "style": "warm",
+          "budget": 240000,
+          "reservePercent": 15,
+          "workRate": 950,
+          "furnitureFactor": 1,
+          "clearance": 0.8
+        },
+        "roomUses": {
+          "living": "用餐、会客与独立亲子阅读角",
+          "entry": "换鞋与日常物品收纳",
+          "kitchen": "原位烹饪",
+          "master": "夫妻卧室",
+          "bath-main": "保留原位湿区",
+          "bath-guest": "卫浴与洗衣",
+          "passage": "通行，保持净空",
+          "garden": "光厅保持原状",
+          "bed-west": "儿童卧室（单人床）",
+          "bed-east": "长辈留宿房"
+        },
+        "id": "491d797a-5213-49f3-87a5-853dacedf3ec",
+        "name": "模拟示例 · 亲子成长",
+        "updatedAt": "2026-09-16T02:27:18.683Z",
+        "furnitureCount": 23,
+        "total": 229938,
+        "balance": 10062,
+        "issues": [
+          {
+            "severity": "info",
+            "code": "scope",
+            "message": "已检查目录家具包围盒、墙段和门口预留区；未验证连续通路、门扇开启轨迹、窗户操作、采光、机电或施工合规。",
+            "entityIds": []
+          }
+        ]
+      },
+      {
+        "brief": {
+          "name": "模拟示例 · 双人办公",
+          "household": "两位长期居家工作的成年人",
+          "requirements": "两间独立工作室，减少视频会议互相干扰；主卧休息；客餐厅用于交流，设备收纳集中。",
+          "scenario": "work",
+          "style": "calm",
+          "budget": 220000,
+          "reservePercent": 15,
+          "workRate": 850,
+          "furnitureFactor": 1,
+          "clearance": 0.85
+        },
+        "roomUses": {
+          "living": "用餐、会客与共享活动",
+          "entry": "换鞋与日常物品收纳",
+          "kitchen": "原位烹饪",
+          "master": "夫妻卧室",
+          "bath-main": "保留原位湿区",
+          "bath-guest": "卫浴与洗衣",
+          "passage": "通行，保持净空",
+          "garden": "光厅保持原状",
+          "bed-west": "独立工作室 A（升降桌）",
+          "bed-east": "独立工作室 B（抽屉书桌）"
+        },
+        "id": "9f6bfe9b-7172-42ce-a664-8763f287fd9d",
+        "name": "模拟示例 · 双人办公",
+        "updatedAt": "2026-09-16T02:27:18.741Z",
+        "furnitureCount": 23,
+        "total": 216715,
+        "balance": 3285,
+        "issues": [
+          {
+            "severity": "info",
+            "code": "scope",
+            "message": "已检查目录家具包围盒、墙段和门口预留区；未验证连续通路、门扇开启轨迹、窗户操作、采光、机电或施工合规。",
+            "entityIds": []
+          }
+        ]
+      },
+      {
+        "brief": {
+          "name": "模拟示例 · 长辈同住",
+          "household": "夫妻与一位能独立行走的长辈",
+          "requirements": "主卧给长辈；次卧一给夫妻；次卧二作为家人留宿房；减少客厅中间家具，预留照护空间。",
+          "scenario": "elder",
+          "style": "natural",
+          "budget": 260000,
+          "reservePercent": 20,
+          "workRate": 1100,
+          "furnitureFactor": 1,
+          "clearance": 0.9
+        },
+        "roomUses": {
+          "living": "用餐、会客与照护活动",
+          "entry": "换鞋与日常物品收纳",
+          "kitchen": "原位烹饪",
+          "master": "长辈卧室",
+          "bath-main": "保留原位湿区",
+          "bath-guest": "卫浴与洗衣",
+          "passage": "通行，保持净空",
+          "garden": "光厅保持原状",
+          "bed-west": "家人留宿房",
+          "bed-east": "夫妻卧室"
+        },
+        "id": "8eadbabc-3c90-49a2-97e1-b2291febd366",
+        "name": "模拟示例 · 长辈同住",
+        "updatedAt": "2026-09-16T02:27:18.874Z",
+        "furnitureCount": 20,
+        "total": 257498,
+        "balance": 2502,
+        "issues": [
+          {
+            "severity": "info",
+            "code": "scope",
+            "message": "已检查目录家具包围盒、墙段和门口预留区；未验证连续通路、门扇开启轨迹、窗户操作、采光、机电或施工合规。",
+            "entityIds": []
+          }
+        ]
+      }
+    ]
+  }
+}

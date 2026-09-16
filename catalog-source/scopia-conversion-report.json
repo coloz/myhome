@@ -1,0 +1,590 @@
+[
+  {
+    "id": "scopia-bathroom3",
+    "bytes": 522136
+  },
+  {
+    "id": "scopia-bathroom4",
+    "bytes": 213868
+  },
+  {
+    "id": "scopia-bed1",
+    "bytes": 190676
+  },
+  {
+    "id": "scopia-iron_bed",
+    "bytes": 628984
+  },
+  {
+    "id": "scopia-wardrobe1",
+    "bytes": 152768
+  },
+  {
+    "id": "scopia-ext_chair",
+    "bytes": 136904
+  },
+  {
+    "id": "scopia-littlebank",
+    "bytes": 156428
+  },
+  {
+    "id": "scopia-ext_table",
+    "bytes": 101104
+  },
+  {
+    "id": "scopia-silla_teca",
+    "bytes": 85936
+  },
+  {
+    "id": "scopia-wood_bank",
+    "bytes": 405508
+  },
+  {
+    "id": "scopia-armchair3",
+    "bytes": 64748
+  },
+  {
+    "id": "scopia-armchair",
+    "bytes": 101936
+  },
+  {
+    "id": "scopia-armchair1",
+    "bytes": 74784
+  },
+  {
+    "id": "scopia-black_table",
+    "bytes": 60328
+  },
+  {
+    "id": "scopia-dining_room",
+    "bytes": 259888
+  },
+  {
+    "id": "scopia-chair3",
+    "bytes": 163544
+  },
+  {
+    "id": "scopia-chair4",
+    "bytes": 69100
+  },
+  {
+    "id": "scopia-chair",
+    "bytes": 95564
+  },
+  {
+    "id": "scopia-clear_sofa",
+    "bytes": 128020
+  },
+  {
+    "id": "scopia-saloon_table",
+    "bytes": 119112
+  },
+  {
+    "id": "scopia-coffee_table",
+    "bytes": 22292
+  },
+  {
+    "id": "scopia-maceta",
+    "bytes": 134884
+  },
+  {
+    "id": "scopia-simple_sofa",
+    "bytes": 177012
+  },
+  {
+    "id": "scopia-table3",
+    "bytes": 273008
+  },
+  {
+    "id": "scopia-table4",
+    "bytes": 49656
+  },
+  {
+    "id": "scopia-tv",
+    "bytes": 160452
+  },
+  {
+    "id": "scopia-office_furniture1",
+    "bytes": 134404
+  },
+  {
+    "id": "scopia-office_chair",
+    "bytes": 186248
+  },
+  {
+    "id": "scopia-desk_lamp1",
+    "bytes": 137424
+  },
+  {
+    "id": "scopia-apple_pc",
+    "bytes": 352560
+  },
+  {
+    "id": "scopia-desk_lamp2",
+    "bytes": 72972
+  },
+  {
+    "id": "scopia-little_lamp1",
+    "bytes": 302088
+  },
+  {
+    "id": "scopia-little_lamp2",
+    "bytes": 170112
+  },
+  {
+    "id": "scopia-little_lamp3",
+    "bytes": 296816
+  },
+  {
+    "id": "scopia-saloon_lamp",
+    "bytes": 1183624
+  },
+  {
+    "id": "scopia-wooden_table_office",
+    "bytes": 38340
+  },
+  {
+    "id": "scopia-tubular_chair",
+    "bytes": 54172
+  },
+  {
+    "id": "scopia-table_lamp",
+    "bytes": 539576
+  },
+  {
+    "id": "scopia-metal_glass_table",
+    "bytes": 66804
+  },
+  {
+    "id": "scopia-living_room_lamp1",
+    "bytes": 237952
+  },
+  {
+    "id": "scopia-glass_table_office",
+    "bytes": 13220
+  },
+  {
+    "id": "scopia-desk_table",
+    "bytes": 24064
+  },
+  {
+    "id": "scopia-bathroom1",
+    "bytes": 282656
+  },
+  {
+    "id": "scopia-armchair2",
+    "bytes": 458232
+  },
+  {
+    "id": "scopia-bar_chair",
+    "bytes": 125860
+  },
+  {
+    "id": "scopia-bar_table",
+    "bytes": 91396
+  },
+  {
+    "id": "scopia-bathroom_vanity",
+    "bytes": 440832
+  },
+  {
+    "id": "scopia-beige_sofa_2seats",
+    "bytes": 1178188
+  },
+  {
+    "id": "scopia-beige_sofa",
+    "bytes": 1136408
+  },
+  {
+    "id": "scopia-burlap_sofa",
+    "bytes": 327240
+  },
+  {
+    "id": "scopia-children_bed",
+    "bytes": 904132
+  },
+  {
+    "id": "scopia-crib",
+    "bytes": 830624
+  },
+  {
+    "id": "scopia-double_vanity",
+    "bytes": 962668
+  },
+  {
+    "id": "scopia-kids_desk_chair",
+    "bytes": 663056
+  },
+  {
+    "id": "scopia-kids_desk_table",
+    "bytes": 138576
+  },
+  {
+    "id": "scopia-kids_shelves",
+    "bytes": 44136
+  },
+  {
+    "id": "scopia-kids_wooden_desk",
+    "bytes": 252060
+  },
+  {
+    "id": "scopia-kitchen_stool",
+    "bytes": 100264
+  },
+  {
+    "id": "scopia-leather_sofa",
+    "bytes": 639028
+  },
+  {
+    "id": "scopia-living_lamp",
+    "bytes": 353952
+  },
+  {
+    "id": "scopia-living_room_table",
+    "bytes": 150340
+  },
+  {
+    "id": "scopia-modern_armchair",
+    "bytes": 247324
+  },
+  {
+    "id": "scopia-plastic_chair",
+    "bytes": 188764
+  },
+  {
+    "id": "scopia-table_wood_and_iron",
+    "bytes": 84280
+  },
+  {
+    "id": "scopia-white_kitchen_chair",
+    "bytes": 88284
+  },
+  {
+    "id": "scopia-wooden_office_alder_table",
+    "bytes": 101948
+  },
+  {
+    "id": "scopia-wooden_office_pear_table_rect",
+    "bytes": 119176
+  },
+  {
+    "id": "scopia-wooden_office_pear_table",
+    "bytes": 121500
+  },
+  {
+    "id": "scopia-wooden_office_teak_table",
+    "bytes": 100376
+  },
+  {
+    "id": "scopia-white_kitchen_table",
+    "bytes": 10876
+  },
+  {
+    "id": "scopia-beach_chair",
+    "bytes": 337484
+  },
+  {
+    "id": "scopia-chandelier-lamp",
+    "bytes": 4993612
+  },
+  {
+    "id": "scopia-coffee_machine",
+    "bytes": 228656
+  },
+  {
+    "id": "scopia-com_bath",
+    "bytes": 40764
+  },
+  {
+    "id": "scopia-com_bath2_jabon_pijo",
+    "bytes": 46808
+  },
+  {
+    "id": "scopia-corner_bathtub",
+    "bytes": 371616
+  },
+  {
+    "id": "scopia-sofa_white_beige",
+    "bytes": 408096
+  },
+  {
+    "id": "scopia-baby_high_chair",
+    "bytes": 203120
+  },
+  {
+    "id": "scopia-clothes_washing_machine",
+    "bytes": 75052
+  },
+  {
+    "id": "scopia-dryer_machine",
+    "bytes": 68276
+  },
+  {
+    "id": "scopia-electric_water_heater_big",
+    "bytes": 120640
+  },
+  {
+    "id": "scopia-electric_water_heater",
+    "bytes": 54088
+  },
+  {
+    "id": "scopia-external-unity-air-conditioning",
+    "bytes": 197208
+  },
+  {
+    "id": "scopia-gaz_water_heater",
+    "bytes": 78464
+  },
+  {
+    "id": "scopia-inkjet_and_scanner_printer",
+    "bytes": 41316
+  },
+  {
+    "id": "scopia-internal-unity-air-conditioning",
+    "bytes": 185680
+  },
+  {
+    "id": "scopia-mini_stereo",
+    "bytes": 151136
+  },
+  {
+    "id": "scopia-puff",
+    "bytes": 42456
+  },
+  {
+    "id": "scopia-stereo_amplifier",
+    "bytes": 83832
+  },
+  {
+    "id": "scopia-water_cooler",
+    "bytes": 121040
+  },
+  {
+    "id": "scopia-ficus",
+    "bytes": 2835160
+  },
+  {
+    "id": "scopia-chest-freezer",
+    "bytes": 26724
+  },
+  {
+    "id": "scopia-coffee-table2",
+    "bytes": 119084
+  },
+  {
+    "id": "scopia-bonsai-tree",
+    "bytes": 684180
+  },
+  {
+    "id": "scopia-changing-table",
+    "bytes": 53176
+  },
+  {
+    "id": "scopia-induction-cooker-2-zones",
+    "bytes": 21144
+  },
+  {
+    "id": "scopia-induction-cooker-4-zones",
+    "bytes": 34200
+  },
+  {
+    "id": "scopia-video-projector",
+    "bytes": 52584
+  },
+  {
+    "id": "scopia-wall-flat-tv",
+    "bytes": 41020
+  },
+  {
+    "id": "scopia-ceiling-lamp",
+    "bytes": 42892
+  },
+  {
+    "id": "scopia-tablet",
+    "bytes": 32744
+  },
+  {
+    "id": "scopia-convertible-sofa-BZ-closed",
+    "bytes": 68776
+  },
+  {
+    "id": "scopia-convertible-sofa-BZ-opened",
+    "bytes": 114780
+  },
+  {
+    "id": "scopia-dressing-table",
+    "bytes": 68820
+  },
+  {
+    "id": "scopia-playstation4",
+    "bytes": 34156
+  },
+  {
+    "id": "scopia-small-urinal",
+    "bytes": 41992
+  },
+  {
+    "id": "scopia-table-on-trestles",
+    "bytes": 122500
+  },
+  {
+    "id": "scopia-table-with-leaning-feet",
+    "bytes": 106188
+  },
+  {
+    "id": "scopia-clothes-rack",
+    "bytes": 94064
+  },
+  {
+    "id": "scopia-round-table",
+    "bytes": 107208
+  },
+  {
+    "id": "scopia-small-oven",
+    "bytes": 161552
+  },
+  {
+    "id": "scopia-captains-bed",
+    "bytes": 379684
+  },
+  {
+    "id": "scopia-mezzanine-bed",
+    "bytes": 106460
+  },
+  {
+    "id": "scopia-bamboo",
+    "bytes": 2137064
+  },
+  {
+    "id": "scopia-ficusTree",
+    "bytes": 10580416
+  },
+  {
+    "id": "scopia-children_chair",
+    "bytes": 47380
+  },
+  {
+    "id": "scopia-children_table",
+    "bytes": 46544
+  },
+  {
+    "id": "scopia-cooker",
+    "bytes": 108552
+  },
+  {
+    "id": "scopia-day_bed_frame",
+    "bytes": 91452
+  },
+  {
+    "id": "scopia-deepFryerWithFrenchFries",
+    "bytes": 485504
+  },
+  {
+    "id": "scopia-futon",
+    "bytes": 278124
+  },
+  {
+    "id": "scopia-hammock",
+    "bytes": 490408
+  },
+  {
+    "id": "scopia-islandBath",
+    "bytes": 1168876
+  },
+  {
+    "id": "scopia-kitchenHood",
+    "bytes": 49000
+  },
+  {
+    "id": "scopia-rattanArmchair",
+    "bytes": 92520
+  },
+  {
+    "id": "scopia-rattanSofa",
+    "bytes": 107820
+  },
+  {
+    "id": "scopia-rattanTable",
+    "bytes": 60896
+  },
+  {
+    "id": "scopia-ryokanChair",
+    "bytes": 66884
+  },
+  {
+    "id": "scopia-sandwichMaker",
+    "bytes": 135340
+  },
+  {
+    "id": "scopia-toaster",
+    "bytes": 161988
+  },
+  {
+    "id": "scopia-safeOnFeet",
+    "bytes": 82872
+  },
+  {
+    "id": "scopia-feu-de-signalisation-simple",
+    "bytes": 104948
+  },
+  {
+    "id": "scopia-feu-de-signalisation-avec-signalisation-au-dessus",
+    "bytes": 128444
+  },
+  {
+    "id": "scopia-hotelSafe",
+    "bytes": 59164
+  },
+  {
+    "id": "scopia-boston-fern",
+    "bytes": 283244
+  },
+  {
+    "id": "scopia-dishwasher",
+    "bytes": 132344
+  },
+  {
+    "id": "scopia-electricWheelchair",
+    "bytes": 307016
+  },
+  {
+    "id": "scopia-ergonomic-washbasin",
+    "bytes": 75892
+  },
+  {
+    "id": "scopia-folding-armchair",
+    "bytes": 77288
+  },
+  {
+    "id": "scopia-hand-washbasin",
+    "bytes": 54952
+  },
+  {
+    "id": "scopia-japanese-toilet",
+    "bytes": 117816
+  },
+  {
+    "id": "scopia-shower-armchair",
+    "bytes": 99040
+  },
+  {
+    "id": "scopia-shower-cabin-with-seat",
+    "bytes": 396780
+  },
+  {
+    "id": "scopia-shower-chair",
+    "bytes": 80992
+  },
+  {
+    "id": "scopia-stone-washbasin",
+    "bytes": 138504
+  },
+  {
+    "id": "scopia-turkish-toilet",
+    "bytes": 40240
+  },
+  {
+    "id": "scopia-waitress-table-on-wheels",
+    "bytes": 155312
+  }
+]

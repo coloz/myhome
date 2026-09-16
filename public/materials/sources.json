@@ -1,0 +1,192 @@
+[
+  {
+    "id": "wooden_floor_01",
+    "source": "https://polyhaven.com/a/wooden_floor_01",
+    "license": "CC0-1.0",
+    "maps": {
+      "color": "materials/wooden_floor_01/color.jpg",
+      "normal": "materials/wooden_floor_01/normal.jpg",
+      "roughness": "materials/wooden_floor_01/roughness.jpg"
+    }
+  },
+  {
+    "id": "herringbone_parquet",
+    "source": "https://polyhaven.com/a/herringbone_parquet",
+    "license": "CC0-1.0",
+    "maps": {
+      "color": "materials/herringbone_parquet/color.jpg",
+      "normal": "materials/herringbone_parquet/normal.jpg",
+      "roughness": "materials/herringbone_parquet/roughness.jpg"
+    }
+  },
+  {
+    "id": "diagonal_parquet",
+    "source": "https://polyhaven.com/a/diagonal_parquet",
+    "license": "CC0-1.0",
+    "maps": {
+      "color": "materials/diagonal_parquet/color.jpg",
+      "normal": "materials/diagonal_parquet/normal.jpg",
+      "roughness": "materials/diagonal_parquet/roughness.jpg"
+    }
+  },
+  {
+    "id": "wood_floor",
+    "source": "https://polyhaven.com/a/wood_floor",
+    "license": "CC0-1.0",
+    "maps": {
+      "color": "materials/wood_floor/color.jpg",
+      "normal": "materials/wood_floor/normal.jpg",
+      "roughness": "materials/wood_floor/roughness.jpg"
+    }
+  },
+  {
+    "id": "terrazzo_tiles",
+    "source": "https://polyhaven.com/a/terrazzo_tiles",
+    "license": "CC0-1.0",
+    "maps": {
+      "color": "materials/terrazzo_tiles/color.jpg",
+      "normal": "materials/terrazzo_tiles/normal.jpg",
+      "roughness": "materials/terrazzo_tiles/roughness.jpg"
+    }
+  },
+  {
+    "id": "marble_01",
+    "source": "https://polyhaven.com/a/marble_01",
+    "license": "CC0-1.0",
+    "maps": {
+      "color": "materials/marble_01/color.jpg",
+      "normal": "materials/marble_01/normal.jpg",
+      "roughness": "materials/marble_01/roughness.jpg"
+    }
+  },
+  {
+    "id": "large_grey_tiles",
+    "source": "https://polyhaven.com/a/large_grey_tiles",
+    "license": "CC0-1.0",
+    "maps": {
+      "color": "materials/large_grey_tiles/color.jpg",
+      "normal": "materials/large_grey_tiles/normal.jpg",
+      "roughness": "materials/large_grey_tiles/roughness.jpg"
+    }
+  },
+  {
+    "id": "terracotta_floor_tiles",
+    "source": "https://polyhaven.com/a/terracotta_floor_tiles",
+    "license": "CC0-1.0",
+    "maps": {
+      "color": "materials/terracotta_floor_tiles/color.jpg",
+      "normal": "materials/terracotta_floor_tiles/normal.jpg",
+      "roughness": "materials/terracotta_floor_tiles/roughness.jpg"
+    }
+  },
+  {
+    "id": "long_white_tiles",
+    "source": "https://polyhaven.com/a/long_white_tiles",
+    "license": "CC0-1.0",
+    "maps": {
+      "color": "materials/long_white_tiles/color.jpg",
+      "normal": "materials/long_white_tiles/normal.jpg",
+      "roughness": "materials/long_white_tiles/roughness.jpg"
+    }
+  },
+  {
+    "id": "square_tiles",
+    "source": "https://polyhaven.com/a/square_tiles",
+    "license": "CC0-1.0",
+    "maps": {
+      "color": "materials/square_tiles/color.jpg",
+      "normal": "materials/square_tiles/normal.jpg",
+      "roughness": "materials/square_tiles/roughness.jpg"
+    }
+  },
+  {
+    "id": "white_plaster_02",
+    "source": "https://polyhaven.com/a/white_plaster_02",
+    "license": "CC0-1.0",
+    "maps": {
+      "color": "materials/white_plaster_02/color.jpg",
+      "normal": "materials/white_plaster_02/normal.jpg",
+      "roughness": "materials/white_plaster_02/roughness.jpg"
+    }
+  },
+  {
+    "id": "grey_plaster",
+    "source": "https://polyhaven.com/a/grey_plaster",
+    "license": "CC0-1.0",
+    "maps": {
+      "color": "materials/grey_plaster/color.jpg",
+      "normal": "materials/grey_plaster/normal.jpg",
+      "roughness": "materials/grey_plaster/roughness.jpg"
+    }
+  },
+  {
+    "id": "clay_plaster",
+    "source": "https://polyhaven.com/a/clay_plaster",
+    "license": "CC0-1.0",
+    "maps": {
+      "color": "materials/clay_plaster/color.jpg",
+      "normal": "materials/clay_plaster/normal.jpg",
+      "roughness": "materials/clay_plaster/roughness.jpg"
+    }
+  },
+  {
+    "id": "painted_plaster_wall",
+    "source": "https://polyhaven.com/a/painted_plaster_wall",
+    "license": "CC0-1.0",
+    "maps": {
+      "color": "materials/painted_plaster_wall/color.jpg",
+      "normal": "materials/painted_plaster_wall/normal.jpg",
+      "roughness": "materials/painted_plaster_wall/roughness.jpg"
+    }
+  },
+  {
+    "id": "wood_table_001",
+    "source": "https://polyhaven.com/a/wood_table_001",
+    "license": "CC0-1.0",
+    "maps": {
+      "color": "materials/wood_table_001/color.jpg",
+      "normal": "materials/wood_table_001/normal.jpg",
+      "roughness": "materials/wood_table_001/roughness.jpg"
+    }
+  },
+  {
+    "id": "fine_grained_wood",
+    "source": "https://polyhaven.com/a/fine_grained_wood",
+    "license": "CC0-1.0",
+    "maps": {
+      "color": "materials/fine_grained_wood/color.jpg",
+      "normal": "materials/fine_grained_wood/normal.jpg",
+      "roughness": "materials/fine_grained_wood/roughness.jpg"
+    }
+  },
+  {
+    "id": "denim_fabric",
+    "source": "https://polyhaven.com/a/denim_fabric",
+    "license": "CC0-1.0",
+    "maps": {
+      "color": "materials/denim_fabric/color.jpg",
+      "normal": "materials/denim_fabric/normal.jpg",
+      "roughness": "materials/denim_fabric/roughness.jpg"
+    }
+  },
+  {
+    "id": "leather_white",
+    "source": "https://polyhaven.com/a/leather_white",
+    "license": "CC0-1.0",
+    "maps": {
+      "color": "materials/leather_white/color.jpg",
+      "normal": "materials/leather_white/normal.jpg",
+      "roughness": "materials/leather_white/roughness.jpg"
+    }
+  },
+  {
+    "id": "kitchen_wood",
+    "source": "https://polyhaven.com/a/kitchen_wood",
+    "license": "CC0-1.0",
+    "maps": {
+      "color": "materials/kitchen_wood/color.jpg",
+      "normal": "materials/kitchen_wood/normal.jpg",
+      "roughness": "materials/kitchen_wood/roughness.jpg"
+    }
+  }
+]

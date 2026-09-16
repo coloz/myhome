@@ -80,7 +80,9 @@ const rev5=JSON.parse(fs.readFileSync('tests/fixtures/raw-shell-revision5.json',
 const old5={...structuredClone(initial),modelRevision:5,walls:structuredClone(rev5.walls)};
 const corrected5=layoutModule.exports.upgradeModelLayout(old5,initial,project.layoutUpdate);validateWalls(corrected5.walls,base,rooms);
 assert.deepEqual(corrected5.walls.find(w=>w.id==='living-south'),south);
-assert.deepEqual(corrected5.walls.filter(w=>w.id!=='living-south'),old5.walls.filter(w=>w.id!=='living-south'),'South facade correction changed unrelated walls');
+const photoWindowWall=w=>['west-bedroom-north','east-bedroom-north'].includes(w.id)||w.id.startsWith('bed-curve-');
+assert.deepEqual(corrected5.walls.filter(photoWindowWall),base.filter(photoWindowWall),'Bedroom photo corrections must migrate with the living facade');
+assert.deepEqual(corrected5.walls.filter(w=>w.id!=='living-south'&&!photoWindowWall(w)),old5.walls.filter(w=>w.id!=='living-south'&&!photoWindowWall(w)),'Window corrections changed unrelated walls');
 assert(!base.some(w=>w.id==='bath-main-south'));
 assert(!gltf.nodes.some(n=>n.extras?.wallId==='bath-main-south'),'Master bathroom south edge must remain fully open');
 assert.deepEqual(base.find(w=>w.id==='bath-main-west').openings,[]);
@@ -110,7 +112,7 @@ for(const id of ['west-bedroom-north','east-bedroom-north'])assert(base.find(w=>
 for(const id of ['living-south','master-south'])assert(base.find(w=>w.id===id).openings.every(o=>o.bottom===0));
 assert(base.filter(w=>w.railing).every(w=>w.height===1.2&&w.lock==='exterior'));
 assert(!gltf.nodes.some(n=>n.extras?.room==='garden'&&n.extras?.layer==='ceiling'));
-const catalogModule=new Module(__filename);catalogModule.paths=module.paths;catalogModule._compile(compile('src/catalog.ts'),__filename);
+const catalogModule=new Module(__filename);catalogModule.paths=module.paths;catalogModule._compile(compile('src/catalog-legacy.ts'),__filename);
 assert.equal(catalogModule.exports.CATALOG.length,20);
 for(const item of catalogModule.exports.CATALOG){const furniture=catalogModule.exports.makeFurniture(item.id);furniture.updateMatrixWorld(true);const before=new T.Box3().setFromObject(furniture),size=before.getSize(new T.Vector3());assert(size.toArray().every(v=>Number.isFinite(v)&&v>.1));furniture.position.x=2;furniture.updateMatrixWorld(true);const after=new T.Box3().setFromObject(furniture);assert(Math.abs(after.min.x-before.min.x-2)<1e-6,item.id+' did not move as one group');}
 assert.equal(project.height,3);assert(!project.rooms.some(r=>/楼梯|电梯/.test(r.name)));

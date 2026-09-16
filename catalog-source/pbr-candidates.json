@@ -1,0 +1,1154 @@
+[
+  {
+    "id": "ph-ArmChair_01",
+    "name": "织物扶手椅",
+    "description": "Arm Chair 01",
+    "brand": "Poly Haven",
+    "category": "椅凳",
+    "type": "chair",
+    "typeTags": [
+      "椅凳"
+    ],
+    "styleTags": [
+      "中古"
+    ],
+    "style": "中古",
+    "color": "#c3b091",
+    "dimensions": [
+      0.8484309017658234,
+      0.7657602727413177,
+      1.065087635157397
+    ],
+    "size": "84.8 × 76.6 × 106.5 cm",
+    "model": "library/models/ph-ArmChair_01.glb",
+    "source": "https://polyhaven.com/a/ArmChair_01",
+    "creator": "Kirill Sannikov / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-ArmChair_01",
+    "elevation": 0,
+    "modelBytes": 2804680,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  },
+  {
+    "id": "ph-CoffeeTable_01",
+    "name": "实木茶几",
+    "description": "Coffee Table 01",
+    "brand": "Poly Haven",
+    "category": "桌子",
+    "type": "table",
+    "typeTags": [
+      "茶几"
+    ],
+    "styleTags": [
+      "北欧"
+    ],
+    "style": "北欧",
+    "color": "#c3b091",
+    "dimensions": [
+      1.5400111079216003,
+      0.972847044467926,
+      0.523237330140546
+    ],
+    "size": "154.0 × 97.3 × 52.3 cm",
+    "model": "library/models/ph-CoffeeTable_01.glb",
+    "source": "https://polyhaven.com/a/CoffeeTable_01",
+    "creator": "Fernando Quinn / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-CoffeeTable_01",
+    "elevation": 0,
+    "modelBytes": 2232992,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  },
+  {
+    "id": "ph-GreenChair_01",
+    "name": "绿色软包休闲椅",
+    "description": "Green Chair 01",
+    "brand": "Poly Haven",
+    "category": "椅凳",
+    "type": "chair",
+    "typeTags": [
+      "椅凳"
+    ],
+    "styleTags": [
+      "中古"
+    ],
+    "style": "中古",
+    "color": "#c3b091",
+    "dimensions": [
+      0.6730944514274597,
+      0.6643873751163483,
+      1.0585118184098974
+    ],
+    "size": "67.3 × 66.4 × 105.9 cm",
+    "model": "library/models/ph-GreenChair_01.glb",
+    "source": "https://polyhaven.com/a/GreenChair_01",
+    "creator": "Kirill Sannikov / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-GreenChair_01",
+    "elevation": 0,
+    "modelBytes": 1984284,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  },
+  {
+    "id": "ph-Ottoman_01",
+    "name": "软包脚凳",
+    "description": "Ottoman 01",
+    "brand": "Poly Haven",
+    "category": "椅凳",
+    "type": "chair",
+    "typeTags": [
+      "椅凳"
+    ],
+    "styleTags": [
+      "北欧"
+    ],
+    "style": "北欧",
+    "color": "#c3b091",
+    "dimensions": [
+      0.8845577836036682,
+      0.6211484670639038,
+      0.6243239195573551
+    ],
+    "size": "88.5 × 62.1 × 62.4 cm",
+    "model": "library/models/ph-Ottoman_01.glb",
+    "source": "https://polyhaven.com/a/Ottoman_01",
+    "creator": "Caspian Fortune / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-Ottoman_01",
+    "elevation": 0,
+    "modelBytes": 2517096,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  },
+  {
+    "id": "ph-Rockingchair_01",
+    "name": "木质摇椅",
+    "description": "Rockingchair 01",
+    "brand": "Poly Haven",
+    "category": "椅凳",
+    "type": "chair",
+    "typeTags": [
+      "椅凳"
+    ],
+    "styleTags": [
+      "北欧"
+    ],
+    "style": "北欧",
+    "color": "#c3b091",
+    "dimensions": [
+      0.7081280946731567,
+      0.833482027053833,
+      0.9949284568428993
+    ],
+    "size": "70.8 × 83.3 × 99.5 cm",
+    "model": "library/models/ph-Rockingchair_01.glb",
+    "source": "https://polyhaven.com/a/Rockingchair_01",
+    "creator": "Jorge Camacho / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-Rockingchair_01",
+    "elevation": 0,
+    "modelBytes": 1809572,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  },
+  {
+    "id": "ph-Sofa_01",
+    "name": "布艺沙发",
+    "description": "Sofa 01",
+    "brand": "Poly Haven",
+    "category": "沙发",
+    "type": "sofa",
+    "typeTags": [
+      "沙发"
+    ],
+    "styleTags": [
+      "北欧"
+    ],
+    "style": "北欧",
+    "color": "#c3b091",
+    "dimensions": [
+      1.5714675784111023,
+      0.6580145359039307,
+      0.796515051391907
+    ],
+    "size": "157.1 × 65.8 × 79.7 cm",
+    "model": "library/models/ph-Sofa_01.glb",
+    "source": "https://polyhaven.com/a/Sofa_01",
+    "creator": "Kirill Sannikov / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-Sofa_01",
+    "elevation": 0,
+    "modelBytes": 2218124,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  },
+  {
+    "id": "ph-WoodenChair_01",
+    "name": "木质餐椅",
+    "description": "Wooden Chair 01",
+    "brand": "Poly Haven",
+    "category": "椅凳",
+    "type": "chair",
+    "typeTags": [
+      "椅凳"
+    ],
+    "styleTags": [
+      "北欧"
+    ],
+    "style": "北欧",
+    "color": "#c3b091",
+    "dimensions": [
+      0.6881728172302246,
+      0.6584618389606476,
+      2.273514856118709
+    ],
+    "size": "68.8 × 65.8 × 227.4 cm",
+    "model": "library/models/ph-WoodenChair_01.glb",
+    "source": "https://polyhaven.com/a/WoodenChair_01",
+    "creator": "Jake Mobley / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-WoodenChair_01",
+    "elevation": 0,
+    "modelBytes": 2289632,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  },
+  {
+    "id": "ph-WoodenTable_01",
+    "name": "实木餐桌",
+    "description": "Wooden Table 01",
+    "brand": "Poly Haven",
+    "category": "桌子",
+    "type": "table",
+    "typeTags": [
+      "桌子"
+    ],
+    "styleTags": [
+      "北欧"
+    ],
+    "style": "北欧",
+    "color": "#c3b091",
+    "dimensions": [
+      1.7996479272842407,
+      0.6571746468544006,
+      0.5488492709302584
+    ],
+    "size": "180.0 × 65.7 × 54.9 cm",
+    "model": "library/models/ph-WoodenTable_01.glb",
+    "source": "https://polyhaven.com/a/WoodenTable_01",
+    "creator": "Ethan Place / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-WoodenTable_01",
+    "elevation": 0,
+    "modelBytes": 1823632,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  },
+  {
+    "id": "ph-bar_chair_round_01",
+    "name": "圆座吧椅",
+    "description": "Bar Chair Round 01",
+    "brand": "Poly Haven",
+    "category": "椅凳",
+    "type": "chair",
+    "typeTags": [
+      "椅凳"
+    ],
+    "styleTags": [
+      "北欧"
+    ],
+    "style": "北欧",
+    "color": "#c3b091",
+    "dimensions": [
+      0.4831503292690078,
+      0.48599584010942376,
+      0.7505484623070515
+    ],
+    "size": "48.3 × 48.6 × 75.1 cm",
+    "model": "library/models/ph-bar_chair_round_01.glb",
+    "source": "https://polyhaven.com/a/bar_chair_round_01",
+    "creator": "Dairon Sanchez / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-bar_chair_round_01",
+    "elevation": 0,
+    "modelBytes": 7150472,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  },
+  {
+    "id": "ph-chinese_armchair",
+    "name": "中式扶手椅",
+    "description": "Chinese Armchair",
+    "brand": "Poly Haven",
+    "category": "椅凳",
+    "type": "chair",
+    "typeTags": [
+      "椅凳"
+    ],
+    "styleTags": [
+      "中式"
+    ],
+    "style": "中式",
+    "color": "#c3b091",
+    "dimensions": [
+      0.8482747673988342,
+      0.7886627614498138,
+      1.5874828653213626
+    ],
+    "size": "84.8 × 78.9 × 158.7 cm",
+    "model": "library/models/ph-chinese_armchair.glb",
+    "source": "https://polyhaven.com/a/chinese_armchair",
+    "creator": "Kirill Sannikov / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-chinese_armchair",
+    "elevation": 0,
+    "modelBytes": 5903628,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  },
+  {
+    "id": "ph-chinese_cabinet",
+    "name": "中式高柜",
+    "description": "Chinese Cabinet",
+    "brand": "Poly Haven",
+    "category": "收纳",
+    "type": "cabinet",
+    "typeTags": [
+      "收纳"
+    ],
+    "styleTags": [
+      "中式"
+    ],
+    "style": "中式",
+    "color": "#c3b091",
+    "dimensions": [
+      1.2624960541725159,
+      0.5452098585665226,
+      2.8720987772358058
+    ],
+    "size": "126.2 × 54.5 × 287.2 cm",
+    "model": "library/models/ph-chinese_cabinet.glb",
+    "source": "https://polyhaven.com/a/chinese_cabinet",
+    "creator": "Kirill Sannikov / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-chinese_cabinet",
+    "elevation": 0,
+    "modelBytes": 7217308,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  },
+  {
+    "id": "ph-chinese_commode",
+    "name": "中式斗柜",
+    "description": "Chinese Commode",
+    "brand": "Poly Haven",
+    "category": "收纳",
+    "type": "cabinet",
+    "typeTags": [
+      "收纳"
+    ],
+    "styleTags": [
+      "中式"
+    ],
+    "style": "中式",
+    "color": "#c3b091",
+    "dimensions": [
+      4.49048638343811,
+      1.1699001789093018,
+      2.019874095916748
+    ],
+    "size": "449.0 × 117.0 × 202.0 cm",
+    "model": "library/models/ph-chinese_commode.glb",
+    "source": "https://polyhaven.com/a/chinese_commode",
+    "creator": "Kirill Sannikov / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-chinese_commode",
+    "elevation": 0,
+    "modelBytes": 6327244,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  },
+  {
+    "id": "ph-chinese_console_table",
+    "name": "中式条案",
+    "description": "Chinese Console Table",
+    "brand": "Poly Haven",
+    "category": "桌子",
+    "type": "table",
+    "typeTags": [
+      "桌子"
+    ],
+    "styleTags": [
+      "中式"
+    ],
+    "style": "中式",
+    "color": "#c3b091",
+    "dimensions": [
+      1.7196246981620789,
+      0.3387930691242218,
+      0.6607421338558197
+    ],
+    "size": "172.0 × 33.9 × 66.1 cm",
+    "model": "library/models/ph-chinese_console_table.glb",
+    "source": "https://polyhaven.com/a/chinese_console_table",
+    "creator": "Kirill Sannikov / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-chinese_console_table",
+    "elevation": 0,
+    "modelBytes": 8420420,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  },
+  {
+    "id": "ph-chinese_sofa",
+    "name": "中式木沙发",
+    "description": "Chinese Sofa",
+    "brand": "Poly Haven",
+    "category": "沙发",
+    "type": "sofa",
+    "typeTags": [
+      "沙发"
+    ],
+    "styleTags": [
+      "中式"
+    ],
+    "style": "中式",
+    "color": "#c3b091",
+    "dimensions": [
+      2.2854329347610474,
+      0.9688513875007629,
+      0.8600191126264232
+    ],
+    "size": "228.5 × 96.9 × 86.0 cm",
+    "model": "library/models/ph-chinese_sofa.glb",
+    "source": "https://polyhaven.com/a/chinese_sofa",
+    "creator": "Kirill Sannikov / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-chinese_sofa",
+    "elevation": 0,
+    "modelBytes": 6126212,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  },
+  {
+    "id": "ph-chinese_stool",
+    "name": "中式圆凳",
+    "description": "Chinese Stool",
+    "brand": "Poly Haven",
+    "category": "椅凳",
+    "type": "chair",
+    "typeTags": [
+      "椅凳"
+    ],
+    "styleTags": [
+      "中式"
+    ],
+    "style": "中式",
+    "color": "#c3b091",
+    "dimensions": [
+      0.5989733631437808,
+      0.5064060087030917,
+      0.6305584987724009
+    ],
+    "size": "59.9 × 50.6 × 63.1 cm",
+    "model": "library/models/ph-chinese_stool.glb",
+    "source": "https://polyhaven.com/a/chinese_stool",
+    "creator": "Kirill Sannikov / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-chinese_stool",
+    "elevation": 0,
+    "modelBytes": 6839940,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  },
+  {
+    "id": "ph-chinese_tea_table",
+    "name": "中式茶桌",
+    "description": "Chinese Tea Table",
+    "brand": "Poly Haven",
+    "category": "桌子",
+    "type": "table",
+    "typeTags": [
+      "茶几"
+    ],
+    "styleTags": [
+      "中式"
+    ],
+    "style": "中式",
+    "color": "#c3b091",
+    "dimensions": [
+      0.8413148820400238,
+      0.8356219828128815,
+      0.4986410439014435
+    ],
+    "size": "84.1 × 83.6 × 49.9 cm",
+    "model": "library/models/ph-chinese_tea_table.glb",
+    "source": "https://polyhaven.com/a/chinese_tea_table",
+    "creator": "Kirill Sannikov / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-chinese_tea_table",
+    "elevation": 0,
+    "modelBytes": 6029232,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  },
+  {
+    "id": "ph-coffee_table_round_01",
+    "name": "圆形茶几",
+    "description": "Coffee Table Round 01",
+    "brand": "Poly Haven",
+    "category": "桌子",
+    "type": "table",
+    "typeTags": [
+      "茶几"
+    ],
+    "styleTags": [
+      "北欧"
+    ],
+    "style": "北欧",
+    "color": "#c3b091",
+    "dimensions": [
+      1.3013009428977966,
+      1.3013015985488892,
+      0.4910094439983368
+    ],
+    "size": "130.1 × 130.1 × 49.1 cm",
+    "model": "library/models/ph-coffee_table_round_01.glb",
+    "source": "https://polyhaven.com/a/coffee_table_round_01",
+    "creator": "Ulan Cabanilla / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-coffee_table_round_01",
+    "elevation": 0,
+    "modelBytes": 5663484,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  },
+  {
+    "id": "ph-dining_chair_02",
+    "name": "软包餐椅",
+    "description": "Dining Chair 02",
+    "brand": "Poly Haven",
+    "category": "椅凳",
+    "type": "chair",
+    "typeTags": [
+      "椅凳"
+    ],
+    "styleTags": [
+      "北欧"
+    ],
+    "style": "北欧",
+    "color": "#c3b091",
+    "dimensions": [
+      0.4335707724094391,
+      0.5764201134443283,
+      0.9733776897192001
+    ],
+    "size": "43.4 × 57.6 × 97.3 cm",
+    "model": "library/models/ph-dining_chair_02.glb",
+    "source": "https://polyhaven.com/a/dining_chair_02",
+    "creator": "James Ray Cock / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-dining_chair_02",
+    "elevation": 0,
+    "modelBytes": 1918040,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  },
+  {
+    "id": "ph-drawer_cabinet",
+    "name": "木质抽屉柜",
+    "description": "Drawer Cabinet",
+    "brand": "Poly Haven",
+    "category": "收纳",
+    "type": "cabinet",
+    "typeTags": [
+      "收纳"
+    ],
+    "styleTags": [
+      "北欧"
+    ],
+    "style": "北欧",
+    "color": "#c3b091",
+    "dimensions": [
+      1.1410778760910034,
+      0.48808470368385315,
+      1.881253957748413
+    ],
+    "size": "114.1 × 48.8 × 188.1 cm",
+    "model": "library/models/ph-drawer_cabinet.glb",
+    "source": "https://polyhaven.com/a/drawer_cabinet",
+    "creator": "Ulan Cabanilla / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-drawer_cabinet",
+    "elevation": 0,
+    "modelBytes": 2065980,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  },
+  {
+    "id": "ph-electric_stove",
+    "name": "独立式电灶烤箱",
+    "description": "Electric Stove",
+    "brand": "Poly Haven",
+    "category": "家电",
+    "type": "appliance",
+    "typeTags": [
+      "灶具/烤箱"
+    ],
+    "styleTags": [
+      "北欧"
+    ],
+    "style": "北欧",
+    "color": "#c3b091",
+    "dimensions": [
+      0.5025947988033295,
+      0.6476211845874786,
+      0.8586971759796143
+    ],
+    "size": "50.3 × 64.8 × 85.9 cm",
+    "model": "library/models/ph-electric_stove.glb",
+    "source": "https://polyhaven.com/a/electric_stove",
+    "creator": "Kuutti Siitonen / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-electric_stove",
+    "elevation": 0,
+    "modelBytes": 7769184,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 4
+  },
+  {
+    "id": "ph-folding_wooden_stool",
+    "name": "折叠木凳",
+    "description": "Folding Wooden Stool",
+    "brand": "Poly Haven",
+    "category": "椅凳",
+    "type": "chair",
+    "typeTags": [
+      "椅凳"
+    ],
+    "styleTags": [
+      "北欧"
+    ],
+    "style": "北欧",
+    "color": "#c3b091",
+    "dimensions": [
+      0.5278338193893433,
+      0.5470837950706482,
+      0.44196850061416626
+    ],
+    "size": "52.8 × 54.7 × 44.2 cm",
+    "model": "library/models/ph-folding_wooden_stool.glb",
+    "source": "https://polyhaven.com/a/folding_wooden_stool",
+    "creator": "Ulan Cabanilla / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-folding_wooden_stool",
+    "elevation": 0,
+    "modelBytes": 8100184,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  },
+  {
+    "id": "ph-industrial_coffee_table",
+    "name": "工业风茶几",
+    "description": "Industrial Coffee Table",
+    "brand": "Poly Haven",
+    "category": "桌子",
+    "type": "table",
+    "typeTags": [
+      "茶几"
+    ],
+    "styleTags": [
+      "工业风"
+    ],
+    "style": "工业风",
+    "color": "#c3b091",
+    "dimensions": [
+      0.7782644629478455,
+      0.7579283802275323,
+      0.6384222476248378
+    ],
+    "size": "77.8 × 75.8 × 63.8 cm",
+    "model": "library/models/ph-industrial_coffee_table.glb",
+    "source": "https://polyhaven.com/a/industrial_coffee_table",
+    "creator": "Ulan Cabanilla / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-industrial_coffee_table",
+    "elevation": 0,
+    "modelBytes": 8281280,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  },
+  {
+    "id": "ph-mid_century_lounge_chair",
+    "name": "中古皮革休闲椅",
+    "description": "Mid Century Lounge Chair",
+    "brand": "Poly Haven",
+    "category": "椅凳",
+    "type": "chair",
+    "typeTags": [
+      "椅凳"
+    ],
+    "styleTags": [
+      "中古"
+    ],
+    "style": "中古",
+    "color": "#c3b091",
+    "dimensions": [
+      1.0086143612861633,
+      1.190310776233673,
+      1.1690847246776137
+    ],
+    "size": "100.9 × 119.0 × 116.9 cm",
+    "model": "library/models/ph-mid_century_lounge_chair.glb",
+    "source": "https://polyhaven.com/a/mid_century_lounge_chair",
+    "creator": "Kuutti Siitonen / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-mid_century_lounge_chair",
+    "elevation": 0,
+    "modelBytes": 7740380,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  },
+  {
+    "id": "ph-modern_arm_chair_01",
+    "name": "现代软包扶手椅",
+    "description": "Modern Arm Chair 01",
+    "brand": "Poly Haven",
+    "category": "椅凳",
+    "type": "chair",
+    "typeTags": [
+      "椅凳"
+    ],
+    "styleTags": [
+      "简约现代"
+    ],
+    "style": "简约现代",
+    "color": "#c3b091",
+    "dimensions": [
+      0.8203444182872772,
+      0.9865616858005524,
+      1.0228520567470696
+    ],
+    "size": "82.0 × 98.7 × 102.3 cm",
+    "model": "library/models/ph-modern_arm_chair_01.glb",
+    "source": "https://polyhaven.com/a/modern_arm_chair_01",
+    "creator": "Vibrant Nordic / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-modern_arm_chair_01",
+    "elevation": 0,
+    "modelBytes": 9220176,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 6
+  },
+  {
+    "id": "ph-modern_coffee_table_01",
+    "name": "现代茶几 01",
+    "description": "Modern Coffee Table 01",
+    "brand": "Poly Haven",
+    "category": "桌子",
+    "type": "table",
+    "typeTags": [
+      "茶几"
+    ],
+    "styleTags": [
+      "简约现代"
+    ],
+    "style": "简约现代",
+    "color": "#c3b091",
+    "dimensions": [
+      0.6000000238418579,
+      1.2018300294876099,
+      0.38999998569488525
+    ],
+    "size": "60.0 × 120.2 × 39.0 cm",
+    "model": "library/models/ph-modern_coffee_table_01.glb",
+    "source": "https://polyhaven.com/a/modern_coffee_table_01",
+    "creator": "Amin / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-modern_coffee_table_01",
+    "elevation": 0,
+    "modelBytes": 4700576,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  },
+  {
+    "id": "ph-modern_coffee_table_02",
+    "name": "现代茶几 02",
+    "description": "Modern Coffee Table 02",
+    "brand": "Poly Haven",
+    "category": "桌子",
+    "type": "table",
+    "typeTags": [
+      "茶几"
+    ],
+    "styleTags": [
+      "简约现代"
+    ],
+    "style": "简约现代",
+    "color": "#c3b091",
+    "dimensions": [
+      1.1991113424301147,
+      1.1996567845344543,
+      0.3692496716976166
+    ],
+    "size": "119.9 × 120.0 × 36.9 cm",
+    "model": "library/models/ph-modern_coffee_table_02.glb",
+    "source": "https://polyhaven.com/a/modern_coffee_table_02",
+    "creator": "Amin / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-modern_coffee_table_02",
+    "elevation": 0,
+    "modelBytes": 9458120,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 6
+  },
+  {
+    "id": "ph-modern_wooden_cabinet",
+    "name": "现代木柜",
+    "description": "Modern Wooden Cabinet",
+    "brand": "Poly Haven",
+    "category": "收纳",
+    "type": "cabinet",
+    "typeTags": [
+      "收纳"
+    ],
+    "styleTags": [
+      "简约现代"
+    ],
+    "style": "简约现代",
+    "color": "#c3b091",
+    "dimensions": [
+      2.4400004148483276,
+      0.5200000107288361,
+      0.6801425069570541
+    ],
+    "size": "244.0 × 52.0 × 68.0 cm",
+    "model": "library/models/ph-modern_wooden_cabinet.glb",
+    "source": "https://polyhaven.com/a/modern_wooden_cabinet",
+    "creator": "Patrik Pangerl / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-modern_wooden_cabinet",
+    "elevation": 0,
+    "modelBytes": 8216256,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  },
+  {
+    "id": "ph-round_wooden_table_01",
+    "name": "圆形木餐桌 01",
+    "description": "Round Wooden Table 01",
+    "brand": "Poly Haven",
+    "category": "桌子",
+    "type": "table",
+    "typeTags": [
+      "桌子"
+    ],
+    "styleTags": [
+      "北欧"
+    ],
+    "style": "北欧",
+    "color": "#c3b091",
+    "dimensions": [
+      1.3993489742279053,
+      1.3993489146232605,
+      1.0050213932991028
+    ],
+    "size": "139.9 × 139.9 × 100.5 cm",
+    "model": "library/models/ph-round_wooden_table_01.glb",
+    "source": "https://polyhaven.com/a/round_wooden_table_01",
+    "creator": "Ulan Cabanilla / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-round_wooden_table_01",
+    "elevation": 0,
+    "modelBytes": 1316980,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  },
+  {
+    "id": "ph-round_wooden_table_02",
+    "name": "圆形木餐桌 02",
+    "description": "Round Wooden Table 02",
+    "brand": "Poly Haven",
+    "category": "桌子",
+    "type": "table",
+    "typeTags": [
+      "桌子"
+    ],
+    "styleTags": [
+      "北欧"
+    ],
+    "style": "北欧",
+    "color": "#c3b091",
+    "dimensions": [
+      0.7961780428886414,
+      0.7961780428886414,
+      0.7460266395536621
+    ],
+    "size": "79.6 × 79.6 × 74.6 cm",
+    "model": "library/models/ph-round_wooden_table_02.glb",
+    "source": "https://polyhaven.com/a/round_wooden_table_02",
+    "creator": "Ulan Cabanilla / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-round_wooden_table_02",
+    "elevation": 0,
+    "modelBytes": 6762468,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  },
+  {
+    "id": "ph-side_table_01",
+    "name": "木质边桌",
+    "description": "Side Table 01",
+    "brand": "Poly Haven",
+    "category": "桌子",
+    "type": "table",
+    "typeTags": [
+      "桌子"
+    ],
+    "styleTags": [
+      "北欧"
+    ],
+    "style": "北欧",
+    "color": "#c3b091",
+    "dimensions": [
+      0.5500000715255737,
+      0.45000001788139343,
+      0.5506622816901654
+    ],
+    "size": "55.0 × 45.0 × 55.1 cm",
+    "model": "library/models/ph-side_table_01.glb",
+    "source": "https://polyhaven.com/a/side_table_01",
+    "creator": "James Ray Cock / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-side_table_01",
+    "elevation": 0,
+    "modelBytes": 1554008,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  },
+  {
+    "id": "ph-sofa_02",
+    "name": "复古皮沙发",
+    "description": "Sofa 02",
+    "brand": "Poly Haven",
+    "category": "沙发",
+    "type": "sofa",
+    "typeTags": [
+      "沙发"
+    ],
+    "styleTags": [
+      "复古"
+    ],
+    "style": "复古",
+    "color": "#c3b091",
+    "dimensions": [
+      1.8071673512458801,
+      0.8177513778209686,
+      0.7094889283180237
+    ],
+    "size": "180.7 × 81.8 × 70.9 cm",
+    "model": "library/models/ph-sofa_02.glb",
+    "source": "https://polyhaven.com/a/sofa_02",
+    "creator": "Kirill Sannikov / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-sofa_02",
+    "elevation": 0,
+    "modelBytes": 1266120,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  },
+  {
+    "id": "ph-sofa_03",
+    "name": "雕花皮沙发",
+    "description": "Sofa 03",
+    "brand": "Poly Haven",
+    "category": "沙发",
+    "type": "sofa",
+    "typeTags": [
+      "沙发"
+    ],
+    "styleTags": [
+      "复古"
+    ],
+    "style": "复古",
+    "color": "#c3b091",
+    "dimensions": [
+      2.73117733001709,
+      0.9250842034816742,
+      1.1182640366605483
+    ],
+    "size": "273.1 × 92.5 × 111.8 cm",
+    "model": "library/models/ph-sofa_03.glb",
+    "source": "https://polyhaven.com/a/sofa_03",
+    "creator": "Fran Calvente / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-sofa_03",
+    "elevation": 0,
+    "modelBytes": 2292104,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 4
+  },
+  {
+    "id": "ph-vintage_cabinet_01",
+    "name": "复古木柜",
+    "description": "Vintage Cabinet 01",
+    "brand": "Poly Haven",
+    "category": "收纳",
+    "type": "cabinet",
+    "typeTags": [
+      "收纳"
+    ],
+    "styleTags": [
+      "复古"
+    ],
+    "style": "复古",
+    "color": "#c3b091",
+    "dimensions": [
+      2.0217604637145996,
+      0.6698037981987,
+      2.2350515127764083
+    ],
+    "size": "202.2 × 67.0 × 223.5 cm",
+    "model": "library/models/ph-vintage_cabinet_01.glb",
+    "source": "https://polyhaven.com/a/vintage_cabinet_01",
+    "creator": "Rico Cilliers / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-vintage_cabinet_01",
+    "elevation": 0,
+    "modelBytes": 4992724,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 7
+  },
+  {
+    "id": "ph-vintage_microwave",
+    "name": "复古微波炉",
+    "description": "Vintage Microwave",
+    "brand": "Poly Haven",
+    "category": "家电",
+    "type": "appliance",
+    "typeTags": [
+      "微波炉"
+    ],
+    "styleTags": [
+      "复古"
+    ],
+    "style": "复古",
+    "color": "#c3b091",
+    "dimensions": [
+      1.0737111568450928,
+      0.7455552816390991,
+      0.5258261561393738
+    ],
+    "size": "107.4 × 74.6 × 52.6 cm",
+    "model": "library/models/ph-vintage_microwave.glb",
+    "source": "https://polyhaven.com/a/vintage_microwave",
+    "creator": "Adam Nekola / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-vintage_microwave",
+    "elevation": 0,
+    "modelBytes": 6824144,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 4
+  },
+  {
+    "id": "ph-wooden_display_shelves_01",
+    "name": "实木展示架",
+    "description": "Wooden Display Shelves 01",
+    "brand": "Poly Haven",
+    "category": "收纳",
+    "type": "cabinet",
+    "typeTags": [
+      "收纳"
+    ],
+    "styleTags": [
+      "北欧"
+    ],
+    "style": "北欧",
+    "color": "#c3b091",
+    "dimensions": [
+      0.3715096414089203,
+      1.077760934829712,
+      1.5561838150024414
+    ],
+    "size": "37.2 × 107.8 × 155.6 cm",
+    "model": "library/models/ph-wooden_display_shelves_01.glb",
+    "source": "https://polyhaven.com/a/wooden_display_shelves_01",
+    "creator": "James Ray Cock / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-wooden_display_shelves_01",
+    "elevation": 0,
+    "modelBytes": 1408380,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  },
+  {
+    "id": "ph-wooden_stool_02",
+    "name": "木凳",
+    "description": "Wooden Stool 02",
+    "brand": "Poly Haven",
+    "category": "椅凳",
+    "type": "chair",
+    "typeTags": [
+      "椅凳"
+    ],
+    "styleTags": [
+      "北欧"
+    ],
+    "style": "北欧",
+    "color": "#c3b091",
+    "dimensions": [
+      0.2651771306991577,
+      0.18312730640172958,
+      0.18192848344915546
+    ],
+    "size": "26.5 × 18.3 × 18.2 cm",
+    "model": "library/models/ph-wooden_stool_02.glb",
+    "source": "https://polyhaven.com/a/wooden_stool_02",
+    "creator": "Kuutti Siitonen / Poly Haven",
+    "license": "CC0-1.0",
+    "precision": "原模型米制比例 · 非品牌实测",
+    "styleKey": "ph-wooden_stool_02",
+    "elevation": 0,
+    "modelBytes": 9696376,
+    "quality": "完整造型 · 原始 PBR 材质",
+    "materialMaps": 3
+  }
+]

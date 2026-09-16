@@ -1880,7 +1880,7 @@
     "sourceObjects": 1060,
     "exportGroups": 185,
     "bakedMaterials": 10,
-    "bytes": 8708356,
+    "bytes": 8958760,
     "assemblies": 78,
     "layers": {
       "window": 11,
@@ -1891,5 +1891,83 @@
       "shell-floor": 11,
       "decor": 78
     }
-  }
+  },
+  "visualRevision": "2026-09-16-photo-windows-v2",
+  "facade": {
+    "revision": "2026-09-16-photo-windows-v2",
+    "sides": [
+      "north",
+      "south",
+      "east"
+    ],
+    "style": "暖白矿物面、深棕铜色细框、浅出挑横向腰线；厨房南外墙为棕色。保留原有门窗和圆弧玻璃。",
+    "finishIndependent": true,
+    "meshes": 128,
+    "sourceFaces": 105,
+    "hosts": [
+      "b-wall-0",
+      "b-wall-1",
+      "b-wall-12",
+      "b-wall-13",
+      "b-wall-14",
+      "b-wall-23",
+      "b-wall-30",
+      "b-wall-31",
+      "b-wall-35",
+      "b-wall-36",
+      "b-wall-37",
+      "b-wall-38",
+      "b-wall-43",
+      "b-wall-45",
+      "b-wall-46",
+      "b-wall-48",
+      "b-wall-5",
+      "b-wall-53",
+      "b-wall-8",
+      "b-wall-9"
+    ],
+    "palette": [
+      "#e9e7df",
+      "#67503d",
+      "#80604a"
+    ]
+  },
+  "livingWindow": {
+    "width": 6.170212745666504,
+    "height": 2.8,
+    "divisions": [
+      0.12,
+      0.5,
+      0.88
+    ],
+    "sideTransom": 0.92,
+    "frameColor": "#292724",
+    "glassPanes": 6
+  },
+  "bedroomWindows": [
+    {
+      "room": "master",
+      "width": 2.681,
+      "sill": 0,
+      "top": 2.8,
+      "openingSide": "low",
+      "referenceMirrored": true
+    },
+    {
+      "room": "bed-west",
+      "width": 1.9,
+      "sill": 0.5,
+      "top": 2.45,
+      "openingSide": "high",
+      "referenceMirrored": true
+    },
+    {
+      "room": "bed-east",
+      "width": 2.05,
+      "sill": 0.5,
+      "top": 2.45,
+      "openingSide": "low",
+      "referenceMirrored": true
+    }
+  ]
 }

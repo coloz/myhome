@@ -1,6 +1,7 @@
 export type SavedEntity={id:string;sourceId?:string;catalogId?:string;room:string;position:number[];rotation:number;scale:number;deleted:boolean;color?:string};
 import { wallChanged, type WallRecord, type RoomFinish } from './architecture';
-export type Layout={format:'home-simulator';version:1|2;modelVersion:string;modelRevision?:number;entities:SavedEntity[];rooms:Record<string,{visible:boolean;decorated:boolean}>;walls?:WallRecord[];finishes?:Record<string,RoomFinish>};
+import type { DesignBrief } from './design-engine';
+export type Layout={format:'home-simulator';version:1|2;modelVersion:string;modelRevision?:number;entities:SavedEntity[];rooms:Record<string,{visible:boolean;decorated:boolean}>;walls?:WallRecord[];finishes?:Record<string,RoomFinish>;design?:{brief:DesignBrief;roomUses:Record<string,string>}};
 export type ModelLayoutUpdate={fromRevision:number;fromRevisions?:number[];previousOriginalIds:string[];additions:string[];previousPositions:Record<string,number[]>;retiredWalls?:WallRecord[];wallUpdates?:{before:WallRecord;after:WallRecord;restoreFixed?:boolean;preserveEdited?:boolean}[]};
 export type LegacyEntity={id:string;name:string;room:string;position:number[]};
 export type AssemblyDefinition={id:string;name:string;room:string;legacyIds:string[];memberNames:string[];sourceCount:number};

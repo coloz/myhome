@@ -17,10 +17,11 @@ const {chromium}=require('playwright'),assert=require('node:assert/strict'),fs=r
   await page.goto((process.env.VIEWER_URL||'http://127.0.0.1:8788/')+'?workspace=raw');
   await page.waitForFunction(()=>window.__homeViewer&&!document.querySelector('.loading'),{},{timeout:120000});
   await page.getByLabel('自动隐藏最近墙面').uncheck();
-  for(const [name,id,group] of [['主卧','master','master-curve'],['次卧一','bed-east','bed-curve'],['入户光厅','garden','garden-round']]){
+  for(const [name,id,group] of [['主卧','master','master-south-facade'],['次卧一','bed-east','bed-east-north-facade'],['入户光厅','garden','garden-round']]){
    await page.getByRole('button',{name:'查看'+name,exact:true}).click();await page.waitForTimeout(800);
    const snapshot=await page.evaluate(()=>window.__homeViewer.snapshot());
-   assert(snapshot.parts.filter(p=>p.cutaway===group&&p.layer==='window').every(p=>p.visible));
+   const windows=snapshot.parts.filter(p=>p.cutaway===group&&p.layer==='window');
+   assert(windows.length>0);assert(windows.every(p=>p.visible));
    assert(!snapshot.showCeiling);assert.equal(snapshot.selected,id);
    await page.screenshot({path:'test-results/raw-curve-'+id+'.png'});
   }

@@ -67,6 +67,7 @@ function checkFacade(s){
   await page.reload();await ready(page,id);checkFacade(await snap(page));assert.deepEqual((await exported(page)).entities,seed.entities);
   checks.push('Refresh and re-opening an existing local draft upgrade the fixed facade while preserving furniture, custom partitions, finishes and room state');
   await page.getByRole('button',{name:'新建方案',exact:true}).click();await page.getByLabel('方案名称',{exact:true}).fill('保留修改副本');
+  await page.getByLabel('起始布置').selectOption('copy');
   assert.equal(await page.getByLabel('起始布置').inputValue(),'copy');await page.getByRole('button',{name:'创建方案',exact:true}).click();await page.waitForFunction(id=>window.__homeViewer?.snapshot().schemeId!==id&&!document.querySelector('.loading')&&!document.querySelector('.scheme-dialog[open]'),id);
   assert.deepEqual(await exported(page),restored);checkFacade(await snap(page));
   checks.push('Explicit copy still preserves the complete edited design');
@@ -78,7 +79,13 @@ function checkFacade(s){
   const actual=await live.newPage();actual.on('pageerror',e=>errors.push(e.message));await actual.goto(BASE+'?scheme=raw-shell');await ready(actual,'raw-shell');
   await actual.getByRole('button',{name:'新建方案',exact:true}).click();await actual.getByLabel('方案名称',{exact:true}).fill('原始户型修正版验证');await actual.getByLabel('起始布置').selectOption('raw-shell');
   await actual.getByRole('button',{name:'创建方案',exact:true}).click();await actual.waitForFunction(()=>window.__homeViewer?.snapshot().schemeId.startsWith('local-')&&!document.querySelector('.loading')&&!document.querySelector('.scheme-dialog[open]'));
-  checkFacade(await snap(actual));await actual.getByLabel('自动隐藏最近墙面',{exact:true}).uncheck();await actual.waitForTimeout(350);
+  checkFacade(await snap(actual));
+  const endWalls=(await snap(actual)).architecture.parts.filter(p=>p.id==='living-south'&&p.layer==='wall'&&p.bounds[0][1]<.01);
+  assert(endWalls.every(p=>p.visible),'Automatic nearest-wall hiding also removed the two solid window ends');
+  checks.push('Default automatic cutaway preserves both solid window ends');
+  fs.writeFileSync('test-results/default-window-visibility.json',JSON.stringify((await snap(actual)).architecture.parts.filter(p=>p.id==='living-south'),null,2));
+  await actual.screenshot({path:'test-results/default-window-visibility.png'});
+  await actual.getByLabel('自动隐藏最近墙面',{exact:true}).uncheck();await actual.waitForTimeout(350);
   await actual.screenshot({path:'test-results/template-refresh-live.png'});assert.equal(liveDb.writes.length,0);assert.deepEqual(errors,[]);await live.close();
   checks.push('Actual served assets: new raw-template design has the corrected 0.5m end walls');
   fs.writeFileSync('test-results/template-refresh-report.json',JSON.stringify({passed:true,checks,consoleErrors:errors,modelUrls:models},null,2));console.log(checks.join('\n'));

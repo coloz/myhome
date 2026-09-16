@@ -1,0 +1,1 @@
+require('./catalog-quality.cjs');

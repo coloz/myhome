@@ -2,7 +2,7 @@ const PROJECT='nbdodqezyijrztikvkcd',BASE_URL='https://'+PROJECT+'.supabase.co';
 const USER={id:'11111111-1111-4111-8111-111111111111',aud:'authenticated',role:'authenticated',email:'editor@example.test',is_anonymous:false,app_metadata:{provider:'email'},user_metadata:{},created_at:'2026-01-01T00:00:00Z'};
 const token=()=>[Buffer.from(JSON.stringify({alg:'HS256',typ:'JWT'})).toString('base64url'),Buffer.from(JSON.stringify({sub:USER.id,role:'authenticated',exp:Math.floor(Date.now()/1000)+3600})).toString('base64url'),'test-signature'].join('.');
 const session=()=>({access_token:token(),refresh_token:'test-refresh-token',token_type:'bearer',expires_in:3600,expires_at:Math.floor(Date.now()/1000)+3600,user:USER});
-function database(){return {rows:new Map(),writes:[],offline:false,delay:0,loseResponse:false};}
+function database(){return {rows:new Map(),writes:[],deletions:[],deleted:new Set(),offline:false,delay:0,loseResponse:false};}
 async function installSupabaseMock(context,{signedIn=true,db=database()}={}){
  // Guard every Supabase call; no test is allowed to write to the real project.
  await context.route(BASE_URL+'/**',async route=>{
@@ -15,11 +15,21 @@ async function installSupabaseMock(context,{signedIn=true,db=database()}={}){
    return respond({message:'Unknown test auth endpoint'},400);
   }
   if(db.offline)return route.abort('internetdisconnected');
+  if(url.pathname.endsWith('/rpc/delete_home_design_scheme')){
+   if(!req.headers().authorization)return respond({message:'Sign in'},403);
+   if(db.deleteUnavailable)return respond({message:'Function not found'},404);
+   const p=req.postDataJSON();db.deletions.push(p);if(db.delay)await new Promise(r=>setTimeout(r,db.delay));
+   if(['original','alternative','raw-shell'].includes(p.p_id))return respond(false,400);
+   if(db.deleted.has(p.p_id))return respond(true);
+   const row=db.rows.get(p.p_id);if(row&&(row.revision!==p.p_expected_revision||row.template_id!==p.p_template_id))return respond(false);
+   db.deleted.add(p.p_id);db.rows.delete(p.p_id);return respond(true);
+  }
   if(url.pathname.endsWith('/rpc/save_home_design_scheme')){
    if(!req.headers().authorization)return respond({message:'Sign in'},403);
    const p=req.postDataJSON();db.writes.push(structuredClone(p));
    if(db.rejectRaw&&p.p_template_id==='raw-shell')return respond({message:'home_design_schemes_template_id_check'},400);
    if(db.delay)await new Promise(r=>setTimeout(r,db.delay));
+   if(db.deleted.has(p.p_id))return respond([]);
    const row=db.rows.get(p.p_id);
    if(row?.last_mutation_id===p.p_mutation_id)return respond([row]);
    if((row?.revision??0)!==p.p_expected_revision)return respond([]);
